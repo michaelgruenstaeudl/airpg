@@ -11,7 +11,7 @@ setuptools.setup(
     description="A package to automatically access the inverted repeats of archived plastid genomes",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='https://github.com/michaelgruenstaeudl/airgb',
+    url='https://github.com/michaelgruenstaeudl/airpg',
     packages=setuptools.find_packages(),
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -26,10 +26,10 @@ setuptools.setup(
     license='BSD',
     entry_points={
         'console_scripts': [
-            'airgb_retrieve', 'airgb_analyze' # @TM: May need to be specified differently!
+            'airpg_retrieve', 'airpg_analyze' # @TM: May need to be specified differently!
         ],
     },
-    packages=['airgb'], # So that the subfolder 'airgb' is read immediately.
+    packages=['airpg'], # So that the subfolder 'airpg' is read immediately.
     #packages = find_packages(),
     install_requires=['biopython', 'ete3', 'argparse', 'pandas'],
     scripts=glob.glob('scripts/*'),

@@ -1,22 +1,22 @@
 *airpg*: Accessing the inverted repeats of archived plastid genomes
 ===================================================================
 
-[![Build Status](https://travis-ci.com/michaelgruenstaeudl/airgb.svg?branch=master)](https://travis-ci.com/michaelgruenstaeudl/airgb)
-[![PyPI status](https://img.shields.io/pypi/status/airgb.svg)](https://pypi.python.org/pypi/airgb/)
-[![PyPI pyversions](https://img.shields.io/pypi/pyversions/airgb.svg)](https://pypi.python.org/pypi/airgb/)
-[![PyPI version shields.io](https://img.shields.io/pypi/v/airgb.svg)](https://pypi.python.org/pypi/airgb/)
-[![PyPI license](https://img.shields.io/pypi/l/airgb.svg)](https://pypi.python.org/pypi/airgb/)
+[![Build Status](https://travis-ci.com/michaelgruenstaeudl/airpg.svg?branch=master)](https://travis-ci.com/michaelgruenstaeudl/airpg)
+[![PyPI status](https://img.shields.io/pypi/status/airpg.svg)](https://pypi.python.org/pypi/airpg/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/airpg.svg)](https://pypi.python.org/pypi/airpg/)
+[![PyPI version shields.io](https://img.shields.io/pypi/v/airpg.svg)](https://pypi.python.org/pypi/airpg/)
+[![PyPI license](https://img.shields.io/pypi/l/airpg.svg)](https://pypi.python.org/pypi/airpg/)
 
 A Python package for automatically accessing the inverted repeats of thousands of plastid genomes stored on NCBI Nucleotide
 
 ## INSTALLATION
-To get the most recent stable version of *airgb*, run:
+To get the most recent stable version of *airpg*, run:
 
-    pip install airgb
+    pip install airpg
 
-Or, alternatively, if you want to get the latest development version of *airgb*, run:
+Or, alternatively, if you want to get the latest development version of *airpg*, run:
 
-    pip install git+https://github.com/michaelgruenstaeudl/airgb.git
+    pip install git+https://github.com/michaelgruenstaeudl/airpg.git
 
 
 ## EXAMPLE USAGE
