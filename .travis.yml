@@ -1,0 +1,19 @@
+language: python            # this works for Linux but is an error on macOS or Windows
+matrix:
+  include:
+    - name: "Python 3.7.1 on Xenial Linux"
+      python: 3.7           # this works for Linux but is ignored on macOS or Windows
+    - name: "Python 3.7.4 on macOS"
+      os: osx
+      osx_image: xcode11    # Python 3.7.4 running on macOS 10.14.4
+      language: shell       # 'language: python' is an error on Travis CI macOS
+install: 
+    # upgrade pip3
+  - pip3 install --upgrade pip || pip install --upgrade pip # all three OSes agree about 'pip3'
+    # command to install dependencies
+  - pip3 install -r requirements.txt || pip install -r requirements.txt
+# command to test against PyPI
+  - pip3 install . || pip install .
+# 'python' points to Python 2.7 on macOS but points to Python 3.7 on Linux and Windows
+# 'python3' is a 'command not found' error on Windows but 'py' works on Windows only
+script: python3 setup.py test || python setup.py test
