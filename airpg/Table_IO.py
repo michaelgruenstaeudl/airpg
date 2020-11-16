@@ -1,11 +1,10 @@
 import os, logging
 import pandas as pd
-from airpg import fetchpubmed
 
-class Table_IO:
+class TableIO:
 
 	def __init__(self, fp_entry_table, fp_ir_table = None, fp_blacklist = None, fp_duplicates = None, logger = None):
-		self.log = logger or logging.getLogger(__name__ + ".Table_IO")
+		self.log = logger or logging.getLogger(__name__ + ".TableIO")
 		self.entry_table = None
 		self.duplicates = {}
 		self.ir_table = None

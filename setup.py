@@ -24,14 +24,14 @@ setuptools.setup(
     python_requires='>=3.6',
     keywords='plastid genomes, inverted repeats, NCBI Nucleotide',
     license='BSD',
-    entry_points={
-        'console_scripts': [
-            'airpg_retrieve', 'airpg_analyze' # @TM: May need to be specified differently!
-        ],
-    },
+    entry_points='''
+    [console_scripts]
+    airpg_retrieve=AIRPG.scripts.airpg_retrieve:main
+    airpg_analyze=AIRPG.scripts.airpg_analyze:main
+    ''',
     packages=['airpg'], # So that the subfolder 'airpg' is read immediately.
     #packages = find_packages(),
-    install_requires=['biopython', 'ete3', 'argparse', 'pandas'],
+    install_requires=['biopython', 'ete3', 'entrezpy', 'pandas'],
     scripts=glob.glob('scripts/*'),
     test_suite='setup.my_test_suite',
     include_package_data=True,

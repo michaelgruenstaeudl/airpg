@@ -36,8 +36,8 @@ import os.path
 import argparse
 import coloredlogs, logging
 #import pandas as pd
-from airpg import Entrez_Interaction
-from airpg import Table_IO
+from airpg import entrez_interaction
+from airpg import table_io
 from datetime import datetime
 
 ###############
@@ -67,7 +67,7 @@ def main(args):
 	log = logging.getLogger(__name__)
 	coloredlogs.install(fmt='%(asctime)s [%(levelname)s] %(message)s', level='DEBUG', logger=log)
 
-	EI = Entrez_Interaction.Entrez_Interaction(log)
+	EI = entrez_interaction.EntrezInteraction(log)
 
   # STEP 2. Check if output file already exists, read existing UIDs, infer mindate
 	uids_already_processed = []
@@ -75,9 +75,9 @@ def main(args):
 	outfn = os.path.abspath(args.outfn)
 
 	if args.blacklist:
-		tio = Table_IO.Table_IO(outfn, fp_blacklist = args.blacklist, logger = log)
+		tio = table_io.TableIO(outfn, fp_blacklist = args.blacklist, logger = log)
 	else:
-		tio = Table_IO.Table_IO(outfn, logger = log)
+		tio = table_io.TableIO(outfn, logger = log)
 	fp_duplicates = os.path.join(os.path.dirname(outfn), os.path.basename(outfn) + ".duplicates")
 	if os.path.isfile(fp_duplicates):
 		tio.read_duplicates(fp_duplicates)

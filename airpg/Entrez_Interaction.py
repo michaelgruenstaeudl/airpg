@@ -1,14 +1,14 @@
 import os, subprocess, logging
 import xml.etree.ElementTree as ET
-from airpg import fetchpubmed
+from airpg.airpg import fetch_pubmed
 import entrezpy.conduit
 from ete3 import NCBITaxa
 from datetime import date
 
-class Entrez_Interaction:
+class EntrezInteraction:
 
     def __init__(self, logger = None):
-        self.log = logger or logging.getLogger(__name__ + ".Entrez_Interaction")
+        self.log = logger or logging.getLogger(__name__ + ".EntrezInteraction")
 
     def retrieve_uids(self, query, min_date = None):
         '''
@@ -132,10 +132,10 @@ class Entrez_Interaction:
         '''
         articles = None
         cond = entrezpy.conduit.Conduit(mail)
-        fetch_pubmed = cond.new_pipeline()
-        sid = fetch_pubmed.add_search({'db': 'pubmed', 'term': query, 'rettype': 'count'})
-        fid = fetch_pubmed.add_fetch({'retmode':'xml'}, dependency=sid, analyzer=fetchpubmed.PubMedAnalyzer())
-        a = cond.run(fetch_pubmed)
+        fetch_pipe = cond.new_pipeline()
+        sid = fetch_pipe.add_search({'db': 'pubmed', 'term': query, 'rettype': 'count'})
+        fid = fetch_pipe.add_fetch({'retmode':'xml'}, dependency=sid, analyzer=fetch_pubmed.PubMedAnalyzer())
+        a = cond.run(fetch_pipe)
         result = a.get_result()
         if result.size() >= 1:
             articles = result.pubmed_records

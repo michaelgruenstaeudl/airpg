@@ -3,10 +3,10 @@ from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 
-class IR_Operations:
+class IROperations:
 
 	def __init__(self, logger = None):
-		self.log = logger or logging.getLogger(__name__ + ".IR_Operations")
+		self.log = logger or logging.getLogger(__name__ + ".IROperations")
 
 	###############
 	# I/O methods #

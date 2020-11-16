@@ -55,10 +55,10 @@ from Bio import SeqIO
 from fuzzywuzzy import fuzz
 from ete3 import NCBITaxa
 from pathlib import Path
-from airpg import Entrez_Interaction
-from airpg import Table_IO
-from airpg import Article_Mining
-from airpg import IR_Operations
+from airpg.airpg import entrez_interaction
+from airpg.airpg import table_io
+from airpg.airpg import article_mining
+from airpg.airpg import ir_operations
 import pandas as pd
 import os, argparse
 import tarfile, coloredlogs, logging
@@ -95,11 +95,11 @@ def main(args):
 		coloredlogs.install(fmt='%(asctime)s [%(levelname)s] %(message)s', level='INFO', logger=log)
 	mail = args.mail
 	query = args.query
-	iro = IR_Operations.IR_Operations(log)
-	EI = Entrez_Interaction.Entrez_Interaction(log)
+	iro = ir_operations.IROperations(log)
+	EI = entrez_interaction.EntrezInteraction(log)
 
   # STEP 2. Read in accession numbers to loop over
-	tio = Table_IO.Table_IO(args.infn, args.outfn, args.blacklist, logger = log)
+	tio = table_io.TableIO(args.infn, args.outfn, args.blacklist, logger = log)
 	tio.remove_blacklisted_entries()
 
 	accessions = list(tio.entry_table["ACCESSION"].values)
@@ -179,7 +179,7 @@ def main(args):
 			os.remove(fp_entry)
 
   # STEP 4. Check any accession for IR loss and remove from outlist if necessary
-	am = Article_Mining.Article_Mining(log)
+	am = article_mining.ArticleMining(log)
 	articles = EI.fetch_pubmed_articles(mail, query)
 	ncbi = NCBITaxa()
 	# Update database if it is older than 1 month

@@ -1,10 +1,10 @@
 import logging
 import re
 
-class Article_Mining:
+class ArticleMining:
 
     def __init__(self, logger):
-        self.log = logger or logging.getLogger(__name__ + ".Article_Mining")
+        self.log = logger or logging.getLogger(__name__ + ".ArticleMining")
 
     def get_abstract_text(self, article):
         '''
