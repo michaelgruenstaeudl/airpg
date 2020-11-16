@@ -1,6 +1,23 @@
 *airpg*: Accessing the inverted repeats of archived plastid genomes
 ===================================================================
+
+[![Build Status](https://travis-ci.com/michaelgruenstaeudl/airgb.svg?branch=master)](https://travis-ci.com/michaelgruenstaeudl/airgb)
+[![PyPI status](https://img.shields.io/pypi/status/airgb.svg)](https://pypi.python.org/pypi/airgb/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/airgb.svg)](https://pypi.python.org/pypi/airgb/)
+[![PyPI version shields.io](https://img.shields.io/pypi/v/airgb.svg)](https://pypi.python.org/pypi/airgb/)
+[![PyPI license](https://img.shields.io/pypi/l/airgb.svg)](https://pypi.python.org/pypi/airgb/)
+
 A Python package for automatically accessing the inverted repeats of thousands of plastid genomes stored on NCBI Nucleotide
+
+## INSTALLATION
+To get the most recent stable version of *airgb*, run:
+
+    pip install airgb
+
+Or, alternatively, if you want to get the latest development version of *airgb*, run:
+
+    pip install git+https://github.com/michaelgruenstaeudl/airgb.git
+
 
 ## EXAMPLE USAGE
 #### SCRIPT 01: Generating plastome availability table
@@ -46,3 +63,6 @@ python ./01_package/02_download_records_and_extract_IRs.py -i $TESTFOLDER/$AVAIL
 Foo bar baz
 ```
 -->
+
+## CHANGELOG
+See [`CHANGELOG.md`](CHANGELOG.md) for a list of recent changes to the software.

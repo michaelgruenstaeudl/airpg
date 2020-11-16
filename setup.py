@@ -4,19 +4,36 @@ with open("README.md", "r") as fh:
 	long_description = fh.read()
 
 setuptools.setup(
-	name="AIRPG",
-	version="0.0.1",
-	author="Tilman Mehl",
-	author_email="tilmanmehl@zedat.fu-berlin.de",
+	name="airpg",
+	version="0.1.0",
+	author=["Tilman Mehl", "Michael Gruenstaeudl"],
+	author_email=["tilmanmehl@zedat.fu-berlin.de", "m.gruenstaeudl@fu-berlin.de"],
     description="A package to automatically access the inverted repeats of archived plastid genomes",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='https://github.com/michaelgruenstaeudl/AIRgb',
+    url='https://github.com/michaelgruenstaeudl/airgb',
     packages=setuptools.find_packages(),
     classifiers=[
+        'Development Status :: 4 - Beta',
+        'License :: OSI Approved :: BSD License',
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
         "Operating System :: UNIX/Linux",
-    ],
+        'Intended Audience :: Science/Research',
+        'Topic :: Scientific/Engineering :: Bio-Informatics'
+        ],
     python_requires='>=3.6',
+    keywords='plastid genomes, inverted repeats, NCBI Nucleotide',
+    license='BSD',
+    entry_points={
+        'console_scripts': [
+            'airgb_retrieve', 'airgb_analyze' # @TM: May need to be specified differently!
+        ],
+    },
+    packages=['airgb'], # So that the subfolder 'airgb' is read immediately.
+    #packages = find_packages(),
+    install_requires=['biopython', 'ete3', 'argparse', 'pandas'],
+    scripts=glob.glob('scripts/*'),
+    test_suite='setup.my_test_suite',
+    include_package_data=True,
+    zip_safe=False
 )
