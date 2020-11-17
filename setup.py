@@ -6,14 +6,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
 	name="airpg",
-	version="0.1.5",
+	version="0.1.6",
 	author="Tilman Mehl, Michael Gruenstaeudl",
 	author_email="tilmanmehl@zedat.fu-berlin.de, m.gruenstaeudl@fu-berlin.de",
     description="A package to automatically access the inverted repeats of archived plastid genomes",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='https://github.com/michaelgruenstaeudl/airpg',
-    download_url='https://github.com/michaelgruenstaeudl/airpg/archive/v0.1.5.tar.gz',
+    download_url='https://github.com/michaelgruenstaeudl/airpg/archive/v0.1.6.tar.gz',
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: BSD License',
