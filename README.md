@@ -20,7 +20,7 @@ Or, alternatively, if you want to get the latest development version of *airpg*,
 
 
 ## EXAMPLE USAGE
-#### SCRIPT 01: Generating plastome availability table
+#### STEP 1: Generating plastome availability table
 ```
 # Angiosperms
 TESTFOLDER=./03_testing/angiosperms_Start2000toEnd2019
@@ -30,31 +30,23 @@ AVAILTABLE=plastome_availability_table_${DATE}.tsv
 mkdir -p $TESTFOLDER
 ```
 ```
-# Non-angiosperm landplants
-TESTFOLDER=./03_testing/nonangiosperm_landplants_Start2000toEnd2019
-DATE=$(date '+%Y_%m_%d')
-MYQUERY='complete genome[TITLE] AND (chloroplast[TITLE] OR plastid[TITLE]) AND 2000/01/01:2019/12/31[PDAT] AND 0000050000:00000250000[SLEN] NOT unverified[TITLE] NOT partial[TITLE] AND (Embryophyta[ORGN] NOT Magnoliophyta[ORGN])'
-AVAILTABLE=plastome_availability_table_${DATE}.tsv
-mkdir -p $TESTFOLDER
-```
-```
 # Defining blacklist
-if [ ! -f ./02_blacklists/BLACKLIST__master_${DATE} ]; then
-    cat $(ls ./02_blacklists/BLACKLIST__* | grep -v "master") > ./02_blacklists/BLACKLIST__master_${DATE}
+if [ ! -f ./BLACKLIST__master_${DATE} ]; then
+    cat $(ls ./BLACKLIST__* | grep -v "master") > ./BLACKLIST__master_${DATE}
 fi
 ```
 ```
-python ./01_package/01_generate_plastome_availability_table.py -q "$MYQUERY" -o $TESTFOLDER/$AVAILTABLE --blacklist ./02_blacklists/BLACKLIST__master_${DATE} 1>>$TESTFOLDER/Script01_${DATE}.runlog 2>&1
+airpg_retrieve.py -q "$MYQUERY" -o $TESTFOLDER/$AVAILTABLE --blacklist ./BLACKLIST__master_${DATE} 1>>$TESTFOLDER/airpg_retrieve_${DATE}.runlog 2>&1
 ```
 
-#### SCRIPT 02: Downloading records and extracting IR information
+#### STEP 2: Downloading records and extracting IR information
 ```
 REPRTDSTAT=reported_IR_stats_table_${DATE}.tsv
 mkdir -p $TESTFOLDER/records_${DATE}
 mkdir -p $TESTFOLDER/data_${DATE}
 ```
 ```
-python ./01_package/02_download_records_and_extract_IRs.py -i $TESTFOLDER/$AVAILTABLE -r $TESTFOLDER/records_${DATE}/ -d $TESTFOLDER/data_${DATE}/ -o $TESTFOLDER/$REPRTDSTAT 1>>$TESTFOLDER/Script02_${DATE}.runlog 2>&1
+airpg_analyze.py -i $TESTFOLDER/$AVAILTABLE -r $TESTFOLDER/records_${DATE}/ -d $TESTFOLDER/data_${DATE}/ -o $TESTFOLDER/$REPRTDSTAT 1>>$TESTFOLDER/airpg_analyze_${DATE}.runlog 2>&1
 ```
 
 <!--
