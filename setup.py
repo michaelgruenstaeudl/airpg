@@ -1,23 +1,23 @@
 import setuptools
+import glob
 
 with open("README.md", "r") as fh:
 	long_description = fh.read()
 
 setuptools.setup(
 	name="airpg",
-	version="0.1.0",
-	author=["Tilman Mehl", "Michael Gruenstaeudl"],
-	author_email=["tilmanmehl@zedat.fu-berlin.de", "m.gruenstaeudl@fu-berlin.de"],
+	version="0.1.1",
+	author="Tilman Mehl, Michael Gruenstaeudl",
+	author_email="tilmanmehl@zedat.fu-berlin.de, m.gruenstaeudl@fu-berlin.de",
     description="A package to automatically access the inverted repeats of archived plastid genomes",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='https://github.com/michaelgruenstaeudl/airpg',
-    packages=setuptools.find_packages(),
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: BSD License',
         "Programming Language :: Python :: 3",
-        "Operating System :: UNIX/Linux",
+        "Operating System :: POSIX",
         'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering :: Bio-Informatics'
         ],
