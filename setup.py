@@ -6,13 +6,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
 	name="airpg",
-	version="0.1.1",
+	version="0.1.3",
 	author="Tilman Mehl, Michael Gruenstaeudl",
 	author_email="tilmanmehl@zedat.fu-berlin.de, m.gruenstaeudl@fu-berlin.de",
     description="A package to automatically access the inverted repeats of archived plastid genomes",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='https://github.com/michaelgruenstaeudl/airpg',
+    download_url='https://github.com/michaelgruenstaeudl/airpg/archive/v0.1.3.tar.gz',
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: BSD License',
@@ -26,8 +27,8 @@ setuptools.setup(
     license='BSD',
     entry_points='''
     [console_scripts]
-    airpg_retrieve=AIRPG.scripts.airpg_retrieve:main
-    airpg_analyze=AIRPG.scripts.airpg_analyze:main
+    airpg_retrieve=airpg.scripts.airpg_retrieve:main
+    airpg_analyze=airpg.scripts.airpg_analyze:main
     ''',
     packages=['airpg'], # So that the subfolder 'airpg' is read immediately.
     #packages = find_packages(),
