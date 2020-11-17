@@ -55,10 +55,10 @@ from Bio import SeqIO
 from fuzzywuzzy import fuzz
 from ete3 import NCBITaxa
 from pathlib import Path
-from airpg.airpg import entrez_interaction
-from airpg.airpg import table_io
-from airpg.airpg import article_mining
-from airpg.airpg import ir_operations
+from airpg import entrez_interaction
+from airpg import table_io
+from airpg import article_mining
+from airpg import ir_operations
 import pandas as pd
 import os, argparse
 import tarfile, coloredlogs, logging

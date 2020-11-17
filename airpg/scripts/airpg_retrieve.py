@@ -36,8 +36,8 @@ import os.path
 import argparse
 import coloredlogs, logging
 #import pandas as pd
-from airpg.airpg import entrez_interaction
-from airpg.airpg import table_io
+from airpg import entrez_interaction
+from airpg import table_io
 from datetime import datetime
 
 ###############
