@@ -16,7 +16,7 @@ setuptools.setup(
     download_url='https://github.com/michaelgruenstaeudl/airpg/archive/v0.1.6.tar.gz',
     classifiers=[
         'Development Status :: 4 - Beta',
-        'License :: OSI Approved :: BSD License',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         "Programming Language :: Python :: 3",
         "Operating System :: POSIX",
         'Intended Audience :: Science/Research',
@@ -24,7 +24,7 @@ setuptools.setup(
         ],
     python_requires='>=3.6',
     keywords='plastid genomes, inverted repeats, NCBI Nucleotide',
-    license='BSD',
+    license='GPLv3',
     packages=['airpg'], # So that the subfolder 'airpg' is read immediately.
     #packages = find_packages(),
     install_requires=['biopython', 'ete3', 'entrezpy', 'pandas'],
