@@ -37,7 +37,8 @@ if [ ! -f ./BLACKLIST__master_${DATE} ]; then
 fi
 ```
 ```
-airpg_retrieve.py -q "$MYQUERY" -o $TESTFOLDER/$AVAILTABLE --blacklist ./BLACKLIST__master_${DATE} 1>>$TESTFOLDER/airpg_retrieve_${DATE}.runlog 2>&1
+airpg_retrieve.py -q "$MYQUERY" -o $TESTFOLDER/$AVAILTABLE \
+    --blacklist ./BLACKLIST__master_${DATE} 1>>$TESTFOLDER/airpg_retrieve_${DATE}.runlog 2>&1
 ```
 
 #### STEP 2: Downloading records and extracting IR information
@@ -47,7 +48,9 @@ mkdir -p $TESTFOLDER/records_${DATE}
 mkdir -p $TESTFOLDER/data_${DATE}
 ```
 ```
-airpg_analyze.py -i $TESTFOLDER/$AVAILTABLE -r $TESTFOLDER/records_${DATE}/ -d $TESTFOLDER/data_${DATE}/ -m john.smith@example.com -o $TESTFOLDER/$REPRTDSTAT 1>>$TESTFOLDER/airpg_analyze_${DATE}.runlog 2>&1
+airpg_analyze.py -i $TESTFOLDER/$AVAILTABLE \
+    -r $TESTFOLDER/records_${DATE}/ -d $TESTFOLDER/data_${DATE}/ \
+    -m john.smith@example.com -o $TESTFOLDER/$REPRTDSTAT 1>>$TESTFOLDER/airpg_analyze_${DATE}.runlog 2>&1
 ```
 
 <!--
