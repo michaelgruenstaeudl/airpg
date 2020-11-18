@@ -32,7 +32,8 @@ mkdir -p $TESTFOLDER
 ```
 # Defining blacklist
 if [ ! -f ./BLACKLIST__master_${DATE} ]; then
-    cat $(ls ./BLACKLIST__* | grep -v "master") > ./BLACKLIST__master_${DATE}
+    touch ./BLACKLIST__master_${DATE}
+    cat $(ls ./BLACKLIST__* | grep -v "master") >> ./BLACKLIST__master_${DATE}
 fi
 ```
 ```
@@ -46,7 +47,7 @@ mkdir -p $TESTFOLDER/records_${DATE}
 mkdir -p $TESTFOLDER/data_${DATE}
 ```
 ```
-airpg_analyze.py -i $TESTFOLDER/$AVAILTABLE -r $TESTFOLDER/records_${DATE}/ -d $TESTFOLDER/data_${DATE}/ -o $TESTFOLDER/$REPRTDSTAT 1>>$TESTFOLDER/airpg_analyze_${DATE}.runlog 2>&1
+airpg_analyze.py -i $TESTFOLDER/$AVAILTABLE -r $TESTFOLDER/records_${DATE}/ -d $TESTFOLDER/data_${DATE}/ -m john.smith@example.com -o $TESTFOLDER/$REPRTDSTAT 1>>$TESTFOLDER/airpg_analyze_${DATE}.runlog 2>&1
 ```
 
 <!--
