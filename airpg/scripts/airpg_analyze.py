@@ -147,7 +147,7 @@ def main(args):
 			ira_feature = None
 			irb_feature = None
 			if not str(accession) in tio.ir_table.index:
-				tio.ir_table = tio.ir_table.append(pd.Series(name=str(accession)))
+				tio.ir_table = tio.ir_table.append(pd.Series(name=str(accession), dtype=float64))
 			try:
 				ira_feature, irb_feature = iro.identify_inverted_repeats(rec, 1000)
 				rev_comp = False

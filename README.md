@@ -19,13 +19,30 @@ Or, alternatively, if you want to get the latest development version of *airpg*,
     pip install git+https://github.com/michaelgruenstaeudl/airpg.git
 
 
-## EXAMPLE USAGE
+## FOR TESTING / FOR THE IMPATIENT (runtime ca. 15 min.)
+```
+airpg_update_blocklist.py -f airpg_blocklist.txt \
+-m john.smith@example.com -q "inverted[TITLE] AND \
+repeat[TITLE] AND loss[TITLE]"
+
+airpg_identify.py -q "complete genome[TITLE] AND \
+(chloroplast[TITLE] OR plastid[TITLE]) AND \
+2000/10/01:2020/10/31[PDAT] AND 50000:250000[SLEN] \
+NOT unverified[TITLE] NOT partial[TITLE] AND \
+(Embryophyta[ORGN] AND Magnoliophyta[ORGN])" \
+-b airpg_blocklist.txt -o output_script1.tsv
+
+airpg_analyze.py -i output_script1.tsv \
+-m john.smith@example.com -o output_script2.tsv
+```
+
+
+## DETAILED USAGE (runtime ca. 12 hours)
 #### STEP 1: Querying NCBI Nucleotide for complete plastid genomes given an Entrez search string
 ```
-# Angiosperms
 TESTFOLDER=./03_testing/angiosperms_Start2000toEnd2019
 DATE=$(date '+%Y_%m_%d')
-ENTREZSTRING='complete genome[TITLE] AND (chloroplast[TITLE] OR plastid[TITLE]) AND 2000/01/01:2019/12/31[PDAT] AND 0000050000:00000250000[SLEN] NOT unverified[TITLE] NOT partial[TITLE] AND (Embryophyta[ORGN] AND Magnoliophyta[ORGN])'
+ENTREZSTRING='complete genome[TITLE] AND (chloroplast[TITLE] OR plastid[TITLE]) AND 2000/01/01:2019/12/31[PDAT] AND 50000:250000[SLEN] NOT unverified[TITLE] NOT partial[TITLE] AND (Embryophyta[ORGN] AND Magnoliophyta[ORGN])' # complete plastid genomes of all flowering plants between start of 2000 and end of 2019
 RECORDSTABLE=plastome_availability_table_${DATE}.tsv
 mkdir -p $TESTFOLDER
 ```
