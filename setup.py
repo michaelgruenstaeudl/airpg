@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
 	name="airpg",
-	version="0.1.8",
+	version="0.1.9",
 	author="Tilman Mehl, Michael Gruenstaeudl",
 	author_email="tilmanmehl@zedat.fu-berlin.de, m.gruenstaeudl@fu-berlin.de",
     description="A package to automatically access the inverted repeats of archived plastid genomes",
@@ -29,7 +29,7 @@ setuptools.setup(
     #entry_points={
     #  "console_scripts": ["airpg-retrieve=airpg.scripts.airpg_retrieve", "airpg-analyze=aripg.scripts.airpg_analyze", "airpg-make-blacklist=airpg.scripts.airpg_generate_blacklist"]
     #},
-    install_requires=['biopython', 'ete3', 'entrezpy', 'pandas'],
+    install_requires=['biopython', 'ete3', 'entrezpy', 'pandas', 'fuzzywuzzy'],
     scripts=['airpg/scripts/airpg_retrieve.py', 'airpg/scripts/airpg_analyze.py', 'airpg/scripts/airpg_generate_blacklist.py'],
     test_suite='setup.my_test_suite',
     include_package_data=True,
