@@ -199,14 +199,14 @@ def main(args):
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description="  --  ".join([__author__, __copyright__, __info__, __version__]))
-	parser.add_argument("--infn", "-i", type=str, required=True, help="path to input file; input is a summary table of NCBI accessions (tab-delimited, accession numbers in second column)")
-	parser.add_argument("--outfn", "-o", type=str, required=True, help="path to output file that contains information on IR positions and length")
-	parser.add_argument("--recordsdir", "-r", type=str, required=False, default="./records/", help="path to records directory")
-	parser.add_argument("--datadir", "-d", type=str, required=False, default="./data/", help="path to data directory")
-	parser.add_argument("--verbose", "-v", action="store_true", required=False, default=False, help="Enable verbose logging.")
-	parser.add_argument("--blocklist", "-b", type=str, required=False, help="path to taxonomy blocklist")
-	parser.add_argument("--query", "-q", type=str, required=False, default="inverted[TITLE] AND repeat[TITLE] AND loss[TITLE]", help="query to find pubmed articles describing inverted repeat loss")
-	parser.add_argument("--mail", "-m", type=str, required=True, help="Mail account for PubMed entrez search. Any valid mail address will work.")
+	parser.add_argument("--infn", "-i", type=str, required=True, help="Path to input file; input is a summary table of NCBI accessions (tab-delimited, accession numbers in second column)")
+	parser.add_argument("--outfn", "-o", type=str, required=True, help="Path to output file that contains information on IR positions and length")
+	parser.add_argument("--mail", "-m", type=str, required=True, help="Mail address needed for Entrez search on NCBI PubMed (any valid mail address works)")
+	parser.add_argument("--blocklist", "-b", type=str, required=False, help="(Optional) Path to blocklist file")
+	parser.add_argument("--query", "-q", type=str, required=False, default="inverted[TITLE] AND repeat[TITLE] AND loss[TITLE]", help="(Optional) Entrez string to query NCBI PubMed")
+	parser.add_argument("--recordsdir", "-r", type=str, required=False, default="./records/", help="(Optional) Path to records directory")
+	parser.add_argument("--datadir", "-d", type=str, required=False, default="./data/", help="(Optional) Path to data directory")
+	parser.add_argument("--verbose", "-v", action="store_true", required=False, default=False, help="(Optional) Enable verbose logging")
 	args = parser.parse_args()
 	#if bool(args.query) ^ bool(args.mail):
 	#	parser.error("--query and --mail must be given together")

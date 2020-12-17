@@ -129,8 +129,8 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="  --  ".join([__author__, __copyright__, __info__, __version__]))
-    parser.add_argument("-f", "--file_blocklist", type=str, required=True, help="path to blocklist file")
-    parser.add_argument("-m", "--mail", type=str, required=False, help="Mail account for PubMed entrez search. Any valid mail address will work.")
-    parser.add_argument("-q", "--query", type=str, required=False, default="inverted[TITLE] AND repeat[TITLE] AND loss[TITLE]", help="query used to fetch PMC articles that will be scanned for taxa with missing IRs")
+    parser.add_argument("-f", "--file_blocklist", type=str, required=True, help="Path to blocklist file")
+    parser.add_argument("-q", "--query", type=str, required=False, default="inverted[TITLE] AND repeat[TITLE] AND loss[TITLE]", help="(Optional) Entrez string to query NCBI PubMed")
+	parser.add_argument("--mail", "-m", type=str, required=True, help="(Optional) Mail address needed for Entrez search on NCBI PubMed (any valid mail address works)")
     args = parser.parse_args()
     main(args)
