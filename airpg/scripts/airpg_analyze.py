@@ -70,7 +70,8 @@ import time
 __author__ = 'Michael Gruenstaeudl <m.gruenstaeudl@fu-berlin.de>, '\
 			 'Tilman Mehl <tilmanmehl@zedat.fu-berlin.de>'
 __copyright__ = 'Copyright (C) 2019-2020 Michael Gruenstaeudl and Tilman Mehl'
-__info__ = 'Compare IRs for a series of IR FASTA files'
+__info__ = 'Retrieve the plastid genomes identified by the first script '\
+           'and evaluate their inverted repeats'
 __version__ = '2020.08.31.1930'
 
 #############
@@ -99,8 +100,8 @@ def main(args):
 	EI = entrez_interaction.EntrezInteraction(log)
 
   # STEP 2. Read in accession numbers to loop over
-	tio = table_io.TableIO(args.infn, args.outfn, args.blacklist, logger = log)
-	tio.remove_blacklisted_entries()
+	tio = table_io.TableIO(args.infn, args.outfn, args.blocklist, logger = log)
+	tio.remove_blocklisted_entries()
 
 	accessions = list(tio.entry_table["ACCESSION"].values)
 	if len(accessions) > 0:
@@ -204,7 +205,7 @@ if __name__ == "__main__":
 	parser.add_argument("--recordsdir", "-r", type=str, required=False, default="./records/", help="path to records directory")
 	parser.add_argument("--datadir", "-d", type=str, required=False, default="./data/", help="path to data directory")
 	parser.add_argument("--verbose", "-v", action="store_true", required=False, default=False, help="Enable verbose logging.")
-	parser.add_argument("--blacklist", "-b", type=str, required=False, help="path to taxonomy blacklist")
+	parser.add_argument("--blocklist", "-b", type=str, required=False, help="path to taxonomy blocklist")
 	parser.add_argument("--query", "-q", type=str, required=False, default="inverted[TITLE] AND repeat[TITLE] AND loss[TITLE]", help="query to find pubmed articles describing inverted repeat loss")
 	parser.add_argument("--mail", "-m", type=str, required=True, help="Mail account for PubMed entrez search. Any valid mail address will work.")
 	args = parser.parse_args()

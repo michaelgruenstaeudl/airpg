@@ -46,8 +46,8 @@ from datetime import datetime
 __author__ = 'Michael Gruenstaeudl <m.gruenstaeudl@fu-berlin.de>, '\
 			 'Tilman Mehl <tilmanmehl@zedat.fu-berlin.de>'
 __copyright__ = 'Copyright (C) 2019-2020 Michael Gruenstaeudl and Tilman Mehl'
-__info__ = 'Collect summary information on all plastid sequences stored ' \
-		   'in NCBI Nucleotide'
+__info__ = 'Conduct a query of NCBI Nucleotide and identify plastid ' \
+		   'genome records stored there'
 __version__ = '2020.08.31.1930'
 
 #############
@@ -74,8 +74,8 @@ def main(args):
 	min_date = None
 	outfn = os.path.abspath(args.outfn)
 
-	if args.blacklist:
-		tio = table_io.TableIO(outfn, fp_blacklist = args.blacklist, logger = log)
+	if args.blocklist:
+		tio = table_io.TableIO(outfn, fp_blocklist = args.blocklist, logger = log)
 	else:
 		tio = table_io.TableIO(outfn, logger = log)
 	fp_duplicates = os.path.join(os.path.dirname(outfn), os.path.basename(outfn) + ".duplicates")
@@ -116,10 +116,10 @@ def main(args):
 			tio.duplicates[uid] = [parsed_entry["ACCESSION"], duplseq]
 		tio.append_entry_to_table(parsed_entry, uid, outfn)
 
-	# STEP 5. Remove duplicates of REFSEQs and blacklisted entries
+	# STEP 5. Remove duplicates of REFSEQs and blocklisted entries
 	tio.write_duplicates(fp_duplicates)
 	tio.remove_duplicates()
-	tio.remove_blacklisted_entries()
+	tio.remove_blocklisted_entries()
 	'''
 	# Alternative way (i.e. with logs) to remove duplicates
 	for refseq, dup in tio.duplicates.items():
@@ -140,6 +140,6 @@ if __name__ == "__main__":
 	parser.add_argument("-o", "--outfn", type=str, required=True, help="path to output file")
 	parser.add_argument("-q", "--query", type=str, required=False, default="complete genome[TITLE] AND (chloroplast[TITLE] OR plastid[TITLE]) AND 0000050000:00000250000[SLEN] NOT unverified[TITLE] NOT partial[TITLE] AND (Embryophyta[ORGN] AND Magnoliophyta[ORGN])", help="(Optional) Entrez query that will replace the standard query")
 	parser.add_argument("-u", "--update_only", action="store_true", required=False, default=False, help="Will only add entries with more recent creation date than the most recent existing entry.")
-	parser.add_argument("-b", "--blacklist", type=str, required=False, help="path to file of blacklisted genera that will be removed from the retrieved plastid sequences.")
+	parser.add_argument("-b", "--blocklist", type=str, required=False, help="path to file of blocklisted genera that will be removed from the retrieved plastid sequences.")
 	args = parser.parse_args()
 	main(args)

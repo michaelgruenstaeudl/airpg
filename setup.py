@@ -12,7 +12,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='https://github.com/michaelgruenstaeudl/airpg',
-    download_url='https://github.com/michaelgruenstaeudl/airpg/archive/v0.1.8.tar.gz',
+    download_url='https://github.com/michaelgruenstaeudl/airpg/archive/v0.1.9.tar.gz',
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
@@ -27,10 +27,10 @@ setuptools.setup(
     #packages=['airpg'], # So that the subfolder 'airpg' is read immediately.
     packages = setuptools.find_packages(),
     #entry_points={
-    #  "console_scripts": ["airpg-retrieve=airpg.scripts.airpg_retrieve", "airpg-analyze=aripg.scripts.airpg_analyze", "airpg-make-blacklist=airpg.scripts.airpg_generate_blacklist"]
+    #  "console_scripts": ["airpg-identify=airpg.scripts.airpg_identify", "airpg-analyze=aripg.scripts.airpg_analyze", "airpg-update-blocklist=airpg.scripts.airpg_update_blocklist"]
     #},
-    install_requires=['biopython', 'ete3', 'entrezpy', 'pandas', 'fuzzywuzzy'],
-    scripts=['airpg/scripts/airpg_retrieve.py', 'airpg/scripts/airpg_analyze.py', 'airpg/scripts/airpg_generate_blacklist.py'],
+    install_requires=['biopython', 'ete3', 'entrezpy', 'pandas', 'fuzzywuzzy', 'coloredlogs'],
+    scripts=['airpg/scripts/airpg_identify.py', 'airpg/scripts/airpg_analyze.py', 'airpg/scripts/airpg_update_blocklist.py'],
     test_suite='setup.my_test_suite',
     include_package_data=True,
     zip_safe=False

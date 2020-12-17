@@ -3,19 +3,19 @@ import pandas as pd
 
 class TableIO:
 
-	def __init__(self, fp_entry_table, fp_ir_table = None, fp_blacklist = None, fp_duplicates = None, logger = None):
+	def __init__(self, fp_entry_table, fp_ir_table = None, fp_blocklist = None, fp_duplicates = None, logger = None):
 		self.log = logger or logging.getLogger(__name__ + ".TableIO")
 		self.entry_table = None
 		self.duplicates = {}
 		self.ir_table = None
-		self.blacklist = []
+		self.blocklist = []
 
 		self.read_entry_table(os.path.abspath(fp_entry_table))
 
 		if fp_ir_table:
 			self.read_ir_table(os.path.abspath(fp_ir_table))
-		if fp_blacklist:
-			self.read_blacklist(os.path.abspath(fp_blacklist))
+		if fp_blocklist:
+			self.read_blocklist(os.path.abspath(fp_blocklist))
 		if fp_duplicates:
 			self.read_duplicates(os.path.abspath(fp_duplicates))
 
@@ -111,16 +111,16 @@ class TableIO:
 		else:
 			raise Exception("Error trying to append IR info to file '%s': File does not exist!" % (fp_ir_table))
 
-	def read_blacklist(self, fp_blacklist):
+	def read_blocklist(self, fp_blocklist):
 		'''
-		Read a file of blacklisted genera.
+		Read a file of blocklisted genera.
 		Params:
-		 - fp_blacklist: file path to input file
+		 - fp_blocklist: file path to input file
 		'''
-		with open(fp_blacklist, "r") as fh_blacklist:
-			for line in [l.strip() for l in fh_blacklist.readlines()]:
+		with open(fp_blocklist, "r") as fh_blocklist:
+			for line in [l.strip() for l in fh_blocklist.readlines()]:
 				if not line.startswith("#"):
-					self.blacklist.append(line)
+					self.blocklist.append(line)
 
 	def read_duplicates(self, fp_duplicates):
 		'''
@@ -181,18 +181,18 @@ class TableIO:
 					self.log.debug("Dropping accession " + str(accession))
 					self.ir_table.drop(accession, inplace=True)
 
-	def remove_blacklisted_entries(self):
+	def remove_blocklisted_entries(self):
 		'''
-		Remove entries from entry table that match blacklisted genera.
+		Remove entries from entry table that match blocklisted genera.
 		'''
-		for genus in self.blacklist:
+		for genus in self.blocklist:
 			# TM: The next line took a while to figure out, so for the sake of my own and future contributers' sanities, here's a breakdown of what it does:
 			# self.entry_table["TAXONOMY"].str provides the whole taxonomy column for elementwise(i.e. rowwise) string operations. Since our TAXONOMY information is semicolon-separated, each row is split.
-			# This results in a Series of string lists. The last element (the genus) of each string list is compared to the current genus from the blacklist (entry[-1].rstrip('.') == genus).
-			# This in turn results in a list of bools, making self.entry_table.loc return all rows where the list of bools has True (i.e. all entries that match a blacklisted entry)
+			# This results in a Series of string lists. The last element (the genus) of each string list is compared to the current genus from the blocklist (entry[-1].rstrip('.') == genus).
+			# This in turn results in a list of bools, making self.entry_table.loc return all rows where the list of bools has True (i.e. all entries that match a blocklisted entry)
 			# Finally, we want only the index of those rows, to tell the dataframe which ones should get dropped.
 			self.entry_table.drop(self.entry_table.loc[[(entry[-1].strip('. ') == genus) for entry in self.entry_table["TAXONOMY"].str.split(';')]].index, inplace = True)
-		if len(self.blacklist) == 0:
+		if len(self.blocklist) == 0:
 			self.log.info("Blacklist is empty. No entries removed.")
 
 	def remove_duplicates(self):

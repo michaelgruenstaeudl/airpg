@@ -237,18 +237,18 @@ class IROperations:
 		lsc = None
 		ssc_identifiers = ["ssc", "small single copy"]
 		lsc_identifiers = ["lsc", "large single copy"]
-		blacklist = ["jlb", "jsb", "jsa", "jla", "junction"]
+		blocklist = ["jlb", "jsb", "jsa", "jla", "junction"]
 		i = 0
 		for misc_feature in [mf for mf in all_mf_no_pseudo if "note" in mf.qualifiers]:
 			i += 1
 			self.log.debug("Checking misc_feature %s out of %s (position %s - %s)..." % \
 			  (str(i), str(len(all_mf_no_pseudo)), str(misc_feature.location.start), str(misc_feature.location.end)))
 			if any(identifier in misc_feature.qualifiers["note"][0].lower() for identifier in ssc_identifiers) and \
-			   not any(blocked in misc_feature.qualifiers["note"][0].lower() for blocked in blacklist):
+			   not any(blocked in misc_feature.qualifiers["note"][0].lower() for blocked in blocklist):
 				self.log.debug("Found identifier for SSC")
 				ssc = misc_feature
 			if any(identifier in misc_feature.qualifiers["note"][0].lower() for identifier in lsc_identifiers) and \
-			   not any(blocked in misc_feature.qualifiers["note"][0].lower() for blocked in blacklist):
+			   not any(blocked in misc_feature.qualifiers["note"][0].lower() for blocked in blocklist):
 				self.log.debug("Found identifier for LSC")
 				lsc = misc_feature
 		if lsc and ssc:
@@ -290,12 +290,12 @@ class IROperations:
 		'''
 		ira_identifiers = ["ira", "inverted repeat a"]
 		irb_identifiers = ["irb", "inverted repeat b"]
-		blacklist = ["jlb", "jsb", "jsa", "jla", "junction"]
+		blocklist = ["jlb", "jsb", "jsa", "jla", "junction"]
 		# STEP 1: Check for hard identifiers
 		for misc_feature in [mf for mf in all_mf_no_pseudo if "note" in mf.qualifiers]:
 			if IRa is None:
 				if any(identifier in misc_feature.qualifiers["note"][0].lower() for identifier in ira_identifiers) and \
-				  not any(blocked in misc_feature.qualifiers["note"][0].lower() for blocked in blacklist):
+				  not any(blocked in misc_feature.qualifiers["note"][0].lower() for blocked in blocklist):
 					self.log.debug("Found identifier for IRa: `%s`" % str(misc_feature.qualifiers["note"][0]))
 					if len(misc_feature) > 100:
 						IRa = misc_feature
@@ -303,7 +303,7 @@ class IROperations:
 						self.log.debug("Feature is too short (%s bp) to be an IR." % str(len(misc_feature)))
 			if IRb is None:
 				if any(identifier in misc_feature.qualifiers["note"][0].lower() for identifier in irb_identifiers) and \
-				  not any(blocked in misc_feature.qualifiers["note"][0].lower() for blocked in blacklist):
+				  not any(blocked in misc_feature.qualifiers["note"][0].lower() for blocked in blocklist):
 					self.log.debug("Found identifier for IRb: `%s`" % str(misc_feature.qualifiers["note"][0]))
 					if len(misc_feature) > 100:
 						IRb = misc_feature
@@ -315,7 +315,7 @@ class IROperations:
 				if (("inverted" in misc_feature.qualifiers["note"][0].lower() and \
 				  "repeat" in misc_feature.qualifiers["note"][0].lower()) or \
 				  "IR" in misc_feature.qualifiers["note"][0]) and \
-				  not any(blocked in misc_feature.qualifiers["note"][0].lower() for blocked in blacklist):
+				  not any(blocked in misc_feature.qualifiers["note"][0].lower() for blocked in blocklist):
 					self.log.debug("Found general identifier for IRs: `%s`" % str(misc_feature.qualifiers["note"][0]))
 					if len(misc_feature) > 100:
 						if IRb is None:

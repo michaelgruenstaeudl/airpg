@@ -30,15 +30,15 @@ AVAILTABLE=plastome_availability_table_${DATE}.tsv
 mkdir -p $TESTFOLDER
 ```
 ```
-# Defining blacklist
+# Defining blocklist
 if [ ! -f ./BLACKLIST__master_${DATE} ]; then
     touch ./BLACKLIST__master_${DATE}
     cat $(ls ./BLACKLIST__* | grep -v "master") >> ./BLACKLIST__master_${DATE}
 fi
 ```
 ```
-airpg_retrieve.py -q "$MYQUERY" -o $TESTFOLDER/$AVAILTABLE \
-    --blacklist ./BLACKLIST__master_${DATE} 1>>$TESTFOLDER/airpg_retrieve_${DATE}.runlog 2>&1
+airpg_identify.py -q "$MYQUERY" -o $TESTFOLDER/$AVAILTABLE \
+    --blocklist ./BLACKLIST__master_${DATE} 1>>$TESTFOLDER/airpg_retrieve_${DATE}.runlog 2>&1
 ```
 
 #### STEP 2: Downloading records and extracting IR information
