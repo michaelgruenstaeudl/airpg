@@ -19,7 +19,9 @@ Or, alternatively, if you want to get the latest development version of *airpg*,
     pip install git+https://github.com/michaelgruenstaeudl/airpg.git
 
 
-## FOR TESTING / FOR THE IMPATIENT (runtime ca. 15 min.)
+## EXAMPLE USAGE
+
+### Short survey for the impatient / for testing (runtime ca. 15 min.)
 ```
 airpg_update_blocklist.py -f airpg_blocklist.txt \
 -m john.smith@example.com -q "inverted[TITLE] AND \
@@ -27,7 +29,7 @@ repeat[TITLE] AND loss[TITLE]"
 
 airpg_identify.py -q "complete genome[TITLE] AND \
 (chloroplast[TITLE] OR plastid[TITLE]) AND \
-2000/10/01:2020/10/31[PDAT] AND 50000:250000[SLEN] \
+2020/10/01:2020/10/31[PDAT] AND 50000:250000[SLEN] \
 NOT unverified[TITLE] NOT partial[TITLE] AND \
 (Embryophyta[ORGN] AND Magnoliophyta[ORGN])" \
 -b airpg_blocklist.txt -o output_script1.tsv
@@ -37,7 +39,7 @@ airpg_analyze.py -i output_script1.tsv \
 ```
 
 
-## DETAILED USAGE (runtime ca. 12 hours)
+### Full survey with explanations (runtime ca. 12 hours)
 #### STEP 1: Querying NCBI Nucleotide for complete plastid genomes given an Entrez search string
 ```
 TESTFOLDER=./03_testing/angiosperms_Start2000toEnd2019
