@@ -29,7 +29,7 @@ setuptools.setup(
     #entry_points={
     #  "console_scripts": ["airpg-identify=airpg.scripts.airpg_identify", "airpg-analyze=aripg.scripts.airpg_analyze", "airpg-update-blocklist=airpg.scripts.airpg_update_blocklist"]
     #},
-    install_requires=['biopython', 'ete3', 'entrezpy', 'pandas', 'fuzzywuzzy', 'coloredlogs'],
+    install_requires=['biopython', 'ete3', 'entrezpy', 'pandas', 'fuzzywuzzy', 'coloredlogs', 'python-Levenshtein'],
     scripts=['airpg/scripts/airpg_identify.py', 'airpg/scripts/airpg_analyze.py', 'airpg/scripts/airpg_update_blocklist.py'],
     test_suite='setup.my_test_suite',
     include_package_data=True,
