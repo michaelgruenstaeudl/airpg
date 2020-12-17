@@ -104,7 +104,25 @@ def main(args):
     log.info("Adding new species names to blocklist ...")
     blocklist = irl_clade_genera.difference(blocklist_existing)
 
-    ## STEP 5. Append only new taxon names to blocklist
+    ## STEP 5. Conduct the search on NCBI PubMed
+    if args.query and args.mail:
+        pass
+        # To be continued by Tilman
+
+#        am = article_mining.ArticleMining(log)
+#        articles = EI.fetch_pubmed_articles(mail, query)
+#        ncbi = NCBITaxa()
+#        # Update database if it is older than 1 month
+#        if (time.time() - os.path.getmtime(os.path.join(Path.home(), ".etetoolkit/taxa.sqlite"))) > 2592000:
+#            ncbi.update_taxonomy_database()
+#        article_genera = set()
+#        for article in articles:
+#            article_genera.union(am.get_genera_from_pubmed_article(article, ncbi))
+
+        # Then append list "blocklist" with identified geneus names
+
+
+    ## STEP 6. Append only new taxon names to blocklist
     log.info("Calculating and appending species names not previously in blocklist ...")
     append_blocklist(args.file_blocklist, blocklist)
 
@@ -112,6 +130,7 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="  --  ".join([__author__, __copyright__, __info__, __version__]))
     parser.add_argument("-f", "--file_blocklist", type=str, required=True, help="path to blocklist file")
+    parser.add_argument("-m", "--mail", type=str, required=False, help="Mail account for PubMed entrez search. Any valid mail address will work.")
     parser.add_argument("-q", "--query", type=str, required=False, default="inverted[TITLE] AND repeat[TITLE] AND loss[TITLE]", help="query used to fetch PMC articles that will be scanned for taxa with missing IRs")
     args = parser.parse_args()
     main(args)

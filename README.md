@@ -33,8 +33,9 @@ mkdir -p $TESTFOLDER
 # Updating blocklist
 if [ ! -f ./airpg_blocklist.txt ]; then
     touch ./airpg_blocklist.txt
+    airpg_update_blocklist.py -f ./airpg_blocklist.txt
 fi
-airpg_update_blocklist.py -f ./airpg_blocklist.txt
+airpg_update_blocklist.py -f ./airpg_blocklist.txt -m john.smith@example.com -q "inverted[TITLE] AND repeat[TITLE] AND loss[TITLE]"
 ```
 ```
 airpg_identify.py -q "$ENTREZSTRING" -o $TESTFOLDER/$RECORDSTABLE \
