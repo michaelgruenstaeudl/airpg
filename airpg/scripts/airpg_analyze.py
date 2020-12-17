@@ -85,7 +85,6 @@ __version__ = '2020.08.31.1930'
 #############
 
 
-
 def main(args):
 
   # STEP 1. Set up logger

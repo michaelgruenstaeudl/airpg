@@ -1,4 +1,7 @@
 CHANGELOG
 ---------
-#### Version 0.5.0 (2020.11.16)
+#### Version 0.1.9 (2020.12.17)
+* Adjusted file names to manuscript
+* Several minor improvements
+#### Version 0.1.0 (2020.11.16)
 * First stable upload to PyPI

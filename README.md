@@ -20,37 +20,37 @@ Or, alternatively, if you want to get the latest development version of *airpg*,
 
 
 ## EXAMPLE USAGE
-#### STEP 1: Generating plastome availability table
+#### STEP 1: Querying NCBI Nucleotide for complete plastid genomes given an Entrez search string
 ```
 # Angiosperms
 TESTFOLDER=./03_testing/angiosperms_Start2000toEnd2019
 DATE=$(date '+%Y_%m_%d')
-MYQUERY='complete genome[TITLE] AND (chloroplast[TITLE] OR plastid[TITLE]) AND 2000/01/01:2019/12/31[PDAT] AND 0000050000:00000250000[SLEN] NOT unverified[TITLE] NOT partial[TITLE] AND (Embryophyta[ORGN] AND Magnoliophyta[ORGN])'
-AVAILTABLE=plastome_availability_table_${DATE}.tsv
+ENTREZSTRING='complete genome[TITLE] AND (chloroplast[TITLE] OR plastid[TITLE]) AND 2000/01/01:2019/12/31[PDAT] AND 0000050000:00000250000[SLEN] NOT unverified[TITLE] NOT partial[TITLE] AND (Embryophyta[ORGN] AND Magnoliophyta[ORGN])'
+RECORDSTABLE=plastome_availability_table_${DATE}.tsv
 mkdir -p $TESTFOLDER
 ```
 ```
-# Defining blocklist
-if [ ! -f ./BLACKLIST__master_${DATE} ]; then
-    touch ./BLACKLIST__master_${DATE}
-    cat $(ls ./BLACKLIST__* | grep -v "master") >> ./BLACKLIST__master_${DATE}
+# Updating blocklist
+if [ ! -f ./airpg_blocklist.txt ]; then
+    touch ./airpg_blocklist.txt
 fi
+airpg_update_blocklist.py -f ./airpg_blocklist.txt
 ```
 ```
-airpg_identify.py -q "$MYQUERY" -o $TESTFOLDER/$AVAILTABLE \
-    --blocklist ./BLACKLIST__master_${DATE} 1>>$TESTFOLDER/airpg_retrieve_${DATE}.runlog 2>&1
+airpg_identify.py -q "$ENTREZSTRING" -o $TESTFOLDER/$RECORDSTABLE \
+    --blocklist ./airpg_blocklist.txt 1>>$TESTFOLDER/airpg_identify_${DATE}.runlog 2>&1
 ```
 
-#### STEP 2: Downloading records and extracting IR information
+#### STEP 2: Retrieving and parsing the genome records identified in step 1, analyzing the position and length of their IR annotations
 ```
-REPRTDSTAT=reported_IR_stats_table_${DATE}.tsv
+IRSTATSTABLE=reported_IR_stats_table_${DATE}.tsv
 mkdir -p $TESTFOLDER/records_${DATE}
 mkdir -p $TESTFOLDER/data_${DATE}
 ```
 ```
-airpg_analyze.py -i $TESTFOLDER/$AVAILTABLE \
+airpg_analyze.py -i $TESTFOLDER/$RECORDSTABLE \
     -r $TESTFOLDER/records_${DATE}/ -d $TESTFOLDER/data_${DATE}/ \
-    -m john.smith@example.com -o $TESTFOLDER/$REPRTDSTAT 1>>$TESTFOLDER/airpg_analyze_${DATE}.runlog 2>&1
+    -m john.smith@example.com -o $TESTFOLDER/$IRSTATSTABLE 1>>$TESTFOLDER/airpg_analyze_${DATE}.runlog 2>&1
 ```
 
 <!--
