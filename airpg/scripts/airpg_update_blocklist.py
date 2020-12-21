@@ -20,6 +20,7 @@ import argparse
 import coloredlogs, logging
 import time
 #import PlastomeIntegrityChecks as pic
+from airpg import table_io
 from ete3 import NCBITaxa
 from pathlib import Path
 from datetime import datetime
@@ -107,7 +108,7 @@ def main(args):
     ## STEP 5. Conduct the search on NCBI PubMed
     if args.query and args.mail:
         pass
-        # To be continued by Tilman
+        # TM: Functionality is ready, but not activated yet
 
 #        am = article_mining.ArticleMining(log)
 #        articles = EI.fetch_pubmed_articles(mail, query)
@@ -118,8 +119,8 @@ def main(args):
 #        article_genera = set()
 #        for article in articles:
 #            article_genera.union(am.get_genera_from_pubmed_article(article, ncbi))
-
-        # Then append list "blocklist" with identified geneus names
+#        
+#        blocklist = blocklist.union(article_genera)
 
 
     ## STEP 6. Append only new taxon names to blocklist
