@@ -1,5 +1,8 @@
 CHANGELOG
 ---------
+#### Version 1.0.0 (2020.12.22)
+* Update of README
+* Several minor improvements
 #### Version 0.1.9 (2020.12.17)
 * Adjusted file names to manuscript
 * Several minor improvements
