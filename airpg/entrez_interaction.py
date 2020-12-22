@@ -36,9 +36,13 @@ class EntrezInteraction:
         Returns: ElementTree of entry
         '''
         self.log.debug("Fetching XML GenBank entry " + str(uid))
-        esummaryargs = ["esummary", "-db", "nucleotide", "-format", "gb", "-mode", "xml", "-id", str(uid)]
-        esummary = subprocess.Popen(esummaryargs, stdout=subprocess.PIPE)
-        out, err = esummary.communicate()
+        #esummaryargs = ["esummary", "-db", "nucleotide", "-format", "gb", "-mode", "xml", "-id", str(uid)]  ## esummary was retired and replaced by efetch
+        #esummaryargs = ["efetch", "-db", "nucleotide", "-format", "gb", "-mode", "xml", "-id", str(uid)]
+        #esummary = subprocess.Popen(esummaryargs, stdout=subprocess.PIPE)
+        #out, err = esummary.communicate()
+        efetchargs = ["efetch", "-db", "nucleotide", "-format", "gb", "-mode", "xml", "-id", str(uid)]
+        efetch = subprocess.Popen(efetchargs, stdout=subprocess.PIPE)
+        out, err = efetch.communicate()
         return ET.fromstring(out)
 
     def parse_xml_entry(self, entry):
