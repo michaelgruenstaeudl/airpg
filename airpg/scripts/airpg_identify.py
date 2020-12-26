@@ -138,7 +138,7 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="  --  ".join([__author__, __copyright__, __info__, __version__]))
     parser.add_argument("-o", "--outfn", type=str, required=True, help="Path to output file")
-    parser.add_argument("-q", "--query", type=str, required=False, default="complete genome[TITLE] AND (chloroplast[TITLE] OR plastid[TITLE]) AND 0000050000:00000250000[SLEN] NOT unverified[TITLE] NOT partial[TITLE] AND (Embryophyta[ORGN] AND Magnoliophyta[ORGN])", help="(Optional) Entrez query that will replace the standard query")
+    parser.add_argument("-q", "--query", type=str, required=False, default="complete genome[TITLE] AND (chloroplast[TITLE] OR plastid[TITLE]) AND 0000050000:00000250000[SLEN] NOT unverified[TITLE] NOT partial[TITLE] AND Magnoliophyta[ORGN]", help="(Optional) Entrez query that will replace the standard query")
     parser.add_argument("-b", "--blocklist", type=str, required=False, help="(Optional) Path to file of blocklisted genera that will be removed from the retrieved plastid sequences")
     parser.add_argument("-u", "--update_only", action="store_true", required=False, default=False, help="(Optional) Only add entries with more recent creation date than the most recent existing entry")
     args = parser.parse_args()
