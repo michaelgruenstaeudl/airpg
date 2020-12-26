@@ -21,7 +21,7 @@ Or, alternatively, if you want to get the latest development version of *airpg*,
 
 ## EXAMPLE USAGE
 
-### Short survey for the impatient / for testing (runtime ca. 4 hours)
+### Short survey for the impatient / for testing (runtime ca. 5 hours)
 Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide in 2019 only. Note: The results of this survey are available on Zenodo via DOI [10.5281/zenodo.4335906](https://zenodo.org/record/4335906)
 ```
 airpg_update_blocklist.py -f airpg_blocklist.txt \
@@ -32,7 +32,7 @@ airpg_identify.py -q "complete genome[TITLE] AND \
 (chloroplast[TITLE] OR plastid[TITLE]) AND \
 2019/01/01:2019/12/31[PDAT] AND 50000:250000[SLEN] \
 NOT unverified[TITLE] NOT partial[TITLE] AND \
-(Embryophyta[ORGN] AND Magnoliophyta[ORGN])" \
+Magnoliophyta[ORGN]" \
 -b airpg_blocklist.txt -o output_script1.tsv
 
 airpg_analyze.py -i output_script1.tsv \
@@ -40,14 +40,14 @@ airpg_analyze.py -i output_script1.tsv \
 ```
 
 
-### Full survey with explanations (runtime ca. 18 hours)
+### Full survey with explanations (runtime ca. 19 hours)
 Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide from start of 2000 until end of October 2020. Note: The results of this survey are available on Zenodo via DOI [10.5281/zenodo.4335906](https://zenodo.org/record/4335906)
 
 #### STEP 1: Querying NCBI Nucleotide for complete plastid genomes given an Entrez search string
 ```
 TESTFOLDER=./angiosperms_Start2000toEndOct2020
 DATE=$(date '+%Y_%m_%d')
-ENTREZSTRING='complete genome[TITLE] AND (chloroplast[TITLE] OR plastid[TITLE]) AND 2000/01/01:2020/10/31[PDAT] AND 50000:250000[SLEN] NOT unverified[TITLE] NOT partial[TITLE] AND (Embryophyta[ORGN] AND Magnoliophyta[ORGN])' # complete plastid genomes of all flowering plants between start of 2000 and end of October 2020
+ENTREZSTRING='complete genome[TITLE] AND (chloroplast[TITLE] OR plastid[TITLE]) AND 2000/01/01:2020/10/31[PDAT] AND 50000:250000[SLEN] NOT unverified[TITLE] NOT partial[TITLE] AND Magnoliophyta[ORGN]' # complete plastid genomes of all flowering plants between start of 2000 and end of October 2020
 RECORDSTABLE=plastome_availability_table_${DATE}.tsv
 mkdir -p $TESTFOLDER
 ```
