@@ -1,5 +1,7 @@
 CHANGELOG
 ---------
+#### Version 1.0.4 (2021.02.18)
+* Update of README
 #### Version 1.0.3 (2020.12.26)
 * Update of README
 * Minor improvements
