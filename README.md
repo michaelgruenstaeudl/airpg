@@ -36,7 +36,8 @@ elif (($TODAY >= 16 && $TODAY <= 20)); then
 elif (($TODAY >= 21 && $TODAY <= 25)); then
     STARTDATE=$(date +%Y/%m/15)
 else
-    STARTDATE=$(date +%Y/%m/20)
+    PREVMONTH=$(printf "%02d" $(echo "$(date +%m)-1" | bc))
+    STARTDATE=$(date +%Y/$PREVMONTH/20)
 fi
 ENDDATE=$(date +%Y/%m/%d)
 
@@ -46,16 +47,19 @@ airpg_identify.py \
 $STARTDATE:$ENDDATE[PDAT] AND \
 50000:250000[SLEN] NOT unverified[TITLE] \
 NOT partial[TITLE] AND Magnoliophyta[ORGN]" \
--o ../results/output_script1.tsv \
-#&> ../results/output_script1.log
+-o output_script1.tsv \
+#&> output_script1.log
+
+mkdir -p records
+mkdir -p data
 
 airpg_analyze.py \
--i ../results/output_script1.tsv \
+-i output_script1.tsv \
 -m john.smith@example.com \
--o ../results/output_script2.tsv \
---recordsdir ../results/records/ \
---datadir ../results/data/ \
-#&> ../results/output_script2.log
+-o output_script2.tsv \
+--recordsdir records/ \
+--datadir data/ \
+#&> /output_script2.log
 ```
 
 ---------------------------------------------------------------------------------------------------------------------------
