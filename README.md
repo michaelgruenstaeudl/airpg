@@ -59,7 +59,7 @@ airpg_analyze.py \
 -o output_script2.tsv \
 --recordsdir records/ \
 --datadir data/ \
-#&> /output_script2.log
+#&> output_script2.log
 ```
 
 ---------------------------------------------------------------------------------------------------------------------------
