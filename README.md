@@ -36,7 +36,7 @@ elif (($TODAY >= 16 && $TODAY <= 20)); then
 elif (($TODAY >= 21 && $TODAY <= 25)); then
     STARTDATE=$(date +%Y/%m/15)
 else
-    PREVMONTH=$(printf "%02d" $(echo "$(date +%m)-1" | bc))
+    PREVMONTH=$(printf "%02d" $(($(date +%m)-1)))
     STARTDATE=$(date +%Y/$PREVMONTH/20)
 fi
 ENDDATE=$(date +%Y/%m/%d)
