@@ -77,7 +77,7 @@ __version__ = '2021.03.05'
 #############
 # DEBUGGING #
 #############
-#import ipdb
+import ipdb
 # ipdb.set_trace()
 
 #############
@@ -116,9 +116,8 @@ def main(args):
             os.makedirs(acc_folder)
         else:
             log.warning("Folder for accession `%s` already exists." % (str(accession)))
-            #continue
 
-        if not os.path.isfile(os.path.join(acc_folder, str(accession) + ".gb")):
+        if not os.path.isfile(os.path.join(args.recordsdir, accession + ".tar.gz")):
             log.info("Saving GenBank flat file for accession `%s`." % (str(accession)))
             try:
                 fp_entry = EI.fetch_gb_entry(accession, acc_folder)
@@ -127,11 +126,14 @@ def main(args):
                 os.rmdir(acc_folder)
                 continue
         else:
-            log.warning("GenBank flat file for accession `%s` already exists." % (str(accession)))
-            #continue
+            log.warning("GenBank flat file for accession `%s` already exists. Extracting existing file." % (str(accession)))
+            tar = tarfile.open(os.path.join(args.recordsdir, accession + ".tar.gz"), "r:gz")
+            tar.extractall(acc_folder)
+            tar.close()
 
         try:
             try:
+                fp_entry = EI.fetch_gb_entry(accession, acc_folder)
                 rec = SeqIO.read(fp_entry, "genbank")
             except Exception as err:
                 raise Exception("Error reading record of accession `%s`: `%s`. Skipping this accession." %
