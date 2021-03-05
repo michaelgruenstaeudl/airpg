@@ -69,10 +69,10 @@ import time
 ###############
 __author__ = 'Michael Gruenstaeudl <m.gruenstaeudl@fu-berlin.de>, '\
              'Tilman Mehl <tilmanmehl@zedat.fu-berlin.de>'
-__copyright__ = 'Copyright (C) 2019-2020 Michael Gruenstaeudl and Tilman Mehl'
+__copyright__ = 'Copyright (C) 2019-2021 Michael Gruenstaeudl and Tilman Mehl'
 __info__ = 'Retrieve the plastid genomes identified by the first script '\
            'and evaluate their inverted repeats'
-__version__ = '2020.12.17'
+__version__ = '2021.03.05'
 
 #############
 # DEBUGGING #
@@ -115,16 +115,20 @@ def main(args):
         if not os.path.exists(acc_folder):
             os.makedirs(acc_folder)
         else:
-            log.warning("Folder for accession `%s` already exists. Skipping this accession." % (str(accession)))
-            continue
+            log.warning("Folder for accession `%s` already exists." % (str(accession)))
+            #continue
 
-        log.info("Saving GenBank flat file for accession `%s`." % (str(accession)))
-        try:
-            fp_entry = EI.fetch_gb_entry(accession, acc_folder)
-        except:
-            log.warning("Error retrieving accession `%s`. Skipping this accession." % (str(accession)))
-            os.rmdir(acc_folder)
-            continue
+        if not os.path.isfile(os.path.join(acc_folder, str(accession) + ".gb")):
+            log.info("Saving GenBank flat file for accession `%s`." % (str(accession)))
+            try:
+                fp_entry = EI.fetch_gb_entry(accession, acc_folder)
+            except:
+                log.warning("Error retrieving accession `%s`. Skipping this accession." % (str(accession)))
+                os.rmdir(acc_folder)
+                continue
+        else:
+            log.warning("GenBank flat file for accession `%s` already exists." % (str(accession)))
+            #continue
 
         try:
             try:
