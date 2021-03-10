@@ -113,7 +113,10 @@ def main(args):
         try:
             irl_clade_genera = set()
             am = article_mining.ArticleMining(log)
-            articles = EI.fetch_pubmed_articles(mail, query)
+            if EI.internet_on():  # Check if internet connection active
+                articles = EI.fetch_pubmed_articles(mail, query)
+            else:  # If no internet connection, raise error
+                raise Exception("ERROR: No internet connection.")
             ncbi = NCBITaxa()
             # Update database if it is older than 1 month
             if (time.time() - os.path.getmtime(os.path.join(Path.home(), ".etetoolkit/taxa.sqlite"))) > 2592000:

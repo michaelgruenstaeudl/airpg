@@ -1,6 +1,6 @@
-import os, subprocess, logging
+import os, subprocess, logging, urllib.request
 import xml.etree.ElementTree as ET
-from airpg import fetch_pubmed
+from airpg import parse_pubmed
 import entrezpy.conduit
 from ete3 import NCBITaxa
 from datetime import date
@@ -138,9 +138,20 @@ class EntrezInteraction:
         cond = entrezpy.conduit.Conduit(mail)
         fetch_pipe = cond.new_pipeline()
         sid = fetch_pipe.add_search({'db': 'pubmed', 'term': query, 'rettype': 'count'})
-        fid = fetch_pipe.add_fetch({'retmode':'xml'}, dependency=sid, analyzer=fetch_pubmed.PubMedAnalyzer())
+        fid = fetch_pipe.add_fetch({'retmode':'xml'}, dependency=sid, analyzer=parse_pubmed.PubMedAnalyzer())
         a = cond.run(fetch_pipe)
         result = a.get_result()
         if result.size() >= 1:
             articles = result.pubmed_records
         return articles
+
+    def internet_on(self):
+        '''
+        Simple check if internet connection is active
+        Modified from: https://stackoverflow.com/questions/3764291/checking-network-connection
+        '''
+        try:
+            urllib.request.urlopen('http://216.58.192.142', timeout=1)
+            return True
+        except urllib.request.URLError as err: 
+            return False

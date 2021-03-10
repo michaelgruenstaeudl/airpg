@@ -93,10 +93,13 @@ def main(args):
         log.info(("Summary file '%s' does not exist; generating new file. Thus, no UIDs read." % (str(outfn))))
 
     # STEP 3. Get all existing UIDs and calculate which to be processed
-    try:
-        uids_new = EI.retrieve_uids(args.query, min_date)
-    except Exception as err:
-        log.exception("Error while retrieving UID list: " + str(err))
+    if EI.internet_on():  # Check if internet connection active
+        try:
+            uids_new = EI.retrieve_uids(args.query, min_date)
+        except Exception as err:
+            log.exception("Error while retrieving UID list: " + str(err))
+    else:  # If no internet connection, raise error
+        raise Exception("ERROR: No internet connection.")
     log.info(("Number of UIDs on NCBI: %s" % (str(len(uids_new)))))
     uids_to_process = set(uids_new) - set(uids_already_processed)
     log.info(("Number of UIDs to be processed: %s" % (str(len(uids_to_process)))))
@@ -104,12 +107,15 @@ def main(args):
     # STEP 4. Parse all entries, append entry-wise to file
     for uid in uids_to_process:
         log.info(("Reading and parsing UID '%s', writing to '%s'." % (str(uid), str(outfn))))
-        try:
-            xml_entry = EI.fetch_xml_entry(uid)
-            parsed_entry = EI.parse_xml_entry(xml_entry)
-        except Exception as err:
-            log.exception("Error retrieving info for UID " + str(uid) + ": " + str(err) + "\nSkipping this accession.")
-            continue
+        if EI.internet_on():  # Check if internet connection active
+            try:
+                xml_entry = EI.fetch_xml_entry(uid)
+                parsed_entry = EI.parse_xml_entry(xml_entry)
+            except Exception as err:
+                log.exception("Error retrieving info for UID " + str(uid) + ": " + str(err) + "\nSkipping this accession.")
+                continue
+        else:  # If no internet connection, raise error
+            raise Exception("ERROR: No internet connection.")
         duplseq = parsed_entry.pop("DUPLSEQ")
         tio.entry_table.loc[uid] = parsed_entry
         if duplseq:

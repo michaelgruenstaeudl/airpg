@@ -77,7 +77,7 @@ __version__ = '2021.03.05'
 #############
 # DEBUGGING #
 #############
-#import ipdb
+import ipdb
 # ipdb.set_trace()
 
 #############
@@ -115,28 +115,33 @@ def main(args):
         if not os.path.exists(acc_folder):
             os.makedirs(acc_folder)
         else:
-            log.warning("Folder for accession `%s` already exists." % (str(accession)))
+            log.info("Folder for accession `%s` already exists." % (str(accession)))
 
+        # Step 3.1. Get flatfile
         if not os.path.isfile(os.path.join(args.recordsdir, accession + ".tar.gz")):
             log.info("Saving GenBank flat file for accession `%s`." % (str(accession)))
-            try:
-                fp_entry = EI.fetch_gb_entry(accession, acc_folder)
-            except:
-                log.warning("Error retrieving accession `%s`. Skipping this accession." % (str(accession)))
-                os.rmdir(acc_folder)
-                continue
+            if EI.internet_on():  # Check if internet connection active
+                try:
+                    fp_entry = EI.fetch_gb_entry(accession, acc_folder)
+                except:
+                    log.warning("Error retrieving accession `%s`. Skipping this accession." % (str(accession)))
+                    os.rmdir(acc_folder)
+                    continue
+            else:  # If no internet connection, raise error
+                raise Exception("ERROR: No internet connection.")
         else:
-            log.warning("GenBank flat file for accession `%s` already exists. Extracting existing file." % (str(accession)))
+            log.info("GenBank flat file for accession `%s` already exists. Extracting existing file." % (str(accession)))
             tar = tarfile.open(os.path.join(args.recordsdir, accession + ".tar.gz"), "r:gz")
             tar.extractall(acc_folder)
             tar.close()
+            fp_entry = os.path.join(acc_folder, accession + ".gb")
 
+        # Step 3.2. Parse and analyze flatfile
         try:
             try:
-                fp_entry = EI.fetch_gb_entry(accession, acc_folder)
                 rec = SeqIO.read(fp_entry, "genbank")
             except Exception as err:
-                raise Exception("Error reading record of accession `%s`: `%s`. Skipping this accession." %
+                raise Exception("Error while parsing record of accession `%s`: `%s`. Skipping this accession." %
                 (str(accession), str(err)))
                 continue
 
@@ -179,25 +184,28 @@ def main(args):
         except Exception as err:
             log.warning(str(err))
         finally:
-            tar = tarfile.open(os.path.join(args.recordsdir, accession + ".tar.gz"), "w:gz")
-            tar.add(fp_entry, os.path.basename(fp_entry))
-            tar.close()
+            if not os.path.isfile(os.path.join(args.recordsdir, accession + ".tar.gz")):
+                tar = tarfile.open(os.path.join(args.recordsdir, accession + ".tar.gz"), "w:gz")
+                tar.add(fp_entry, os.path.basename(fp_entry))
+                tar.close()
             os.remove(fp_entry)
 
-  # STEP 4. Check any accession for IR loss and remove from outlist if necessary
-    am = article_mining.ArticleMining(log)
-    articles = EI.fetch_pubmed_articles(mail, query)
-    ncbi = NCBITaxa()
-    # Update database if it is older than 1 month
-    if (time.time() - os.path.getmtime(os.path.join(Path.home(), ".etetoolkit/taxa.sqlite"))) > 2592000:
-        ncbi.update_taxonomy_database()
-    article_genera = set()
-    for article in articles:
-        article_genera.union(am.get_genera_from_pubmed_article(article, ncbi))
-    tio.read_ir_table(args.outfn)
-    tio.remove_naturally_irl_genera(article_genera)
-    tio.write_ir_table(args.outfn)
-
+  # STEP 4. Check every accession for IR loss in literature and remove from outlist if so published
+    if EI.internet_on():  # Check if internet connection active
+        am = article_mining.ArticleMining(log)
+        articles = EI.fetch_pubmed_articles(mail, query)
+        ncbi = NCBITaxa()
+        # Update database if it is older than one month
+        if (time.time() - os.path.getmtime(os.path.join(Path.home(), ".etetoolkit/taxa.sqlite"))) > 2592000:
+            ncbi.update_taxonomy_database()
+        article_genera = set()
+        for article in articles:
+            article_genera.union(am.get_genera_from_pubmed_article(article, ncbi))
+        tio.read_ir_table(args.outfn)
+        tio.remove_naturally_irl_genera(article_genera)
+        tio.write_ir_table(args.outfn)
+    else:  # If no internet connection, skip article mining
+        log.warning("No internet connection. Skipping PubMed article mining.")
 
 ########
 # MAIN #
