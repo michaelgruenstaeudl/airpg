@@ -146,7 +146,7 @@ python3 -m twine upload --repository testpypi dist/*
 python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps airpg
 
 python3 -m twine upload dist/*
-python3 -m pip install airp
+python3 -m pip install airpg
 ```
 -->
 
