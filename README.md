@@ -121,6 +121,10 @@ airpg_update_blocklist.py -f ./airpg_blocklist.txt -m john.smith@example.com -q 
 
 airpg_identify.py -q "$ENTREZSTRING" -o $TESTFOLDER/$RECORDSTABLE \
     --blocklist ./airpg_blocklist.txt 1>>$TESTFOLDER/airpg_identify_${DATE}.runlog 2>&1
+
+# Sorting output_script1.tsv and output_script1.tsv.duplicates by UID number
+sort -k1 -n output_script1.tsv > tmp && mv tmp output_script1.tsv
+sort -k1 -n output_script1.tsv.duplicates > tmp && mv tmp output_script1.tsv.duplicates
 ```
 
 ##### STEP 2: Retrieving and parsing the genome records identified in step 1, analyzing the position and length of their IR annotations
