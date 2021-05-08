@@ -69,10 +69,10 @@ import time
 ###############
 __author__ = 'Michael Gruenstaeudl <m.gruenstaeudl@fu-berlin.de>, '\
              'Tilman Mehl <tilmanmehl@zedat.fu-berlin.de>'
-__copyright__ = 'Copyright (C) 2019-2020 Michael Gruenstaeudl and Tilman Mehl'
+__copyright__ = 'Copyright (C) 2019-2021 Michael Gruenstaeudl and Tilman Mehl'
 __info__ = 'Retrieve the plastid genomes identified by the first script '\
            'and evaluate their inverted repeats'
-__version__ = '2020.12.17'
+__version__ = '2021.03.05'
 
 #############
 # DEBUGGING #
@@ -115,7 +115,8 @@ def main(args):
         if not os.path.exists(acc_folder):
             os.makedirs(acc_folder)
         else:
-            log.info("Folder for accession `%s` already exists." % (str(accession)))
+            log.warning("Folder for accession `%s` already exists. Skipping this accession." % (str(accession)))
+            continue
 
         # Step 3.1. Get flatfile
         if not os.path.isfile(os.path.join(args.recordsdir, accession + ".tar.gz")):
