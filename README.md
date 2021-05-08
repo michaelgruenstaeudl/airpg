@@ -137,9 +137,16 @@ airpg_analyze.py -i $TESTFOLDER/$RECORDSTABLE \
 ---------------------------------------------------------------------------------------------------------------------------
 
 <!--
-## FOO BAR BAZ
+## PACKAGING INSTRUCTIONS
 ```
-Foo bar baz
+#pip install .  ## For local testing
+
+python3 -m build
+python3 -m twine upload --repository testpypi dist/*
+python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps airpg
+
+python3 -m twine upload dist/*
+python3 -m pip install airpg
 ```
 -->
 
