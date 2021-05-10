@@ -33,5 +33,6 @@ setuptools.setup(
     scripts=['airpg/scripts/airpg_identify.py', 'airpg/scripts/airpg_analyze.py', 'airpg/scripts/airpg_update_blocklist.py'],
     test_suite='setup.my_test_suite',
     include_package_data=True,
+    package_data={'': ['airpg/tutorials/*.md']},
     zip_safe=False
 )
