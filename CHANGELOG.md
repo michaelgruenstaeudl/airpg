@@ -1,7 +1,9 @@
 CHANGELOG
 ---------
 =======
-#### Version 1.0.8 (2021.03.10)
+#### Version 1.1.0 (2021.05.10)
+* Extending code through script airpg_confirm.py
+#### Version 1.0.9 (2021.03.10)
 * Making code compatible with Code Ocean
 #### Version 1.0.6 (2021.03.05)
 * Minor code improvements
