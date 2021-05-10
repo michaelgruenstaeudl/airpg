@@ -1,6 +1,7 @@
 TUTORIAL 2
 ==========
-##### Short survey (runtime ca. 15 min.; for testing)
+
+#### Short survey (runtime ca. 15 min.; for testing)
 
 Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide within the current month.
 
