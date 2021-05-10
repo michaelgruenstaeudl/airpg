@@ -1,5 +1,8 @@
-### TUTORIAL 2: Short survey (runtime ca. 15 min.; for testing)
+TUTORIAL 2
+==========
+Short survey (runtime ca. 15 min.; for testing)
 Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide within the current month.
+
 ```
 airpg_identify.py -q "complete genome[TITLE] AND \
 (chloroplast[TITLE] OR plastid[TITLE]) AND \

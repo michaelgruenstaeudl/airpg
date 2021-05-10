@@ -1,5 +1,8 @@
-### TUTORIAL 1: Very short survey (runtime ca. 5 min.; for the impatient)
+TUTORIAL 1
+==========
+Very short survey (runtime ca. 5 min.; for the impatient)
 Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide within the past 10 days.
+
 ```
 TODAY=$(date +%d)
 if (($TODAY >= 6 && $TODAY <= 10)); then

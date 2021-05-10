@@ -21,27 +21,23 @@ Or, alternatively, if you want to get the latest development version of *airpg*,
 
 ## EXAMPLE USAGE
 
----------------------------------------------------------------------------------------------------------------------------
 
-#### [Tutorial 1](airpg/tutorials/tutorial1.md): Very short survey (runtime ca. 5 min.; for the impatient)
+### [Tutorial 1](airpg/tutorials/tutorial1.md): Very short survey (runtime ca. 5 min.; for the impatient)
 Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide within the past 10 days.
 
----------------------------------------------------------------------------------------------------------------------------
 
 ### [Tutorial 2](airpg/tutorials/tutorial2.md): Short survey (runtime ca. 15 min.; for testing)
 Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide within the current month.
 
----------------------------------------------------------------------------------------------------------------------------
 
 ### [Tutorial 3](airpg/tutorials/tutorial3.md): Medium survey (runtime ca. 5 hours)
 Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide in 2019 only. Note: The results of this survey are available on Zenodo via DOI [10.5281/zenodo.4335906](https://zenodo.org/record/4335906)
 
----------------------------------------------------------------------------------------------------------------------------
 
 ### [Tutorial 4](airpg/tutorials/tutorial4.md): Full survey (runtime ca. 19 hours; with explanations)
 Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide from January 2000 until, and including December 2020. Note: The results of this survey are available on Zenodo via DOI [10.5281/zenodo.4335906](https://zenodo.org/record/4335906)
 
----------------------------------------------------------------------------------------------------------------------------
+
 
 <!--
 ## PACKAGING INSTRUCTIONS
