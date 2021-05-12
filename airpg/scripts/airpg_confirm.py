@@ -153,14 +153,10 @@ def main(args):
             log.info("Self-BLASTing FASTA file of accession `%s` to identify the IRs." % (str(accession)))
             blastargs = ["blastn", "-db", filestem_db, "-query", seq_FASTA, "-outfmt", "7", "-strand", "both"]
             blast_subp = subprocess.Popen(blastargs, stdout=subprocess.PIPE)
-
-            awkargs = ["awk", "'{if ($4 > " + str(args.minlength) + " && $4 < " + str(args.minlength) + ") print $4, $7, $8, $9, $10}'"]
+            awkargs = ["awk", "{if ($4 > " + str(args.minlength) + " && $4 < " + str(args.maxlength) + ") print $4, $7, $8, $9, $10}"]
             awk_subp = subprocess.Popen(awkargs, stdin=blast_subp.stdout, stdout=subprocess.PIPE)
-# PROBLEM IN LINE(S) ABOVE: The above awk command is not working !
-
             out, err = awk_subp.communicate()
             result_lines = out.splitlines()
-
         except Exception as err:
             log.warning("Error while self-BLASTing FASTA file of accession `%s`: %s.\nSkipping this accession." % (str(accession), str(err)))
             continue
@@ -168,8 +164,8 @@ def main(args):
 
         # Compress local BLAST database if BLAST output received
         if len(result_lines) != 0:
-            subprocess.call(["tar", "czf", filestem_db+".tar.gz", "--remove-files", filestem_db+".*"])
-# PROBLEM IN LINE(S) ABOVE: Something not working here either.
+            tarargs = ["tar", "czf", filestem_db+"_FILES.tar.gz", filestem_db+".*", "--remove-files"] # "--remove-files" must be at end
+            subprocess.call(" ".join(tarargs), shell=True) # Shell=True is necessary for the wildcard
 
         # Step 4.3. Parse output of self-BLASTing
         # Note: BLAST sometimes finds additional regions in the sequence that match the length requirements filtered for in awk. We only want the IRs, and therefore need to pick out the two regions with matching length
