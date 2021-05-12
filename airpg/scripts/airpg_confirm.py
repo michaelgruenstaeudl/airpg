@@ -50,7 +50,7 @@ __version__ = '2021.05.10'
 #############
 # DEBUGGING #
 #############
-#import ipdb
+import ipdb
 # ipdb.set_trace()
 
 #############
@@ -123,7 +123,7 @@ def main(args):
     for accession in accessions:
         try:
             acc_folder = os.path.join(args.datadir, str(accession))
-# PROBLEM IN LINE ABOVE: Absolute file path must be given for args.datadir so that seq_FASTA (see next line) also has absolute file path. Is this the way implemented in the other two scripts? Implementation should be homogeneous.
+# PROBLEM IN LINE ABOVE: Currently, the absolute file path must be given for args.datadir so that seq_FASTA (see next line) also has absolute file path. seq_FASTA needs the absolute file path for makeblastdb and blastn. Specifying absolute file paths is burdensome; please adjust.
 
             seq_FASTA = os.path.join(acc_folder, accession + "_completeSeq.fasta")
         except Exception as err:
@@ -187,8 +187,14 @@ def main(args):
                 IRa_info = result_lines[0].split()
                 IRb_info = result_lines[1].split()
 
+
+            ipdb.set_trace()
+
         # Step 4.4. Save data into correct columns
         # Note: It is important to stay within the condition 'len(result_lines) == 2'
+
+# PROBLEM IN THE FOLLOWING LINES: The current code is not how values are written into a pandas table, as "accession" is currently not the row index. Tilman knows how to do this correctly. @Tilman: Please correct the following code accordingly.
+
             IR_table.at[accession, "IRa_BLASTINFERRED"] = "yes"
             IR_table.at[accession, "IRb_BLASTINFERRED"] = "yes"
 
@@ -216,10 +222,13 @@ def main(args):
             IR_table.at[accession, "IRa_BLASTINFERRED"] = "no"
             IR_table.at[accession, "IRb_BLASTINFERRED"] = "no"
 
+
 # PROBLEM IN FOLLOWING LINE: Not sure which try statement this exception refers to; hence, commenting out for the moment.
+
 #    except Exception as err:
 #        log.exception("Error while inferring the IRs of accession `%s`: %s\n Skipping this accession." % (str(accession), str(err)))
 #        continue
+
 # PROBLEM IN LINE ABOVE: Same as PROBLEM #1 above
 
 
