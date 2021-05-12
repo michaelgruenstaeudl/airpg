@@ -154,10 +154,6 @@ def main(args):
             blastargs = ["blastn", "-db", filestem_db, "-query", seq_FASTA, "-outfmt", "7", "-strand", "both"]
             blast_subp = subprocess.Popen(blastargs, stdout=subprocess.PIPE)
 
-            grepargs = ["grep", "-v", '"^#"']
-            grep_subp = subprocess.Popen(grepargs, stdin=blast_subp.stdout, stdout=subprocess.PIPE)
-# PROBLEM IN LINE(S) ABOVE: The above grepping is not working !
-
             awkargs = ["awk", "'{if ($4 > " + str(args.minlength) + " && $4 < " + str(args.minlength) + ") print $4, $7, $8, $9, $10}'"]
             awk_subp = subprocess.Popen(awkargs, stdin=blast_subp.stdout, stdout=subprocess.PIPE)
 # PROBLEM IN LINE(S) ABOVE: The above awk command is not working !
