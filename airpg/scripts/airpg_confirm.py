@@ -123,13 +123,13 @@ def main(args):
     for accession in accessions:
         try:
             acc_folder = os.path.join(args.datadir, str(accession))
-# PROBLEM IN LINE(S) ABOVE: Absolute file path must be given for args.datadir so that seq_FASTA (see next line) also has absolute file path. Is this the way implemented in the other two scripts? Implementation should be homogeneous.
+# PROBLEM IN LINE ABOVE: Absolute file path must be given for args.datadir so that seq_FASTA (see next line) also has absolute file path. Is this the way implemented in the other two scripts? Implementation should be homogeneous.
 
             seq_FASTA = os.path.join(acc_folder, accession + "_completeSeq.fasta")
         except Exception as err:
             log.warning("Error accessing FASTA file of accession `%s`: %s.\nSkipping this accession." % (str(accession), str(err)))
             continue
-# PROBLEM #1 IN LINE(S) ABOVE: SyntaxError: 'continue' not properly in loop
+# PROBLEM #1 IN LINE ABOVE: SyntaxError: 'continue' not properly in loop
 # See for more info: https://stackoverflow.com/questions/14312869/syntaxerror-continue-not-properly-in-loop
 # Remember when implementing solution: If an exception occurs here, only the current loop iteration (i.e., current accession) shall be skipped, but the loop shall NOT be terminated.
 
@@ -146,7 +146,7 @@ def main(args):
         except Exception as err:
             log.exception("Error creating local BLAST database for accession `%s`: %s\nSkipping this accession." % (str(accession), str(err)))
             continue
-# PROBLEM IN LINE(S) ABOVE: Same as PROBLEM #1 above
+# PROBLEM IN LINE ABOVE: Same as PROBLEM #1 above
 
         # Infer IR positions through self-BLASTing
         try:
@@ -160,7 +160,7 @@ def main(args):
         except Exception as err:
             log.warning("Error while self-BLASTing FASTA file of accession `%s`: %s.\nSkipping this accession." % (str(accession), str(err)))
             continue
-# PROBLEM IN LINE(S) ABOVE: Same as PROBLEM #1 above
+# PROBLEM IN LINE ABOVE: Same as PROBLEM #1 above
 
         # Compress local BLAST database if BLAST output received
         if len(result_lines) != 0:
@@ -201,27 +201,26 @@ def main(args):
             IR_table.at[accession, "IRa_BLASTINFERRED_LENGTH"] = int(IRa_info[0])
             IR_table.at[accession, "IRb_BLASTINFERRED_LENGTH"] = int(IRb_info[0])
 
-''' # The following lines can be implemented in a future version of airpg
+            ## THE FOLLOWING LINES CAN BE IMPLEMENTED IN A FUTURE VERSION OF AIRPG:
+            #            IR_table.at[accession, "IRa_START_COMPARED_OFFSET"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRa_REPORTED_START"])) - float(coerceToExactLocation(IR_table.at[accession, "IRa_BLASTINFERRED_START"])))
+            #            IR_table.at[accession, "IRb_START_COMPARED_OFFSET"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRb_REPORTED_START"])) - float(coerceToExactLocation(IR_table.at[accession, "IRb_BLASTINFERRED_START"])))
 
-            IR_table.at[accession, "IRa_START_COMPARED_OFFSET"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRa_REPORTED_START"])) - float(coerceToExactLocation(IR_table.at[accession, "IRa_BLASTINFERRED_START"])))
-            IR_table.at[accession, "IRb_START_COMPARED_OFFSET"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRb_REPORTED_START"])) - float(coerceToExactLocation(IR_table.at[accession, "IRb_BLASTINFERRED_START"])))
+            #            IR_table.at[accession, "IRa_END_COMPARED_OFFSET"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRa_REPORTED_END"])) - float(coerceToExactLocation(IR_table.at[accession, "IRa_BLASTINFERRED_END"])))
+            #            IR_table.at[accession, "IRb_END_COMPARED_OFFSET"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRb_REPORTED_END"])) - float(coerceToExactLocation(IR_table.at[accession, "IRb_BLASTINFERRED_END"])))
 
-            IR_table.at[accession, "IRa_END_COMPARED_OFFSET"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRa_REPORTED_END"])) - float(coerceToExactLocation(IR_table.at[accession, "IRa_BLASTINFERRED_END"])))
-            IR_table.at[accession, "IRb_END_COMPARED_OFFSET"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRb_REPORTED_END"])) - float(coerceToExactLocation(IR_table.at[accession, "IRb_BLASTINFERRED_END"])))
-
-            IR_table.at[accession, "IRa_LENGTH_COMPARED_DIFFERENCE"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRa_REPORTED_LENGTH"])) - float(coerceToExactLocation(IR_table.at[accession, "IRa_BLASTINFERRED_LENGTH"])))
-            IR_table.at[accession, "IRb_LENGTH_COMPARED_DIFFERENCE"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRb_REPORTED_LENGTH"])) - float(coerceToExactLocation(IR_table.at[accession, "IRb_BLASTINFERRED_LENGTH"])))
-'''
+            #            IR_table.at[accession, "IRa_LENGTH_COMPARED_DIFFERENCE"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRa_REPORTED_LENGTH"])) - float(coerceToExactLocation(IR_table.at[accession, "IRa_BLASTINFERRED_LENGTH"])))
+            #            IR_table.at[accession, "IRb_LENGTH_COMPARED_DIFFERENCE"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRb_REPORTED_LENGTH"])) - float(coerceToExactLocation(IR_table.at[accession, "IRb_BLASTINFERRED_LENGTH"])))
 
         else:
-            log.info("Could not infer IRs for accession `%s`:\n%s." % (str(accession), "\n".join([str(line).strip() for line in result_lines]))
-
+            log.info("Could not infer IRs for accession `%s`:\n%s." % (str(accession), "\n".join([str(line).strip() for line in result_lines])))
             IR_table.at[accession, "IRa_BLASTINFERRED"] = "no"
             IR_table.at[accession, "IRb_BLASTINFERRED"] = "no"
 
-    except Exception as err:
-        log.exception("Error while inferring the IRs of accession `%s`: %s\n Skipping this accession." % (str(accession), str(err)))
-        continue
+# PROBLEM IN FOLLOWING LINE: Not sure which try statement this exception refers to; hence, commenting out for the moment.
+#    except Exception as err:
+#        log.exception("Error while inferring the IRs of accession `%s`: %s\n Skipping this accession." % (str(accession), str(err)))
+#        continue
+# PROBLEM IN LINE ABOVE: Same as PROBLEM #1 above
 
 
   # STEP 5. Save extended IR list to outfile
