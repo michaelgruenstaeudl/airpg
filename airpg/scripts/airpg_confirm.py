@@ -14,6 +14,9 @@ DESIGN:
         ```
 
 TO DO (FOR REVISION):
+
+    * Currently the absolute file paths must be given. The other scripts allow the relative file paths to be given.
+
     * Start positions for IRa and IRb are sometimes switched around (probably because they were improperly recorded in previous scripts due to missing unique identification)
 
 
@@ -120,10 +123,15 @@ def main(args):
     for accession in accessions:
         try:
             acc_folder = os.path.join(args.datadir, str(accession))
+# PROBLEM IN LINE(S) ABOVE: Absolute file path must be given for args.datadir so that seq_FASTA (see next line) also has absolute file path. Is this the way implemented in the other two scripts? Implementation should be homogeneous.
+
             seq_FASTA = os.path.join(acc_folder, accession + "_completeSeq.fasta")
         except Exception as err:
             log.warning("Error accessing FASTA file of accession `%s`: %s.\nSkipping this accession." % (str(accession), str(err)))
             continue
+# PROBLEM #1 IN LINE(S) ABOVE: SyntaxError: 'continue' not properly in loop
+# See for more info: https://stackoverflow.com/questions/14312869/syntaxerror-continue-not-properly-in-loop
+# Remember when implementing solution: If an exception occurs here, only the current loop iteration (i.e., current accession) shall be skipped, but the loop shall NOT be terminated.
 
         # Step 4.2. Change into accession folder and conduct BLAST locally
         # Change to directory containing sequence files
@@ -138,20 +146,30 @@ def main(args):
         except Exception as err:
             log.exception("Error creating local BLAST database for accession `%s`: %s\nSkipping this accession." % (str(accession), str(err)))
             continue
+# PROBLEM IN LINE(S) ABOVE: Same as PROBLEM #1 above
+
         # Infer IR positions through self-BLASTing
         try:
             log.info("Self-BLASTing FASTA file of accession `%s` to identify the IRs." % (str(accession)))
-            blastargs = ["blastn", "-db", seq_FASTA, "-query", seq_FASTA, "-outfmt", "7", "-strand", "both"]
+            blastargs = ["blastn", "-db", filestem_db, "-query", seq_FASTA, "-outfmt", "7", "-strand", "both"]
             blast_subp = subprocess.Popen(blastargs, stdout=subprocess.PIPE)
-            awkargs = ["awk", "{if ($4 > " + str(args.minlength) + " && $4 < " + str(args.minlength) + ") print $4, $7, $8, $9, $10}"]
+
+            grepargs = ["grep", "-v", '"^#"']
+            grep_subp = subprocess.Popen(grepargs, stdin=blast_subp.stdout, stdout=subprocess.PIPE)
+# PROBLEM IN LINE(S) ABOVE: The above grepping is not working !
+
+            awkargs = ["awk", "'{if ($4 > " + str(args.minlength) + " && $4 < " + str(args.minlength) + ") print $4, $7, $8, $9, $10}'"]
             awk_subp = subprocess.Popen(awkargs, stdin=blast_subp.stdout, stdout=subprocess.PIPE)
+# PROBLEM IN LINE(S) ABOVE: The above awk command is not working !
+
             out, err = awk_subp.communicate()
-# PROBLEM IN LINE(S) ABOVE: variables 'out' and 'err' are currently empty.
             result_lines = out.splitlines()
-            print(result_lines)
+
         except Exception as err:
             log.warning("Error while self-BLASTing FASTA file of accession `%s`: %s.\nSkipping this accession." % (str(accession), str(err)))
             continue
+# PROBLEM IN LINE(S) ABOVE: Same as PROBLEM #1 above
+
         # Compress local BLAST database if BLAST output received
         if len(result_lines) != 0:
             subprocess.call(["tar", "czf", filestem_db+".tar.gz", "--remove-files", filestem_db+".*"])
@@ -225,9 +243,9 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="  --  ".join([__author__, __copyright__, __info__, __version__]))
-    parser.add_argument("--infn", "-i", type=str, required=True, help="Path to input file; input is a summary table on reported IR positions and length (tab-delimited, accession numbers in first column)")
-    parser.add_argument("--outfn", "-o", type=str, required=True, help="Path to output file that contains extended table IR positions and length")
-    parser.add_argument("--datadir", "-d", type=str, required=True, help="Data folder containing subfolders with FASTA files")
+    parser.add_argument("--infn", "-i", type=str, required=True, help="Absolute path to input file; input is a summary table on reported IR positions and length (tab-delimited, accession numbers in first column)")
+    parser.add_argument("--outfn", "-o", type=str, required=True, help="Absolute path to output file that contains extended table IR positions and length")
+    parser.add_argument("--datadir", "-d", type=str, required=True, help="Absolute path to folder containing record-specific subfolders that store each record's complete sequence in FASTA format")
     parser.add_argument("--minlength", "-n", type=int, required=False, default="10000", help="(Optional) Minimal length of IR for BLASTing")
     parser.add_argument("--maxlength", "-x", type=int, required=False, default="50000", help="(Optional) Maximum length of IR for BLASTing")
     parser.add_argument("--verbose", "-v", action="store_true", required=False, default=False, help="(Optional) Enable verbose logging")
