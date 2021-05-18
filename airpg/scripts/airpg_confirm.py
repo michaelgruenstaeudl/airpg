@@ -220,6 +220,8 @@ def main(args):
         # Step 4.5. Change back to main directory
         os.chdir(main_dir)
 
+        # TO BE IMPROVED: It would be best if the script would append to the output file after each accession, and not write the full output file after processing all accessions.
+
   # STEP 5. Save extended IR list to outfile
     IR_table.to_csv(args.outfn, sep='\t', header=True, na_rep="n.a.")
 
