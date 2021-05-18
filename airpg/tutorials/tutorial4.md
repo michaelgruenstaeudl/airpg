@@ -42,7 +42,7 @@ airpg_analyze.py -i $TESTFOLDER/$RECORDSTABLE \
     -m john.smith@example.com -o $TESTFOLDER/$IRSTATSTABLE 1>>$TESTFOLDER/airpg_analyze_${DATE}.runlog 2>&1
 ```
 
-##### STEP 3: Confirming the position and length of the IR annotations indentified in step 2 through a selb-BLASTing of each sequence record via [blastn](https://www.ncbi.nlm.nih.gov/books/NBK279690/).
+##### STEP 3: Confirming the presence, position, and length of the IR annotations identified in step 2 through self-blasting of each sequence record via [BLAST+](https://www.ncbi.nlm.nih.gov/books/NBK279690/).
 ```
 EXTENDEDIRSTATS=extended_IR_stats_table_${DATE}.tsv
 mkdir -p $TESTFOLDER/records_${DATE}

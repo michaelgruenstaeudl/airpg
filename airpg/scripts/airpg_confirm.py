@@ -13,14 +13,9 @@ DESIGN:
         blastn -db chloroplastGenome.fasta -query chloroplastGenome.fasta -outfmt 7 -strand 'both' | awk '{ if ($4 > 10000 && $4 < 50000) print $4, $7, $8, $9, $10}'
         ```
 
-TO DO (FOR REVISION):
-
-    * Currently the absolute file paths must be given. The other scripts allow the relative file paths to be given.
-
+TO DO (FUTURE VERSIONS OF AIRPG):
     * Start positions for IRa and IRb are sometimes switched around (probably because they were improperly recorded in previous scripts due to missing unique identification)
 
-
-TO DO (FUTURE VERSIONS OF AIRPG):
     * Once the IRs are re-calculated, the originally inferred IR length and the newly calculated IR length shall be compared to see if previous studies have - on average - overestimated or underestimated the IR length.
 
     * If differences between the originally inferred IR length and the newly calculated IR length are discovered, it will be interesting to see on which side of the IRs (the side that faces the LSC or the side that faces the SSC) the original inference was incorrect (i.e., on which side a bias in the original inference happened).
@@ -45,27 +40,27 @@ __author__ = 'Michael Gruenstaeudl <m.gruenstaeudl@fu-berlin.de>, '\
 __copyright__ = 'Copyright (C) 2019-2021 Michael Gruenstaeudl and Tilman Mehl'
 __info__ = 'Retrieve the plastid genomes identified by the first script '\
            'and evaluate their inverted repeats'
-__version__ = '2021.05.10'
+__version__ = '2021.05.18'
 
 #############
 # DEBUGGING #
 #############
-import ipdb
+#import ipdb
 # ipdb.set_trace()
 
 #############
 # FUNCTIONS #
 #############
 
-''' # The following lines can be implemented in a future version of airpg
-def coerceToExactLocation(location):
-    exactLocation = None
-    if '<' in str(location) or '>' in str(location):
-        exactLocation = str(location)[1:]
-    else:
-        exactLocation = str(location)
-    return exactLocation
-'''
+## THE FOLLOWING LINES CAN BE IMPLEMENTED IN A FUTURE VERSION OF AIRPG:
+#def coerceToExactLocation(location):
+#    exactLocation = None
+#    if '<' in str(location) or '>' in str(location):
+#        exactLocation = str(location)[1:]
+#    else:
+#        exactLocation = str(location)
+#    return exactLocation
+
 
 def main(args):
   # STEP 1. Set up logger
@@ -104,8 +99,10 @@ def main(args):
         "IRb_BLASTINFERRED_START",
         "IRb_BLASTINFERRED_END",
         "IRb_BLASTINFERRED_LENGTH"]
+
     if not any(col in list(IR_table.columns) for col in added_columns):
         IR_table = IR_table.reindex(columns = list(IR_table.columns) + added_columns)
+
     IR_table = IR_table.astype({
         "IRa_BLASTINFERRED": str,
         "IRa_BLASTINFERRED_START": pd.Int64Dtype(),
@@ -114,8 +111,10 @@ def main(args):
         "IRb_BLASTINFERRED": str,
         "IRb_BLASTINFERRED_START": pd.Int64Dtype(),
         "IRb_BLASTINFERRED_END": pd.Int64Dtype(),
-        "IRb_BLASTINFERRED_LENGTH": pd.Int64Dtype(),
+        "IRb_BLASTINFERRED_LENGTH": pd.Int64Dtype()
         })
+
+    IR_table = IR_table.set_index("ACCESSION", drop=True)
 
   # STEP 4. Loop over accession in inlist
     # Step 4.1. Check if FASTA file for accession exists
@@ -123,15 +122,10 @@ def main(args):
     for accession in accessions:
         try:
             acc_folder = os.path.join(args.datadir, str(accession))
-# PROBLEM IN LINE ABOVE: Currently, the absolute file path must be given for args.datadir so that seq_FASTA (see next line) also has absolute file path. seq_FASTA needs the absolute file path for makeblastdb and blastn. Specifying absolute file paths is burdensome; please adjust.
-
-            seq_FASTA = os.path.join(acc_folder, accession + "_completeSeq.fasta")
+            seq_FASTA = accession + "_completeSeq.fasta"
         except Exception as err:
             log.warning("Error accessing FASTA file of accession `%s`: %s.\nSkipping this accession." % (str(accession), str(err)))
             continue
-# PROBLEM #1 IN LINE ABOVE: SyntaxError: 'continue' not properly in loop
-# See for more info: https://stackoverflow.com/questions/14312869/syntaxerror-continue-not-properly-in-loop
-# Remember when implementing solution: If an exception occurs here, only the current loop iteration (i.e., current accession) shall be skipped, but the loop shall NOT be terminated.
 
         # Step 4.2. Change into accession folder and conduct BLAST locally
         # Change to directory containing sequence files
@@ -142,11 +136,12 @@ def main(args):
             log.info("Creating local BLAST database for accession `%s`." % (str(accession)))
             mkblastargs = ["makeblastdb", "-in", seq_FASTA, "-parse_seqids", "-title", accession, "-dbtype", "nucl", "-out", filestem_db, "-logfile", filestem_db+".log"]
             mkblastdb_subp = subprocess.Popen(mkblastargs)
-            mkblastdb_subp.wait()
+            returncode = mkblastdb_subp.wait()
+            if returncode != 0: # Can probably be done prettier
+                raise Exception
         except Exception as err:
             log.exception("Error creating local BLAST database for accession `%s`: %s\nSkipping this accession." % (str(accession), str(err)))
             continue
-# PROBLEM IN LINE ABOVE: Same as PROBLEM #1 above
 
         # Infer IR positions through self-BLASTing
         try:
@@ -160,12 +155,16 @@ def main(args):
         except Exception as err:
             log.warning("Error while self-BLASTing FASTA file of accession `%s`: %s.\nSkipping this accession." % (str(accession), str(err)))
             continue
-# PROBLEM IN LINE ABOVE: Same as PROBLEM #1 above
 
         # Compress local BLAST database if BLAST output received
         if len(result_lines) != 0:
-            tarargs = ["tar", "czf", filestem_db+"_FILES.tar.gz", filestem_db+".*", "--remove-files"] # "--remove-files" must be at end
-            subprocess.call(" ".join(tarargs), shell=True) # Shell=True is necessary for the wildcard
+            try:
+                tarargs = ["tar", "czf", filestem_db+"_FILES.tar.gz", filestem_db+".*", "--remove-files"] # "--remove-files" must be at end
+                returncode = subprocess.call(" ".join(tarargs), shell=True) # Shell=True is necessary for the wildcard
+                if returncode != 0:                                     # Can probably be done prettier
+                    raise Exception("Non-zero exit status")    # TO BE IMPROVED: # Error message of subprocess.call is not transferred to exception
+            except Exception as err:
+                log.warning("Error while compressing local BLAST database for accession `%s`: %s." % (str(accession), str(err)))
 
         # Step 4.3. Parse output of self-BLASTing
         # Note: BLAST sometimes finds additional regions in the sequence that match the length requirements filtered for in awk. We only want the IRs, and therefore need to pick out the two regions with matching length
@@ -178,6 +177,7 @@ def main(args):
                         temp_lines.append(result_lines[j])
                         break
             result_lines = temp_lines
+
         if len(result_lines) == 2:
             # Compare the start positions of the found regions. By default, we assume IRb is located before IRa in the sequence
             if result_lines[0].split()[1] > result_lines[1].split()[1]:
@@ -187,14 +187,9 @@ def main(args):
                 IRa_info = result_lines[0].split()
                 IRb_info = result_lines[1].split()
 
-
-            ipdb.set_trace()
-
         # Step 4.4. Save data into correct columns
         # Note: It is important to stay within the condition 'len(result_lines) == 2'
-
-# PROBLEM IN THE FOLLOWING LINES: The current code is not how values are written into a pandas table, as "accession" is currently not the row index. Tilman knows how to do this correctly. @Tilman: Please correct the following code accordingly.
-
+            
             IR_table.at[accession, "IRa_BLASTINFERRED"] = "yes"
             IR_table.at[accession, "IRb_BLASTINFERRED"] = "yes"
 
@@ -218,23 +213,15 @@ def main(args):
             #            IR_table.at[accession, "IRb_LENGTH_COMPARED_DIFFERENCE"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRb_REPORTED_LENGTH"])) - float(coerceToExactLocation(IR_table.at[accession, "IRb_BLASTINFERRED_LENGTH"])))
 
         else:
-            log.info("Could not infer IRs for accession `%s`:\n%s." % (str(accession), "\n".join([str(line).strip() for line in result_lines])))
+            log.info("Could not infer IRs for accession `%s`:\n%s." % (str(accession), "\n".join([str(line).strip() for line in result_lines])))    # TO BE IMPROVED: Does not always work!
             IR_table.at[accession, "IRa_BLASTINFERRED"] = "no"
             IR_table.at[accession, "IRb_BLASTINFERRED"] = "no"
 
-
-# PROBLEM IN FOLLOWING LINE: Not sure which try statement this exception refers to; hence, commenting out for the moment.
-
-#    except Exception as err:
-#        log.exception("Error while inferring the IRs of accession `%s`: %s\n Skipping this accession." % (str(accession), str(err)))
-#        continue
-
-# PROBLEM IN LINE ABOVE: Same as PROBLEM #1 above
-
+        # Step 4.5. Change back to main directory
+        os.chdir(main_dir)
 
   # STEP 5. Save extended IR list to outfile
     IR_table.to_csv(args.outfn, sep='\t', header=True, na_rep="n.a.")
-    os.chdir(main_dir)
 
 
 ########
@@ -243,9 +230,9 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="  --  ".join([__author__, __copyright__, __info__, __version__]))
-    parser.add_argument("--infn", "-i", type=str, required=True, help="Absolute path to input file; input is a summary table on reported IR positions and length (tab-delimited, accession numbers in first column)")
-    parser.add_argument("--outfn", "-o", type=str, required=True, help="Absolute path to output file that contains extended table IR positions and length")
-    parser.add_argument("--datadir", "-d", type=str, required=True, help="Absolute path to folder containing record-specific subfolders that store each record's complete sequence in FASTA format")
+    parser.add_argument("--infn", "-i", type=str, required=True, help="Path to input file; input is a summary table on reported IR positions and length (tab-delimited, accession numbers in first column)")
+    parser.add_argument("--outfn", "-o", type=str, required=True, help="Path to output file that contains extended table IR positions and length")
+    parser.add_argument("--datadir", "-d", type=str, required=True, default="./data/", help="Path to folder containing record-specific subfolders that store each record's complete sequence in FASTA format")
     parser.add_argument("--minlength", "-n", type=int, required=False, default="10000", help="(Optional) Minimal length of IR for BLASTing")
     parser.add_argument("--maxlength", "-x", type=int, required=False, default="50000", help="(Optional) Maximum length of IR for BLASTing")
     parser.add_argument("--verbose", "-v", action="store_true", required=False, default=False, help="(Optional) Enable verbose logging")

@@ -1,6 +1,8 @@
 CHANGELOG
 ---------
 =======
+#### Version 1.1.1 (2021.05.18)
+* Code improvements of script airpg_confirm.py
 #### Version 1.1.0 (2021.05.10)
 * Extending code through script airpg_confirm.py
 #### Version 1.0.9 (2021.03.10)
