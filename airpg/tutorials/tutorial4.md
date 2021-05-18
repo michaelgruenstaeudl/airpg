@@ -3,7 +3,7 @@ TUTORIAL 4
 
 #### Full survey (runtime ca. 19 hours; with explanations)
 
-Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide from January 2000 until, and including December 2020.
+Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide from January 2000 until, and including, December 2020.
 
 *Note*: The results of this survey are available on Zenodo via DOI [10.5281/zenodo.4335906](https://zenodo.org/record/4335906)
 

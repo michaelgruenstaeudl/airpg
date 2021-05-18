@@ -5,14 +5,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="airpg",
-    version="1.1.1",
+    version="1.1.2",
     author="Tilman Mehl, Michael Gruenstaeudl",
     author_email="tilmanmehl@zedat.fu-berlin.de, m.gruenstaeudl@fu-berlin.de",
     description="A package to automatically access the inverted repeats of archived plastid genomes",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='https://github.com/michaelgruenstaeudl/airpg',
-    #download_url='https://github.com/michaelgruenstaeudl/airpg/archive/v1.1.1.tar.gz',
+    #download_url='https://github.com/michaelgruenstaeudl/airpg/archive/v1.1.2.tar.gz',
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
@@ -27,10 +27,10 @@ setuptools.setup(
     #packages=['airpg'], # So that the subfolder 'airpg' is read immediately.
     packages = setuptools.find_packages(),
     #entry_points={
-    #  "console_scripts": ["airpg-identify=airpg.scripts.airpg_identify", "airpg-analyze=aripg.scripts.airpg_analyze", "airpg-update-blocklist=airpg.scripts.airpg_update_blocklist"]
+    #  "console_scripts": ["airpg-identify=airpg.scripts.airpg_identify", "airpg-analyze=airpg.scripts.airpg_analyze", "airpg-confirm=airpg.scripts.airpg_confirm", "airpg-update-blocklist=airpg.scripts.airpg_update_blocklist"]
     #},
     install_requires=['biopython', 'ete3', 'entrezpy', 'pandas', 'fuzzywuzzy', 'coloredlogs', 'python-Levenshtein'],
-    scripts=['airpg/scripts/airpg_identify.py', 'airpg/scripts/airpg_analyze.py', 'airpg/scripts/airpg_update_blocklist.py'],
+    scripts=['airpg/scripts/airpg_identify.py', 'airpg/scripts/airpg_analyze.py', 'airpg/scripts/airpg_confirm.py', 'airpg/scripts/airpg_update_blocklist.py'],
     test_suite='setup.my_test_suite',
     include_package_data=True,
     package_data={'': ['airpg/tutorials/*.md']},
