@@ -127,6 +127,9 @@ def main(args):
             log.warning("Error accessing FASTA file of accession `%s`: %s.\nSkipping this accession." % (str(accession), str(err)))
             continue
 
+# TO BE IMPROVED: The entire step 4.2. should be moved into its own class in a new module called "self_blasting.py"
+# TO BE IMPROVED: Also, there should be some internal check to determine if Blast+ is properly installed on the system.
+
         # Step 4.2. Change into accession folder and conduct BLAST locally
         # Change to directory containing sequence files
         os.chdir(acc_folder)
