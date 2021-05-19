@@ -127,13 +127,15 @@ def main(args):
             log.warning("Error accessing FASTA file of accession `%s`: %s.\nSkipping this accession." % (str(accession), str(err)))
             continue
 
-# TO BE IMPROVED: The entire step 4.2. should be moved into its own class in a new module called "self_blasting.py"
+#----------------------------------------------------------------------#
+
+# TO BE IMPROVED: The entire step 4.2. should be moved into its own class ("SelfBlasting") in a new module ("self_blasting.py"). Each of the substeps should hereby be their own functions.
 # TO BE IMPROVED: Also, there should be some internal check to determine if Blast+ is properly installed on the system.
 
         # Step 4.2. Change into accession folder and conduct BLAST locally
         # Change to directory containing sequence files
         os.chdir(acc_folder)
-        # Set up local BLAST database
+        # Substep 1: Set up local BLAST database
         filestem_db = accession + "_completeSeq" + "_blastdb"
         try:
             log.info("Creating local BLAST database for accession `%s`." % (str(accession)))
@@ -146,7 +148,7 @@ def main(args):
             log.exception("Error creating local BLAST database for accession `%s`: %s\nSkipping this accession." % (str(accession), str(err)))
             continue
 
-        # Infer IR positions through self-BLASTing
+        # Substep 2: Infer IR positions through self-BLASTing
         try:
             log.info("Self-BLASTing FASTA file of accession `%s` to identify the IRs." % (str(accession)))
             blastargs = ["blastn", "-db", filestem_db, "-query", seq_FASTA, "-outfmt", "7", "-strand", "both"]
@@ -159,15 +161,17 @@ def main(args):
             log.warning("Error while self-BLASTing FASTA file of accession `%s`: %s.\nSkipping this accession." % (str(accession), str(err)))
             continue
 
-        # Compress local BLAST database if BLAST output received
+        # Substep 3: Compress local BLAST database if BLAST output received
         if len(result_lines) != 0:
             try:
                 tarargs = ["tar", "czf", filestem_db+"_FILES.tar.gz", filestem_db+".*", "--remove-files"] # "--remove-files" must be at end
                 returncode = subprocess.call(" ".join(tarargs), shell=True) # Shell=True is necessary for the wildcard
                 if returncode != 0:                                     # Can probably be done prettier
-                    raise Exception("Non-zero exit status")    # TO BE IMPROVED: # Error message of subprocess.call is not transferred to exception (because shell=True is set above, but the latter is necessary)
+                    raise Exception("Non-zero exit status")             # Error message of subprocess.call is not transferred to exception (because shell=True is set above, but the latter is necessary)
             except Exception as err:
                 log.warning("Error while compressing local BLAST database for accession `%s`: %s." % (str(accession), str(err)))
+
+#----------------------------------------------------------------------#
 
         # Step 4.3. Parse output of self-BLASTing
         # Note: BLAST sometimes finds additional regions in the sequence that match the length requirements filtered for in awk. We only want the IRs, and therefore need to pick out the two regions with matching length
@@ -216,14 +220,14 @@ def main(args):
             #            IR_table.at[accession, "IRb_LENGTH_COMPARED_DIFFERENCE"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRb_REPORTED_LENGTH"])) - float(coerceToExactLocation(IR_table.at[accession, "IRb_BLASTINFERRED_LENGTH"])))
 
         else:
-            log.info("Could not infer IRs for accession `%s`:\n%s." % (str(accession), "\n".join([str(line).strip() for line in result_lines])))    # TO BE IMPROVED: Does not always work!
+            log.info("Could not infer IRs for accession `%s`:\n%s." % (str(accession), "\n".join([str(line).strip() for line in result_lines])))    # Note: The following part of this lines does not always work:  >>> "\n".join([str(line).strip() for line in result_lines] <<<
             IR_table.at[accession, "IRa_BLASTINFERRED"] = "no"
             IR_table.at[accession, "IRb_BLASTINFERRED"] = "no"
 
         # Step 4.5. Change back to main directory
         os.chdir(main_dir)
 
-        # TO BE IMPROVED: It would be best if the script would append to the output file after each accession, and not write the full output file after processing all accessions.
+# TO BE IMPROVED: It would be best if the script would append to the output file after each accession, and not write the full output file after processing all accessions.
 
   # STEP 5. Save extended IR list to outfile
     IR_table.to_csv(args.outfn, sep='\t', header=True, na_rep="n.a.")
