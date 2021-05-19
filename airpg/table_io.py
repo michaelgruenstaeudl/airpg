@@ -3,17 +3,20 @@ import pandas as pd
 
 class TableIO:
 
-	def __init__(self, fp_entry_table, fp_ir_table = None, fp_blocklist = None, fp_duplicates = None, logger = None):
+	def __init__(self, fp_entry_table = None, fp_ir_table = None, fp_blast_table = None, fp_blocklist = None, fp_duplicates = None, logger = None):
 		self.log = logger or logging.getLogger(__name__ + ".TableIO")
 		self.entry_table = None
 		self.duplicates = {}
 		self.ir_table = None
+        self.blast_table = None
 		self.blocklist = []
 
-		self.read_entry_table(os.path.abspath(fp_entry_table))
-
+        if fp_entry_table:
+            self.read_entry_table(os.path.abspath(fp_entry_table))
 		if fp_ir_table:
 			self.read_ir_table(os.path.abspath(fp_ir_table))
+        if fp_blast_table:
+            self.read_blast_table(os.path.abspath(fp_blast_table))
 		if fp_blocklist:
 			self.read_blocklist(os.path.abspath(fp_blocklist))
 		if fp_duplicates:
@@ -110,7 +113,67 @@ class TableIO:
 			temp_df.to_csv(fp_ir_table, sep = '\t', header = False, encoding = 'utf-8', mode = "a")
 		else:
 			raise Exception("Error trying to append IR info to file '%s': File does not exist!" % (fp_ir_table))
-
+        
+    def read_blast_table(self, fp_blast_table):
+        '''
+		Read a tab-separated file of information on inverted repeats per GenBank accession
+		If the file doesn't exist yet, create it and write column headers
+		Params:
+		 - fp_blast_table: file path to input file
+		'''
+		if os.path.isfile(fp_blast_table):
+			self.blast_table = pd.read_csv(fp_blast_table, sep = '\t', index_col = 0, encoding = 'utf-8')
+		else:
+			columns = ["ACCESSION", 
+                        "IRa_REPORTED", 
+                        "IRa_REPORTED_START", 
+                        "IRa_REPORTED_END", 
+                        "IRa_REPORTED_LENGTH", 
+                        "IRb_REPORTED", 
+                        "IRb_REPORTED_START", 
+                        "IRb_REPORTED_END", 
+                        "IRb_REPORTED_LENGTH",
+                        "IRa_BLASTINFERRED",
+                        "IRa_BLASTINFERRED_START",
+                        "IRa_BLASTINFERRED_END",
+                        "IRa_BLASTINFERRED_LENGTH",
+                        "IRb_BLASTINFERRED",
+                        "IRb_BLASTINFERRED_START",
+                        "IRb_BLASTINFERRED_END",
+                        "IRb_BLASTINFERRED_LENGTH"]
+			self.blast_table = pd.DataFrame(columns = columns)
+			self.blast_table = self.blast_table.set_index("ACCESSION", drop = True)
+			self.write_blast_table(fp_blast_table)
+    
+    def write_blast_table(self, fp_blast_table, append = False):
+		'''
+		Write a list of per-accession inverted repeat information including information gathered by BLAST to tab-separated file
+		Params:
+		 - fp_blast_table: file path to output file
+		'''
+		if append:
+			self.blast_table.to_csv(fp_blast_table, sep = '\t', encoding = 'utf-8', header = False, mode = "a")
+		else:
+			self.blast_table.to_csv(fp_blast_table, sep = '\t', encoding = 'utf-8', header = True)
+    
+    def append_blast_info_to_table(self, blast_info, accession, fp_blast_table):
+		'''
+		Write information on one accession's inverted repeats to tab-separated file
+		Params:
+		 - blast_info: dict. Keys are column names
+		 - accession: accession number of this record
+		 - fp_blast_table: file path to output file
+		'''
+		if os.path.isfile(fp_blast_table):
+			for key, value in blast_info.items():
+				blast_info[key] = [value]
+			blast_info["ACCESSION"] = [accession]
+			temp_df = pd.DataFrame(blast_info)
+			temp_df = temp_df.set_index("ACCESSION", drop = True)
+			temp_df.to_csv(fp_blast_table, sep = '\t', header = False, encoding = 'utf-8', mode = "a")
+		else:
+			raise Exception("Error trying to append IR info to file '%s': File does not exist!" % (fp_blast_table))
+    
 	def read_blocklist(self, fp_blocklist):
 		'''
 		Read a file of blocklisted genera.

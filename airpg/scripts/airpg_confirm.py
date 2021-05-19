@@ -28,9 +28,9 @@ TO DO (FUTURE VERSIONS OF AIRPG):
 # IMPORT OPERATIONS #
 #####################
 import os, argparse
-import subprocess
 import pandas as pd
 import coloredlogs, logging
+from airpg import self_blasting
 
 ###############
 # AUTHOR INFO #
@@ -126,24 +126,15 @@ def main(args):
         except Exception as err:
             log.warning("Error accessing FASTA file of accession `%s`: %s.\nSkipping this accession." % (str(accession), str(err)))
             continue
-
-#----------------------------------------------------------------------#
-
-# TO BE IMPROVED: The entire step 4.2. should be moved into its own class ("SelfBlasting") in a new module ("self_blasting.py"). Each of the substeps should hereby be their own functions.
-# TO BE IMPROVED: Also, there should be some internal check to determine if Blast+ is properly installed on the system.
-
+            
         # Step 4.2. Change into accession folder and conduct BLAST locally
         # Change to directory containing sequence files
         os.chdir(acc_folder)
         # Substep 1: Set up local BLAST database
-        filestem_db = accession + "_completeSeq" + "_blastdb"
+        blaster = self_blasting.SelfBlasting(seq_FASTA, accession, log)        
         try:
             log.info("Creating local BLAST database for accession `%s`." % (str(accession)))
-            mkblastargs = ["makeblastdb", "-in", seq_FASTA, "-parse_seqids", "-title", accession, "-dbtype", "nucl", "-out", filestem_db, "-logfile", filestem_db+".log"]
-            mkblastdb_subp = subprocess.Popen(mkblastargs)
-            returncode = mkblastdb_subp.wait()
-            if returncode != 0: # Can probably be done prettier
-                raise Exception
+            blaster.setup_blast_db()
         except Exception as err:
             log.exception("Error creating local BLAST database for accession `%s`: %s\nSkipping this accession." % (str(accession), str(err)))
             continue
@@ -151,12 +142,7 @@ def main(args):
         # Substep 2: Infer IR positions through self-BLASTing
         try:
             log.info("Self-BLASTing FASTA file of accession `%s` to identify the IRs." % (str(accession)))
-            blastargs = ["blastn", "-db", filestem_db, "-query", seq_FASTA, "-outfmt", "7", "-strand", "both"]
-            blast_subp = subprocess.Popen(blastargs, stdout=subprocess.PIPE)
-            awkargs = ["awk", "{if ($4 > " + str(args.minlength) + " && $4 < " + str(args.maxlength) + ") print $4, $7, $8, $9, $10}"]
-            awk_subp = subprocess.Popen(awkargs, stdin=blast_subp.stdout, stdout=subprocess.PIPE)
-            out, err = awk_subp.communicate()
-            result_lines = out.splitlines()
+            result_lines = blaster.infer_irs(args.minlength, args.maxlength)
         except Exception as err:
             log.warning("Error while self-BLASTing FASTA file of accession `%s`: %s.\nSkipping this accession." % (str(accession), str(err)))
             continue
@@ -164,14 +150,9 @@ def main(args):
         # Substep 3: Compress local BLAST database if BLAST output received
         if len(result_lines) != 0:
             try:
-                tarargs = ["tar", "czf", filestem_db+"_FILES.tar.gz", filestem_db+".*", "--remove-files"] # "--remove-files" must be at end
-                returncode = subprocess.call(" ".join(tarargs), shell=True) # Shell=True is necessary for the wildcard
-                if returncode != 0:                                     # Can probably be done prettier
-                    raise Exception("Non-zero exit status")             # Error message of subprocess.call is not transferred to exception (because shell=True is set above, but the latter is necessary)
+                blaster.compress_db()                
             except Exception as err:
                 log.warning("Error while compressing local BLAST database for accession `%s`: %s." % (str(accession), str(err)))
-
-#----------------------------------------------------------------------#
 
         # Step 4.3. Parse output of self-BLASTing
         # Note: BLAST sometimes finds additional regions in the sequence that match the length requirements filtered for in awk. We only want the IRs, and therefore need to pick out the two regions with matching length
