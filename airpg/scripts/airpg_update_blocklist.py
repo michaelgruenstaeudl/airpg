@@ -20,6 +20,8 @@ import argparse
 import coloredlogs, logging
 import time
 from airpg import table_io
+from airpg import article_mining as AM
+from airpg import entrez_interaction as EI
 from ete3 import NCBITaxa
 from pathlib import Path
 from datetime import datetime
@@ -111,7 +113,7 @@ def main(args):
     except:
         irl_clade_genera = set()    
     log.info("Adding new genus names to blocklist ...")
-    blocklist = irl_clade_genera.difference(blocklist_existing)     # Calculating the symmetric difference
+    blocklist = set(list(irl_clade_genera.union(blocklist_existing)))
 
     ## STEP 4b. Collect species names of IRL clade of Fabaceae
     log.info("Fetching species names of taxa in 'IRL clade' of Fabaceae ...")
@@ -120,15 +122,17 @@ def main(args):
     except:
         irl_clade_species = set()    
     log.info("Adding new species names to blocklist ...")
-    blocklist = irl_clade_species.difference(blocklist_existing)    # Actually, there is no intersection between genus and species names, so calculating the symmetric difference is equal to addition in this case
+    blocklist = set(list(irl_clade_species.union(blocklist)))
     
     ## STEP 5. Conduct the search on NCBI PubMed
     if args.query and args.mail:
+        log.info("Querying NCBI Pubmed for taxon names ...")
         try:
             irl_clade_genera = set()
-            am = article_mining.ArticleMining(log)
-            if EI.internet_on():  # Check if internet connection active
-                articles = EI.fetch_pubmed_articles(mail, query)
+            am = AM.ArticleMining(log)
+            ei = EI.EntrezInteraction(log)
+            if ei.internet_on():  # Check if internet connection active
+                articles = ei.fetch_pubmed_articles(args.mail, args.query)
             else:  # If no internet connection, raise error
                 raise Exception("ERROR: No internet connection.")
             ncbi = NCBITaxa()
