@@ -45,7 +45,7 @@ airpg_analyze.py \
 airpg_confirm.py \
 -i output_script2.tsv \
 -o output_script3.tsv \
--n 10000 -x 40000 \
+-n 10000 -x 50000 \
 --datadir data/ \
 #&> output_script3.log
 ```

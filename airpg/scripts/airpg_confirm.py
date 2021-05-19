@@ -40,7 +40,7 @@ __author__ = 'Michael Gruenstaeudl <m.gruenstaeudl@fu-berlin.de>, '\
 __copyright__ = 'Copyright (C) 2019-2021 Michael Gruenstaeudl and Tilman Mehl'
 __info__ = 'Retrieve the plastid genomes identified by the first script '\
            'and evaluate their inverted repeats'
-__version__ = '2021.05.18'
+__version__ = '2021.05.19'
 
 #############
 # DEBUGGING #
@@ -165,7 +165,7 @@ def main(args):
                 tarargs = ["tar", "czf", filestem_db+"_FILES.tar.gz", filestem_db+".*", "--remove-files"] # "--remove-files" must be at end
                 returncode = subprocess.call(" ".join(tarargs), shell=True) # Shell=True is necessary for the wildcard
                 if returncode != 0:                                     # Can probably be done prettier
-                    raise Exception("Non-zero exit status")    # TO BE IMPROVED: # Error message of subprocess.call is not transferred to exception
+                    raise Exception("Non-zero exit status")    # TO BE IMPROVED: # Error message of subprocess.call is not transferred to exception (because shell=True is set above, but the latter is necessary)
             except Exception as err:
                 log.warning("Error while compressing local BLAST database for accession `%s`: %s." % (str(accession), str(err)))
 

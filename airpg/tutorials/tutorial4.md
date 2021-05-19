@@ -45,6 +45,6 @@ mkdir -p $TESTFOLDER/records_${DATE}
 mkdir -p $TESTFOLDER/data_${DATE}
 
 airpg_confirm.py -i $TESTFOLDER/$IRSTATSTABLE \
-    -d $TESTFOLDER/data_${DATE}/ -n 10000 -x 40000 \
+    -d $TESTFOLDER/data_${DATE}/ -n 10000 -x 50000 \
     -o $TESTFOLDER/$EXTENDEDIRSTATS 1>>$TESTFOLDER/airpg_confirm_${DATE}.runlog 2>&1
 ```
