@@ -16,11 +16,7 @@ ENTREZSTRING='complete genome[TITLE] AND (chloroplast[TITLE] OR plastid[TITLE]) 
 RECORDSTABLE=plastome_availability_table_${DATE}.tsv
 mkdir -p $TESTFOLDER
 
-# Updating blocklist
-if [ ! -f ./airpg_blocklist.txt ]; then
-    touch ./airpg_blocklist.txt
-    airpg_update_blocklist.py -f ./airpg_blocklist.txt
-fi
+# Generating (or updating) blocklist
 airpg_update_blocklist.py -f ./airpg_blocklist.txt -m john.smith@example.com -q "inverted[TITLE] AND repeat[TITLE] AND loss[TITLE]"
 
 airpg_identify.py -q "$ENTREZSTRING" -o $TESTFOLDER/$RECORDSTABLE \
@@ -49,6 +45,6 @@ mkdir -p $TESTFOLDER/records_${DATE}
 mkdir -p $TESTFOLDER/data_${DATE}
 
 airpg_confirm.py -i $TESTFOLDER/$IRSTATSTABLE \
-    -d $TESTFOLDER/data_${DATE}/ -n 10000 -x 50000 \
+    -d $TESTFOLDER/data_${DATE}/ -n 10000 -x 40000 \
     -o $TESTFOLDER/$EXTENDEDIRSTATS 1>>$TESTFOLDER/airpg_confirm_${DATE}.runlog 2>&1
 ```
