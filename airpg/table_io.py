@@ -187,13 +187,14 @@ class TableIO:
 		'''
 		Remove entries from entry table that match blocklisted genera.
 		'''
-		for genus in self.blocklist:
+		for blocklist_entry in self.blocklist:
 			# TM: The next line took a while to figure out, so for the sake of my own and future contributers' sanities, here's a breakdown of what it does:
 			# self.entry_table["TAXONOMY"].str provides the whole taxonomy column for elementwise(i.e. rowwise) string operations. Since our TAXONOMY information is semicolon-separated, each row is split.
 			# This results in a Series of string lists. The last element (the genus) of each string list is compared to the current genus from the blocklist (entry[-1].rstrip('.') == genus).
 			# This in turn results in a list of bools, making self.entry_table.loc return all rows where the list of bools has True (i.e. all entries that match a blocklisted entry)
 			# Finally, we want only the index of those rows, to tell the dataframe which ones should get dropped.
-			self.entry_table.drop(self.entry_table.loc[[(entry[-1].strip('. ') == genus) for entry in self.entry_table["TAXONOMY"].str.split(';')]].index, inplace = True)
+			self.entry_table.drop(self.entry_table.loc[[(entry[-1].strip('. ').lower() == blocklist_entry.lower()) for entry in self.entry_table["TAXONOMY"].str.split(';')]].index, inplace = True)
+            self.entry_table.drop(self.entry_table.loc[[(entry.lower() == blocklist_entry.lower()) for entry in self.entry_table["ORGANISM"]].index, inplace = True)
 		if len(self.blocklist) == 0:
 			self.log.info("Blocklist is empty. No entries removed.")
 
