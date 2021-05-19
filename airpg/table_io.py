@@ -118,9 +118,11 @@ class TableIO:
 		 - fp_blocklist: file path to input file
 		'''
 		with open(fp_blocklist, "r") as fh_blocklist:
+			blocklisted_taxa = set()
 			for line in [l.strip() for l in fh_blocklist.readlines()]:
 				if not line.startswith("#"):
-					self.blocklist.append(line)
+					blocklisted_taxa.add(line.split(" ")[0])  # Taking only genus names
+			self.blocklist.append(list(blocklisted_taxa))
 
 	def read_duplicates(self, fp_duplicates):
 		'''
@@ -193,7 +195,7 @@ class TableIO:
 			# Finally, we want only the index of those rows, to tell the dataframe which ones should get dropped.
 			self.entry_table.drop(self.entry_table.loc[[(entry[-1].strip('. ') == genus) for entry in self.entry_table["TAXONOMY"].str.split(';')]].index, inplace = True)
 		if len(self.blocklist) == 0:
-			self.log.info("Blacklist is empty. No entries removed.")
+			self.log.info("Blocklist is empty. No entries removed.")
 
 	def remove_duplicates(self):
 		'''

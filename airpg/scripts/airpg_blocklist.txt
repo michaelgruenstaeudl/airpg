@@ -1,42 +1,2749 @@
-# Update on 2020-12-17, 12:21
-Carmichaelia
-Colutea
-Lens
-Medicago
-Melilotus
-Chesneya
-Tibetia
-Sutherlandia
-Halimodendron
-Trigonella
-Ononis
-Oxytropis
-Glycyrrhiza
-Sphaerophysa
-Eremosparton
-Taverniera
-Corethrodendron
-Cicer
-Hedysarum
-Trifolium
-Greuteria
-Pisum
-Lessertia
-Gueldenstaedtia
-Meristotropis
-Vavilovia
-Parochetus
-Biserrula
-Caragana
-Phyllolobium
-Astragalus
-Vicia
-Ebenus
-Swainsona
-Sulla
-Lathyrus
-Calophaca
-Alhagi
-Clianthus
-Galega
-Onobrychis
+# Blocklist as of 2021-05-19, 14:38
+Alhagi graecorum
+Alhagi maurorum
+Alhagi persarum
+Alhagi sparsifolia
+Astragalus abditus
+Astragalus abnormalis
+Astragalus acantherioceras
+Astragalus acaulis
+Astragalus achundovii
+Astragalus acicularis
+Astragalus ackerbergensis
+Astragalus acmonotrichus
+Astragalus acutifolius
+Astragalus acutirostris
+Astragalus adsurgens
+Astragalus aduncus
+Astragalus aegobromus
+Astragalus aestimabilis
+Astragalus agnicidus
+Astragalus agrestis
+Astragalus ahangarensis
+Astragalus ajfreidii
+Astragalus ajubensis
+Astragalus akhundzadahensis
+Astragalus akmanii
+Astragalus aksuensis
+Astragalus aktiubensis
+Astragalus alamliensis
+Astragalus alaschanus
+Astragalus albicaulis
+Astragalus algarbiensis
+Astragalus allochrous var. allochrous
+Astragalus allochrous var. playanus
+Astragalus alopecias
+Astragalus alopecuroides
+Astragalus alopecurus
+Astragalus alpinus
+Astragalus altimurensis
+Astragalus altiusculus
+Astragalus alvordensis
+Astragalus alyssoides
+Astragalus amasiensis
+Astragalus amatus
+Astragalus amblolepis
+Astragalus americanus
+Astragalus ammodendron
+Astragalus amphioxys
+Astragalus anacamptus
+Astragalus ancistrocarpus
+Astragalus angulosus
+Astragalus anguranensis
+Astragalus angustifoliolatus
+Astragalus angustifolius
+Astragalus annularis
+Astragalus anserinifolius
+Astragalus ansinii
+Astragalus antalyensis
+Astragalus anthylloides
+Astragalus apricus
+Astragalus aquilanus
+Astragalus arbuscula
+Astragalus arenarius
+Astragalus aretioides
+Astragalus argentocalyx
+Astragalus arguricus
+Astragalus argyroides
+Astragalus arizonicus
+Astragalus armatus subsp. numidicus
+Astragalus arnottianus
+Astragalus arpilobus
+Astragalus arthurii
+Astragalus artvinensis
+Astragalus asciocalyx
+Astragalus asclepiadoides
+Astragalus askius
+Astragalus asper
+Astragalus assadabadensis
+Astragalus asterias
+Astragalus astrachanicus
+Astragalus asymmetricus
+Astragalus atricapillus
+Astragalus atrokurdicus
+Astragalus atropilosulus var. venosus
+Astragalus aucheri
+Astragalus aureus
+Astragalus australis var. aboriginorum
+Astragalus australis var. glabriusculus
+Astragalus austriacus
+Astragalus austrokhorasanicus
+Astragalus austromahneshanensis
+Astragalus austrosibiricus
+Astragalus austrotaromensis
+Astragalus austrotibetanus
+Astragalus avicennicus
+Astragalus baalbekensis
+Astragalus baba-alliar
+Astragalus bachmarensis
+Astragalus baharensis
+Astragalus bakaliensis
+Astragalus balearicus
+Astragalus balkaricus
+Astragalus baraftabensis
+Astragalus barbatus
+Astragalus barbidens
+Astragalus bashkalensis
+Astragalus bashmaghensis
+Astragalus basineri
+Astragalus baytopianus
+Astragalus bazarganii
+Astragalus beckii
+Astragalus beckwithii
+Astragalus beketowii
+Astragalus berteroanus
+Astragalus berytheus
+Astragalus bethlehemiticus
+Astragalus beypazaricus
+Astragalus bezudensis
+Astragalus bhotanensis
+Astragalus biabanensis
+Astragalus biarjmandicus
+Astragalus bibullatus
+Astragalus bicolor
+Astragalus bifidus
+Astragalus bifoliolatus
+Astragalus bijarensis
+Astragalus biovulatus
+Astragalus biserrula
+Astragalus bisulcatus var. haydenianus
+Astragalus blattneri
+Astragalus bodeanus
+Astragalus bodinii
+Astragalus boeticus
+Astragalus bojnurdensis
+Astragalus bombycinus
+Astragalus borealimongolicus
+Astragalus bornmuellerianus
+Astragalus borysthenicus
+Astragalus botryophorus
+Astragalus bounophilus
+Astragalus bourgovii
+Astragalus brachycalyx
+Astragalus brachycarpus
+Astragalus brachylobus
+Astragalus brachyodontus
+Astragalus brachypetalus
+Astragalus bradosticus
+Astragalus brahuicus
+Astragalus brandegeei
+Astragalus brevicalycinus
+Astragalus brevidens
+Astragalus brevidentatus
+Astragalus brevipes
+Astragalus brevitomentosus
+Astragalus brunsianus
+Astragalus callichrous
+Astragalus callistachys
+Astragalus calycosus
+Astragalus camptoceras
+Astragalus camptodontoides
+Astragalus camptodontus
+Astragalus campylanthus
+Astragalus campylorhynchus
+Astragalus campylosema subsp. champylosema
+Astragalus campylotrichus
+Astragalus canadensis var. brevidens
+Astragalus cancellatus
+Astragalus candidissimus
+Astragalus capax
+Astragalus capito
+Astragalus caprinus subsp. caprinus
+Astragalus caraganae
+Astragalus carduchorum
+Astragalus caricinus
+Astragalus cariensis
+Astragalus caryolobus
+Astragalus casei
+Astragalus caspicus
+Astragalus catacamptus
+Astragalus cedreti
+Astragalus cedreticola
+Astragalus cellatus
+Astragalus cephalanthus
+Astragalus cephalotes
+Astragalus ceramicus
+Astragalus cerasocrenus
+Astragalus cerussatus
+Astragalus chaborasicus
+Astragalus chaetopodus
+Astragalus chamaemeniscus
+Astragalus chardinii
+Astragalus chartostegius
+Astragalus chehreganii
+Astragalus chinensis
+Astragalus chiwensis
+Astragalus chlorostachys
+Astragalus christianus subsp. christianus
+Astragalus chrysanthus
+Astragalus chrysochlorus
+Astragalus chrysostachys var. dolichourus
+Astragalus chrysostachys var. khorasanicus
+Astragalus chrysostachys var. parisiensis
+Astragalus cibarius
+Astragalus cicer
+Astragalus ciloensis
+Astragalus cinereus
+Astragalus citrinus
+Astragalus clavatus
+Astragalus clusii
+Astragalus cobrensis
+Astragalus coccineus
+Astragalus coelicolor
+Astragalus cognatus
+Astragalus collinus
+Astragalus coluteocarpus
+Astragalus coluteoides
+Astragalus coluteopsis
+Astragalus commixtus
+Astragalus comosoides
+Astragalus compactus
+Astragalus complanatus
+Astragalus compositus
+Astragalus confertus
+Astragalus confusus
+Astragalus congdonii
+Astragalus contortuplicatus
+Astragalus convallarius
+Astragalus corniculatus
+Astragalus cornu-bovis
+Astragalus cornutus
+Astragalus coronilla
+Astragalus corrugatus
+Astragalus cottonianus
+Astragalus craibianus
+Astragalus crassicarpus
+Astragalus crassispinus
+Astragalus cremnophylax var. hevronii
+Astragalus crenatus
+Astragalus croaticus
+Astragalus crotalariae
+Astragalus cruckshanksii
+Astragalus cruentiflorus
+Astragalus cryptobotrys
+Astragalus cryptocarpos
+Astragalus curvicarpus
+Astragalus curvicaulis
+Astragalus curviflorus
+Astragalus curvipes
+Astragalus curvirostris subsp. curvirostris
+Astragalus curvirostris subsp. psilocarpus
+Astragalus cusickii var. cusickii
+Astragalus cusickii var. flexilipes
+Astragalus cusickii var. packardiae
+Astragalus cusickii var. sterilis
+Astragalus cyclophyllon
+Astragalus cymbibracteatus
+Astragalus cymbicarpos
+Astragalus cymbostegis
+Astragalus cysticalyx
+Astragalus cystosus
+Astragalus czorochensis
+Astragalus dactylocarpus subsp. dactylocarpus
+Astragalus daenensis
+Astragalus danicus
+Astragalus darrehbidensis
+Astragalus darumbium
+Astragalus dasyanthus
+Astragalus dasycarpus
+Astragalus davisii
+Astragalus davuricus
+Astragalus deickianus
+Astragalus delanensis
+Astragalus demavendicus
+Astragalus demonstratus
+Astragalus dendroides
+Astragalus dendroproselius
+Astragalus densifolius
+Astragalus denudatus
+Astragalus depressus
+Astragalus devesae
+Astragalus dianat-nejadii
+Astragalus dictyocarpus
+Astragalus dictyolobus
+Astragalus didymocarpus var. dispermus
+Astragalus dieterlei
+Astragalus dipelta
+Astragalus diphtherites
+Astragalus dipodurus
+Astragalus dipsaceus
+Astragalus discolor
+Astragalus distans
+Astragalus divandarrehensis
+Astragalus djenarensis
+Astragalus doghrunensis
+Astragalus dolichochaete
+Astragalus dolichophyllus
+Astragalus dorudensis
+Astragalus douglasii
+Astragalus drummondii
+Astragalus drusorum
+Astragalus dschimensis
+Astragalus dumetorum
+Astragalus duplostrigosus
+Astragalus ebenoides subsp. naghadehensis
+Astragalus eburneus
+Astragalus ecbatanus
+Astragalus echidna
+Astragalus echidniformis
+Astragalus echinatus
+Astragalus echinops
+Astragalus edmonstonei
+Astragalus edulis
+Astragalus effusus
+Astragalus ehdenensis
+Astragalus ehrenbergii
+Astragalus elezgensis
+Astragalus ellipsoideus
+Astragalus elongatus
+Astragalus emarginatus
+Astragalus epiglottis
+Astragalus eremiticus
+Astragalus eremophilus subsp. eremophilus
+Astragalus eremophilus subsp. makranicus
+Astragalus eriosphaerus
+Astragalus eriostomus
+Astragalus ernestii
+Astragalus erwinii-gaubae
+Astragalus eucosmus
+Astragalus eximius
+Astragalus expetitus
+Astragalus exscapus
+Astragalus facetus
+Astragalus fagh-soleimanensis
+Astragalus falcatus
+Astragalus farsicus
+Astragalus fasciculifolius
+Astragalus ferruminatus
+Astragalus filicaulis
+Astragalus filipes
+Astragalus fissuralis
+Astragalus flavovirens
+Astragalus flavus
+Astragalus flexuosus
+Astragalus floccosus
+Astragalus foliosus
+Astragalus forrestii
+Astragalus fragrans
+Astragalus frickii
+Astragalus fridae
+Astragalus frigidus
+Astragalus fuliginosus
+Astragalus gaeobotrys
+Astragalus garbancillo
+Astragalus gaubae
+Astragalus gebleri
+Astragalus germanicopolitanus
+Astragalus gevashensis
+Astragalus geyeri var. geyeri
+Astragalus ghamishluensis
+Astragalus ghashghaicus
+Astragalus gigantirostratus
+Astragalus gilviflorus var. gilviflorus
+Astragalus gladiatus
+Astragalus glaucacanthos
+Astragalus glaucophyllus
+Astragalus glaux
+Astragalus globiflorus
+Astragalus glochideus
+Astragalus glumaceus
+Astragalus glycyphylloides
+Astragalus glycyphyllos subs. glycyphyllos
+Astragalus goktschaicus
+Astragalus gossypinus
+Astragalus gracilipes
+Astragalus gracilis
+Astragalus grammocalyx
+Astragalus graveolens
+Astragalus greuteri
+Astragalus griffithii
+Astragalus griseus
+Astragalus gudrunensis
+Astragalus gueldenstaedtiae
+Astragalus gueruenensis
+Astragalus gummifer
+Astragalus guttatus
+Astragalus gymnalopecias
+Astragalus gypsocola
+Astragalus haesitabundus
+Astragalus hakkianus
+Astragalus halicacabus
+Astragalus hallii var. fallax
+Astragalus hamadanus
+Astragalus hamosus
+Astragalus hancockii
+Astragalus handelii
+Astragalus hareftae
+Astragalus hartvigii
+Astragalus hauarensis
+Astragalus helmii
+Astragalus hemiphaca
+Astragalus hemsleyi
+Astragalus hendersonii
+Astragalus henryi
+Astragalus herbertii
+Astragalus hesiensis
+Astragalus heterodoxus
+Astragalus heydei
+Astragalus hezarensis
+Astragalus himalayanus
+Astragalus hirsutissimus
+Astragalus hirticalyx
+Astragalus hispanicus
+Astragalus hispidulus
+Astragalus hissaricus
+Astragalus hoantchy subsp. dschimensis
+Astragalus hoffmeisteri
+Astragalus holmgreniorum
+Astragalus hololeios
+Astragalus holopsilus
+Astragalus homandicus
+Astragalus horridus
+Astragalus howellii
+Astragalus humillimus
+Astragalus husseinovii
+Astragalus huthianus
+Astragalus hymenocalyx
+Astragalus hymenocystis
+Astragalus hymenostegis
+Astragalus hypoglottis subsp. gremlii
+Astragalus hypoglottis subsp. hypoglottis
+Astragalus hystrix
+Astragalus ibrahimianus
+Astragalus icmadophilus
+Astragalus impexus
+Astragalus incanus subsp. incanus
+Astragalus incanus subsp. incurvus
+Astragalus incertus
+Astragalus inchebroonensis
+Astragalus inopinatus
+Astragalus intercedens
+Astragalus inyoensis
+Astragalus iodotropis
+Astragalus iranicus
+Astragalus ischredensis
+Astragalus issatissensis
+Astragalus jacobsii
+Astragalus jaegerianus
+Astragalus jaskensis
+Astragalus jesdianus
+Astragalus jessenii
+Astragalus jodostachys
+Astragalus johannis
+Astragalus joharchii
+Astragalus johnstonii
+Astragalus jolderensis
+Astragalus juladakensis
+Astragalus juratzkanus
+Astragalus kahiricus
+Astragalus kapherrianus
+Astragalus karakugensis
+Astragalus karamasicus
+Astragalus karelinianus
+Astragalus karl-heinzii
+Astragalus kashmarensis
+Astragalus kastamonuensis
+Astragalus kaufmannii
+Astragalus kavirensis
+Astragalus kentrophyta var. implexus
+Astragalus kentrophyta var. tegetarius
+Astragalus keratensis
+Astragalus keredjensis
+Astragalus kerkukiensis
+Astragalus kermanschahensis
+Astragalus khoshjailensis
+Astragalus kirpicznikovii
+Astragalus kirrindicus
+Astragalus koburensis
+Astragalus kohrudicus
+Astragalus koschukensis
+Astragalus krauseanus
+Astragalus kuhidashtehensis
+Astragalus kurnet-es-saudae
+Astragalus kurtschumensis
+Astragalus ladakensis
+Astragalus lagopodioides
+Astragalus laguriformis
+Astragalus lagurus
+Astragalus lalesarensis
+Astragalus lamprocarpus
+Astragalus lanuginosus
+Astragalus laristanicus
+Astragalus lasaensis
+Astragalus lasioglottis
+Astragalus lateritius
+Astragalus latifolius
+Astragalus laxmannii var. robustior
+Astragalus layneae
+Astragalus ledinghamii
+Astragalus lehmannianus
+Astragalus leiophyllus
+Astragalus leiosemius
+Astragalus lentiginosus var. araneosus
+Astragalus lentiginosus var. australis
+Astragalus lentiginosus var. diphysus
+Astragalus lentiginosus var. floribundus
+Astragalus lentiginosus var. lentiginosus
+Astragalus lentiginosus var. macrolobus
+Astragalus lentiginosus var. maricopae
+Astragalus lentiginosus var. palans
+Astragalus lentiginosus var. platyphyllidius
+Astragalus lentiginosus var. pohlii
+Astragalus lentiginosus var. stramineus
+Astragalus lentiginosus var. variabilis
+Astragalus lentiginosus var. wahweapensis
+Astragalus lentiginosus var. wilsonii
+Astragalus leonardii
+Astragalus leontinus
+Astragalus lepidanthus
+Astragalus lepsensis
+Astragalus leptaleus
+Astragalus leptocarpus
+Astragalus leptynticus
+Astragalus leucargyreus
+Astragalus leucocephalus
+Astragalus leucothrix
+Astragalus levieri
+Astragalus lilacinus
+Astragalus lindheimeri
+Astragalus linifolius
+Astragalus lobophorus
+Astragalus lonchocarpus
+Astragalus longicaulis
+Astragalus longicuspis
+Astragalus longidentatus
+Astragalus longifolius
+Astragalus longirostratus
+Astragalus longisubulatus
+Astragalus looseri
+Astragalus lotiflorus
+Astragalus luculentus
+Astragalus lumsdenianus
+Astragalus lunatus
+Astragalus lycioides
+Astragalus lycius
+Astragalus lydius
+Astragalus maabudii
+Astragalus maarofii
+Astragalus macrobotrys
+Astragalus macrocarpus
+Astragalus macrocephalus subsp. finitimus
+Astragalus macrocephalus subsp. macrocephalus
+Astragalus macropelmatus subsp. macropelmatus
+Astragalus macropterus
+Astragalus macropus
+Astragalus macrosemius
+Astragalus macrostachys
+Astragalus macrourus
+Astragalus magistratus
+Astragalus makuensis
+Astragalus malacophyllus
+Astragalus malacus
+Astragalus mareoticus
+Astragalus marivanensis
+Astragalus masanderanus
+Astragalus medius
+Astragalus megalocystis
+Astragalus megalotropis
+Astragalus meiliensis
+Astragalus melanocalyx
+Astragalus melanocarpus
+Astragalus melanophrurius
+Astragalus melanostictus
+Astragalus melilotoides var. tenuis
+Astragalus membranaceus f. pallidipurpureus
+Astragalus membranaceus var. membranaceus
+Astragalus memoriosus
+Astragalus mercklinii subsp. farsicus
+Astragalus mercklinii subsp. mercklinii
+Astragalus meridionalis
+Astragalus mesogitanus
+Astragalus mesopotamicus
+Astragalus meyeri
+Astragalus micrancistrus
+Astragalus microcephalus
+Astragalus microcystis
+Astragalus microphysa
+Astragalus migpo
+Astragalus milingensis
+Astragalus minutulus
+Astragalus misellus
+Astragalus miser
+Astragalus missouriensis
+Astragalus mollissimus var. bigelovii
+Astragalus mollissimus var. earlei
+Astragalus mollissimus var. matthewsii
+Astragalus mollissimus var. mogollonicus
+Astragalus mollissimus var. mollissimus
+Astragalus mollissimus var. thompsoniae
+Astragalus molybdenus
+Astragalus monadelphus
+Astragalus monbeigii
+Astragalus mongholicus var. dahuricus
+Astragalus mongholicus var. nakaianus
+Astragalus monoensis
+Astragalus monophyllus
+Astragalus monozyx
+Astragalus monspessulanus
+Astragalus monticola
+Astragalus montis-nacarouzii
+Astragalus montis-parrowii
+Astragalus montosus
+Astragalus monumentalis
+Astragalus moyanoi
+Astragalus mozaffarianii
+Astragalus mucronifolius
+Astragalus mulfordiae
+Astragalus multijugus
+Astragalus murinus subsp. bornmuelleri
+Astragalus naftabensis
+Astragalus nalbandanicus
+Astragalus nankotaizanensis
+Astragalus neglectus
+Astragalus neoassadianus
+Astragalus neochaldoranicus
+Astragalus neomonodelphus
+Astragalus neopodlechii
+Astragalus neosytinii
+Astragalus nephtonensis
+Astragalus nervistipulus
+Astragalus neuquenensis
+Astragalus neurophyllus
+Astragalus newberryi
+Astragalus nezaketiae
+Astragalus nigricans
+Astragalus nigrifructus
+Astragalus nigrohirsutus
+Astragalus nigrolineatus
+Astragalus nitens
+Astragalus nivicola
+Astragalus norvegicus
+Astragalus nothoxys
+Astragalus nubicola
+Astragalus nummularius
+Astragalus nurensis
+Astragalus nuttallianus var. nuttallianus
+Astragalus nuttallii
+Astragalus nutzotinensis
+Astragalus obcordatus
+Astragalus obscurus
+Astragalus obtusifolius
+Astragalus ochreatus
+Astragalus ochrochlorus
+Astragalus odoratus
+Astragalus olchonensis
+Astragalus oldenburgii
+Astragalus oleifolius
+Astragalus oligoflorus
+Astragalus oligophyllus
+Astragalus olurensis
+Astragalus oncotrichus
+Astragalus oniciformis
+Astragalus onobrychioides
+Astragalus onobrychis
+Astragalus oocalycis
+Astragalus oophorus
+Astragalus ophiocarpus
+Astragalus oplites
+Astragalus orbicularifolius
+Astragalus oreades
+Astragalus oreganus
+Astragalus ornithopodioides
+Astragalus ornithorrhynchus
+Astragalus oropolitanus
+Astragalus ovalis
+Astragalus ovatus
+Astragalus ovigerus
+Astragalus ovinus
+Astragalus oxyglottis
+Astragalus oxyodon
+Astragalus oxyphysus
+Astragalus pachypus
+Astragalus pachyrhachis
+Astragalus pakravaniae
+Astragalus palenae var. grandiflora
+Astragalus palenae var. palenae
+Astragalus pallescens
+Astragalus paposanus
+Astragalus paradoxus
+Astragalus paralipomenus
+Astragalus paralurges
+Astragalus paralurgiformis
+Astragalus parrowianus
+Astragalus parvarensis
+Astragalus pastorius var. linearibracteatus
+Astragalus patagonicus
+Astragalus paucifoliolatus
+Astragalus pauperiflorus
+Astragalus pauxillis
+Astragalus paysonii
+Astragalus peckii
+Astragalus pectinatus
+Astragalus pediculariformis
+Astragalus peduncularis
+Astragalus pehuenches
+Astragalus pelecinus subsp. leiocarpus
+Astragalus pelecinus subsp. pelecinus
+Astragalus pellitus
+Astragalus peltatus
+Astragalus penduliflorus var. sericeocanus
+Astragalus pendulus
+Astragalus penetratus
+Astragalus pentanthus
+Astragalus peregrinus subsp. peregrinus
+Astragalus peregrinus subsp. warionis
+Astragalus pereshkhoranicus
+Astragalus peristereus
+Astragalus perpexus
+Astragalus persepolitanus
+Astragalus persicus
+Astragalus peterae
+Astragalus peterfii
+Astragalus petraeus
+Astragalus phlomoides
+Astragalus pickeringii
+Astragalus piletocladus
+Astragalus pindreensis
+Astragalus pinetorum subsp. declinatus
+Astragalus pinetorum subsp. pinetorum
+Astragalus piptocephalus
+Astragalus pish-chakensis
+Astragalus plagiophacos
+Astragalus platyphyllus
+Astragalus platytropis
+Astragalus pluriflorus
+Astragalus podocarpus
+Astragalus podoloboides
+Astragalus podolobus
+Astragalus polaris
+Astragalus polhillii
+Astragalus polyanthus
+Astragalus polycladus
+Astragalus ponticus
+Astragalus praelongus
+Astragalus praeteritus
+Astragalus prattii
+Astragalus pravitzii
+Astragalus preussii
+Astragalus procerus
+Astragalus prodigiosus
+Astragalus propinquus
+Astragalus pseudoarvatensis
+Astragalus pseudobrachystachys
+Astragalus pseudobuchtormensis
+Astragalus pseudocyclophyllus
+Astragalus pseudoglaucus
+Astragalus pseudoibicinus
+Astragalus pseudonigrescens
+Astragalus pseudonobilis
+Astragalus pseudoparalurges
+Astragalus pseudopersicus
+Astragalus pseudorhacodes
+Astragalus pseudorobustus
+Astragalus pseudosinaicus
+Astragalus pseudotataricus
+Astragalus psilodontius
+Astragalus psoraloides
+Astragalus pulchellus
+Astragalus pullus
+Astragalus punctatus
+Astragalus purshii var. tinctus
+Astragalus pycnocephalus
+Astragalus qeydarnabiensis
+Astragalus qorvehensis
+Astragalus qoturensis
+Astragalus quinquefoliolatus
+Astragalus racemosus
+Astragalus raddei
+Astragalus raphaelis
+Astragalus raswendicus
+Astragalus rattanii
+Astragalus rechingeri
+Astragalus recognitus
+Astragalus reduncus
+Astragalus refractus
+Astragalus regestus
+Astragalus remotiflorus subsp. melanogramma
+Astragalus remotijugus
+Astragalus remotispicatus
+Astragalus reshadensis
+Astragalus retamocarpus
+Astragalus retusifoliatus
+Astragalus reventus
+Astragalus rhizanthus subsp. candolleanus
+Astragalus rhodosemius
+Astragalus richardsonii
+Astragalus rijabensis
+Astragalus riouxii
+Astragalus robbinsii var. alpiniformis
+Astragalus robbinsii var. fernaldii
+Astragalus robbinsii var. harringtonii
+Astragalus robbinsii var. jesupii
+Astragalus robbinsii var. minor
+Astragalus robbinsii var. occidentalis
+Astragalus robustus
+Astragalus rollovi
+Astragalus roseus
+Astragalus rostratus
+Astragalus rubriflorus
+Astragalus rubrolineatus
+Astragalus rubrostriatus
+Astragalus rufescens
+Astragalus rusbyi
+Astragalus ruscifolius
+Astragalus russanovii
+Astragalus saadatabadensis
+Astragalus sabulonum
+Astragalus saccocalyx
+Astragalus sachanewii
+Astragalus saetiger
+Astragalus safavii
+Astragalus saganlugensis
+Astragalus saharae
+Astragalus sahendi
+Astragalus salavatabadensis
+Astragalus salmonis
+Astragalus sanbilingensis
+Astragalus sangonensis
+Astragalus sanguinolentus
+Astragalus saxifractor
+Astragalus saxorum
+Astragalus scaberrimus
+Astragalus scabrifolius
+Astragalus scapiger
+Astragalus schahrudensis
+Astragalus schelichowii
+Astragalus schimperi
+Astragalus schistocalyx
+Astragalus schizopterus
+Astragalus schmalhausenii
+Astragalus scholerianus
+Astragalus sciureus
+Astragalus sclerocarpus
+Astragalus sclerocladus
+Astragalus scopiformis
+Astragalus scopulorum
+Astragalus scorpioides
+Astragalus scorpiurus
+Astragalus sealei
+Astragalus seidabadensis
+Astragalus semiglabricarpus
+Astragalus semiromensis
+Astragalus semitarius
+Astragalus semnanensis
+Astragalus serenoi var. serenoi
+Astragalus sericophyllus
+Astragalus sesameus
+Astragalus sesamoides
+Astragalus sesquiflorus
+Astragalus sevangensis
+Astragalus sheldonii
+Astragalus shelkovnikovii
+Astragalus shultziorum
+Astragalus siahcheshmehensis
+Astragalus siccaneus
+Astragalus sieberi
+Astragalus sieversianus
+Astragalus sigmoideus
+Astragalus sikokianus
+Astragalus siliquosus
+Astragalus simakanensis
+Astragalus simonii
+Astragalus sinaicus
+Astragalus sinicus
+Astragalus sirinicus subsp. genargenteus
+Astragalus sitiens
+Astragalus skythropos
+Astragalus sohrevardianus
+Astragalus solandri
+Astragalus solitarius
+Astragalus sosnowskyi
+Astragalus sp. 1 Kh118
+Astragalus sp. A108
+Astragalus sp. A109
+Astragalus sp. A110
+Astragalus sp. A16
+Astragalus sp. A2
+Astragalus sp. A20
+Astragalus sp. A3
+Astragalus sp. A35
+Astragalus sp. A52
+Astragalus sp. A65
+Astragalus sp. A66
+Astragalus sp. AAR-2019a
+Astragalus sp. AB-2016a
+Astragalus sp. AB-2016e
+Astragalus sp. AB-2016f
+Astragalus sp. AB-2016g
+Astragalus sp. AB-2016h
+Astragalus sp. AB-2016i
+Astragalus sp. AB-2016j
+Astragalus sp. AB-2016k
+Astragalus sp. AB-2016l
+Astragalus sp. AB-2016m
+Astragalus sp. AB-2016r
+Astragalus sp. AB-2016t
+Astragalus sp. AB-2019a
+Astragalus sp. Kh118
+Astragalus sp. Kh132
+Astragalus sp. PMD-2014
+Astragalus sp. Sanderson 2509
+Astragalus sp. Shadrin 1s_3s
+Astragalus sp. TS-2017
+Astragalus spachianiformis
+Astragalus spachianus
+Astragalus spaldingii
+Astragalus sparsus
+Astragalus spatulatus
+Astragalus speciosus
+Astragalus speirocarpus
+Astragalus sphaeranthus
+Astragalus spinosus
+Astragalus spruneri
+Astragalus squarrosus
+Astragalus stalinskyi
+Astragalus stella
+Astragalus stenolepis
+Astragalus stenostegius
+Astragalus stereocalyx
+Astragalus stevenianus
+Astragalus stocksii
+Astragalus storozhevae
+Astragalus straussii
+Astragalus striatus
+Astragalus strictus
+Astragalus subalpinus
+Astragalus subarcuatus
+Astragalus subbrevidens
+Astragalus suberosus subsp. haarbachii
+Astragalus suberosus subsp. suberosus
+Astragalus subglaberrimus
+Astragalus subkohrudicus
+Astragalus sublaguriformis
+Astragalus submaculatus
+Astragalus submitis
+Astragalus subrecognitus
+Astragalus subsecundus
+Astragalus subulatus
+Astragalus subuliformis
+Astragalus sufianicus
+Astragalus sulcatus
+Astragalus sumbari
+Astragalus sungpanensis
+Astragalus supervisus
+Astragalus susianus
+Astragalus sutchuenensis
+Astragalus sympileicalycinus
+Astragalus sympileicarpus
+Astragalus szovitsii
+Astragalus tabrizianus
+Astragalus talimansurensis
+Astragalus tanguticus
+Astragalus taochius
+Astragalus tarchankuticus
+Astragalus tarumensis
+Astragalus tauricola
+Astragalus tawilicus
+Astragalus tegulensis
+Astragalus teheranicus
+Astragalus temirensis
+Astragalus tenellus
+Astragalus tener
+Astragalus tennesseensis
+Astragalus tenuiramosus
+Astragalus terraccianoi
+Astragalus tetrapterus
+Astragalus thermensis
+Astragalus thlaspi
+Astragalus thurberi
+Astragalus tibetanus
+Astragalus tigridis
+Astragalus tolmaczevii
+Astragalus tongolensis
+Astragalus toquimanus
+Astragalus tortuosus
+Astragalus touranicus
+Astragalus tournefortii
+Astragalus trachyacanthos
+Astragalus tragacantha
+Astragalus tribulifolius
+Astragalus tribuloides
+Astragalus tricholobus subsp. tricholobus
+Astragalus trichopodus
+Astragalus trichopterus
+Astragalus trifoliastrum
+Astragalus trifoliolatus
+Astragalus triradiatus
+Astragalus tugarinovi
+Astragalus tumbatsica
+Astragalus tungensis
+Astragalus turbinatus
+Astragalus turgidocarpus
+Astragalus turkmenensis
+Astragalus ucrainicus
+Astragalus uliginosus
+Astragalus ulodjensis
+Astragalus umbellatus
+Astragalus umbraticus
+Astragalus uniflorus
+Astragalus uraniolimneus
+Astragalus urmiensis
+Astragalus utahensis
+Astragalus vaginans
+Astragalus vagus
+Astragalus vanillae
+Astragalus variabilis
+Astragalus varius
+Astragalus vegetus
+Astragalus vegliensis
+Astragalus veiskaramii
+Astragalus velenovskyi
+Astragalus vereskensis
+Astragalus vernaculus
+Astragalus verrucosus
+Astragalus versicolor
+Astragalus versipilus
+Astragalus verus
+Astragalus vesicarius subsp. albidus
+Astragalus vesicarius subsp. carniolicus
+Astragalus vesicarius subsp. pastellianus
+Astragalus vesicarius subsp. vesicarius
+Astragalus vesiculosus
+Astragalus vexillaris
+Astragalus vexilliflexus
+Astragalus vicarius
+Astragalus viciifolius
+Astragalus victoriae
+Astragalus villosus
+Astragalus viridis
+Astragalus viridissimus
+Astragalus vogelii
+Astragalus vulcanicus
+Astragalus vulpinus
+Astragalus wagneri
+Astragalus whitneyi var. confusus
+Astragalus wiesneri
+Astragalus williamsii
+Astragalus wolgensis
+Astragalus woodruffii
+Astragalus wootonii
+Astragalus woronowii
+Astragalus xanthomeloides
+Astragalus xerophilus
+Astragalus xiphidioides
+Astragalus xiphidiopsis
+Astragalus xiphidium
+Astragalus xiphoides
+Astragalus xylobasis var. angustus
+Astragalus xylobasis var. xylobasis
+Astragalus yatungensis
+Astragalus yazdii
+Astragalus yildirimlii
+Astragalus yilmazii
+Astragalus yoder-williamsii
+Astragalus yunnanensis
+Astragalus yushensis
+Astragalus zacharensis
+Astragalus zachlensis
+Astragalus zangelanus
+Astragalus zanjanensis
+Astragalus zaraensis
+Astragalus zarjabadensis
+Astragalus zerdanus
+Astragalus zingeri
+Astragalus zohrabi
+Astragalus zoshkensis
+Barnebyella calycina
+Calophaca grandiflora
+Calophaca hovenii
+Calophaca pskemica
+Calophaca sericea
+Calophaca sinica
+Calophaca soongorica
+Calophaca tianschanica
+Calophaca wolgarica
+Caragana acanthophylla
+Caragana alpina
+Caragana altaica
+Caragana ambigua
+Caragana arborescens
+Caragana aurantiaca
+Caragana bicolor
+Caragana boisii
+Caragana bongardiana
+Caragana brachypoda
+Caragana brevifolia
+Caragana brevispina
+Caragana bungei
+Caragana camilloi-schneideri
+Caragana changduensis
+Caragana chinghaiensis
+Caragana conferta
+Caragana crassispina
+Caragana dasyphylla
+Caragana davazamcii
+Caragana decorticans
+Caragana densa
+Caragana erinacea
+Caragana franchetiana
+Caragana frutex
+Caragana fruticosa
+Caragana gerardiana
+Caragana gobica
+Caragana grandiflora
+Caragana hololeuca
+Caragana jubata
+Caragana kansuensis
+Caragana kirghisorum
+Caragana korshinskii
+Caragana kozlowii
+Caragana laeta
+Caragana leucophloea
+Caragana leveillei
+Caragana licentiana
+Caragana microphylla f. cinerea
+Caragana opulens var. angustifolia
+Caragana ordosica
+Caragana pekinensis
+Caragana pleiophylla
+Caragana polourensis
+Caragana potaninii
+Caragana pruinosa
+Caragana pumila
+Caragana purdomii
+Caragana pygmaea var. angustissima
+Caragana qingheensis
+Caragana roborovskyi
+Caragana rosea var. rosea
+Caragana shensiensis
+Caragana sibirica
+Caragana sinica
+Caragana soongorica
+Caragana sp. Guo 21623
+Caragana sp. US:3541335
+Caragana spinosa
+Caragana stenophylla
+Caragana stipitata
+Caragana sukiensis
+Caragana tangutica
+Caragana tekesiensis
+Caragana tibetica
+Caragana tragacanthoides
+Caragana turkestanica
+Caragana ussuriensis
+Caragana versicolor
+Caragana zahlbruckneri
+Carmichaelia arborea
+Carmichaelia astonii
+Carmichaelia australis
+Carmichaelia crassicaulis
+Carmichaelia exsul
+Carmichaelia juncea
+Carmichaelia kirkii
+Carmichaelia muritai
+Carmichaelia nana
+Carmichaelia sp. 'Lavin 6201'
+Carmichaelia sp. DRC-2004
+Carmichaelia sp. JJD-2001
+Carmichaelia stevensonii
+Carmichaelia torulosa
+Carmichaelia williamsii
+Chesneya acaulis
+Chesneya astragalina
+Chesneya badachschanica
+Chesneya borissovae
+Chesneya botschantzevii
+Chesneya crassipes
+Chesneya cuneata
+Chesneya darvasica
+Chesneya depressa
+Chesneya dshungarica
+Chesneya elegans
+Chesneya ferganensis
+Chesneya gracilis
+Chesneya hissarica
+Chesneya kopetdaghensis
+Chesneya kotschyi
+Chesneya kschtutica
+Chesneya linczevskyi
+Chesneya mongolica
+Chesneya neplii
+Chesneya nubigena
+Chesneya parviflora
+Chesneya polystichoides
+Chesneya purpurea
+Chesneya quinata
+Chesneya rytidosperma
+Chesneya sp. MZ-2016
+Chesneya sp. US:3540374
+Chesneya spinosa
+Chesneya tadzhikistana
+Chesneya ternata
+Chesneya tribuloides
+Chesneya trijuga
+Chesneya turkestanica
+Chesneya villosa
+Chesniella macrantha
+Cicer anatolicum
+Cicer arietinum
+Cicer arietinum x Cicer echinospermum
+Cicer arietinum x Cicer reticulatum
+Cicer bijugum
+Cicer canariense
+Cicer chorassanicum
+Cicer cuneatum
+Cicer echinospermum
+Cicer flexuosum
+Cicer floribundum
+Cicer graecum
+Cicer incisum
+Cicer isauricum
+Cicer judaicum
+Cicer kermanense
+Cicer macracanthum
+Cicer microphyllum
+Cicer montbretii
+Cicer multijugum
+Cicer nuristanicum
+Cicer oxyodon
+Cicer pinnatifidum
+Cicer pungens
+Cicer rechingeri
+Cicer reticulatum
+Cicer songaricum
+Cicer sp. DS-2020a
+Cicer spiroceras
+Cicer stapfianum
+Cicer subaphyllum
+Cicer tragacanthoides
+Cicer yamashitae
+Clianthus maximus
+Clianthus puniceus
+Clianthus sp. JP4
+Colutea abyssinica
+Colutea arborescens
+Colutea armena
+Colutea atlantica
+Colutea buhsei
+Colutea cilicica
+Colutea gifana
+Colutea gracilis
+Colutea istria
+Colutea komarovii
+Colutea melanocalyx
+Colutea nepalensis
+Colutea paulsenii
+Colutea persica
+Colutea porphyrogramma
+Colutea sp. CHSL-2012
+Colutea triphylla
+Colutea uniflora
+Corethrodendron fruticosum var. mongolicum
+Corethrodendron krassnowii
+Corethrodendron lignosum var. laeve
+Corethrodendron multijugum
+Corethrodendron scoparium
+Ebenus armitagei
+Ebenus barbigera
+Ebenus boisseri
+Ebenus cappadocica
+Ebenus cretica
+Ebenus laguroides
+Ebenus longipes
+Ebenus pinnata
+Ebenus reesei
+Ebenus sibthorpii
+Ebenus stellata
+Eremosparton flaccidum
+Eremosparton songoricum
+Erophaca baetica subsp. baetica
+Erophaca baetica subsp. orientalis
+Eversmannia subspinosa
+Galega lindblomii
+Galega officinalis
+Galega orientalis
+Glycyrrhiza acanthocarpa
+Glycyrrhiza aspera
+Glycyrrhiza astragalina
+Glycyrrhiza asymmetrica
+Glycyrrhiza echinata
+Glycyrrhiza erythrocarpa
+Glycyrrhiza eurycarpa
+Glycyrrhiza foetida
+Glycyrrhiza glabra
+Glycyrrhiza glabra x Glycyrrhiza uralensis
+Glycyrrhiza glabra x Glycyrrrhiza uralensis
+Glycyrrhiza glandulifera
+Glycyrrhiza iconica
+Glycyrrhiza inflata
+Glycyrrhiza korshinskyi
+Glycyrrhiza laxissima
+Glycyrrhiza lepidota
+Glycyrrhiza macedonica
+Glycyrrhiza pallidiflora
+Glycyrrhiza sp. CCMB H66
+Glycyrrhiza sp. EM373
+Glycyrrhiza sp. EM378
+Glycyrrhiza sp. EM399
+Glycyrrhiza sp. EM409
+Glycyrrhiza sp. MP 715
+Glycyrrhiza sp. NCNPR 1083
+Glycyrrhiza sp. NCNPR 11640
+Glycyrrhiza sp. NCNPR 12136
+Glycyrrhiza sp. NCNPR 12160
+Glycyrrhiza sp. NCNPR 13142
+Glycyrrhiza sp. NCNPR 13164
+Glycyrrhiza sp. NCNPR 13165
+Glycyrrhiza sp. NCNPR 144
+Glycyrrhiza sp. NCNPR 14929
+Glycyrrhiza sp. NCNPR 15002
+Glycyrrhiza sp. NCNPR 15003
+Glycyrrhiza sp. NCNPR 2472
+Glycyrrhiza sp. NCNPR 2919
+Glycyrrhiza sp. NCNPR 4983
+Glycyrrhiza sp. NCNPR 5008
+Glycyrrhiza sp. NCNPR 5217
+Glycyrrhiza sp. NCNPR 553
+Glycyrrhiza sp. NCNPR 6475
+Glycyrrhiza sp. NCNPR 9171
+Glycyrrhiza sp. NCNPR 9330
+Glycyrrhiza sp. NCNPR 9439
+Glycyrrhiza sp. NCNPR D048
+Glycyrrhiza sp. NCNPR E037
+Glycyrrhiza sp. NCNPR E038
+Glycyrrhiza sp. NTS-2020
+Glycyrrhiza sp. Shadrin 2s
+Glycyrrhiza sp. Shihezi
+Glycyrrhiza squamulosa
+Glycyrrhiza triphylla
+Glycyrrhiza uralensis
+Glycyrrhiza xanthioides
+Glycyrrhiza yunnanensis
+Glycyrrhizopsis flavescens
+Greuteria argyrea
+Greuteria membranacea
+Gueldenstaedtia forrestii
+Gueldenstaedtia henryi
+Gueldenstaedtia stenophylla
+Gueldenstaedtia taihangensis
+Gueldenstaedtia verna subsp. multiflora
+Halimodendron halodendron
+Halimodendron sp. Fayvush 25
+Hedysarum aculeatum
+Hedysarum alamutense
+Hedysarum algidum
+Hedysarum alpinum var. americanum
+Hedysarum armenium
+Hedysarum astragaloides
+Hedysarum atropatanum
+Hedysarum austrosibiricum
+Hedysarum biebersteinii
+Hedysarum bojnordense
+Hedysarum boreale var. boreale
+Hedysarum boreale var. gremiale
+Hedysarum boreale var. mackenziei
+Hedysarum boutignyanum
+Hedysarum boveanum subsp. boveanum
+Hedysarum boveanum subsp. europaeum
+Hedysarum brachypterum
+Hedysarum bucharicum
+Hedysarum cachemirianum
+Hedysarum callithrix
+Hedysarum campylocarpon
+Hedysarum candidissimum
+Hedysarum cappadocicum
+Hedysarum caucasicum
+Hedysarum chaiyrakanicum
+Hedysarum chinense
+Hedysarum cisbaicalense
+Hedysarum cisdarvasicum
+Hedysarum citrinum
+Hedysarum consanguineum
+Hedysarum criniferum
+Hedysarum cuonanum
+Hedysarum dahuricum
+Hedysarum damghanicum
+Hedysarum dasycarpum
+Hedysarum dentatoalatum
+Hedysarum denticulatum
+Hedysarum elbursense
+Hedysarum elegans
+Hedysarum elymaiticum
+Hedysarum erythroleucum
+Hedysarum falconeri
+Hedysarum fallacinum
+Hedysarum ferganense
+Hedysarum flavescens
+Hedysarum formosum
+Hedysarum garinense
+Hedysarum glabrifoliolatum
+Hedysarum glomeratum
+Hedysarum gmelinii subsp. setigerum
+Hedysarum grandiflorum
+Hedysarum gypsophilum
+Hedysarum halophilum
+Hedysarum hedysaroides subsp. arcticum
+Hedysarum hemithamnoides
+Hedysarum huetii
+Hedysarum hyrcanum
+Hedysarum ibericum
+Hedysarum inundatum
+Hedysarum jinchuanense
+Hedysarum johartchii
+Hedysarum kalatense
+Hedysarum kopetdaghi
+Hedysarum kotschyi
+Hedysarum krylovii
+Hedysarum kumaonense
+Hedysarum lehmannianum
+Hedysarum longigynophorum
+Hedysarum longipedunculatum
+Hedysarum macranthum
+Hedysarum malurense
+Hedysarum marandense
+Hedysarum micropterum
+Hedysarum minjanense
+Hedysarum monophyllum
+Hedysarum nagarzense
+Hedysarum neglectum
+Hedysarum occidentale
+Hedysarum pabulare
+Hedysarum papillosum
+Hedysarum parvum
+Hedysarum paucifoliolatum
+Hedysarum persicum
+Hedysarum pestalozzae
+Hedysarum petrovii
+Hedysarum plumosum
+Hedysarum pogonocarpum
+Hedysarum polybotrys
+Hedysarum poncinsii
+Hedysarum praticola
+Hedysarum pseudastragalus
+Hedysarum razoumovianum
+Hedysarum renzii
+Hedysarum sangilense
+Hedysarum sauzakense
+Hedysarum semenovii
+Hedysarum sericeum
+Hedysarum sikkimense
+Hedysarum singarense
+Hedysarum songaricum
+Hedysarum stenophyllum
+Hedysarum sulphurescens
+Hedysarum syriacum
+Hedysarum taipeicum
+Hedysarum tanguticum
+Hedysarum tauricum
+Hedysarum theinum
+Hedysarum tibeticum
+Hedysarum truncatum
+Hedysarum turczaninovii
+Hedysarum ucrainicum
+Hedysarum ussuriense
+Hedysarum vanense
+Hedysarum varium
+Hedysarum vicioides
+Hedysarum volkii
+Hedysarum wakhanicum
+Hedysarum wangii
+Hedysarum wrightianum
+Hedysarum xizangense
+Hedysarum zundukii
+Lathyrus alamutensis
+Lathyrus alpestris
+Lathyrus altaicus
+Lathyrus amphicarpos
+Lathyrus angulatus
+Lathyrus annuus
+Lathyrus aphaca
+Lathyrus armenus
+Lathyrus aureus
+Lathyrus bauhinii
+Lathyrus belinensis
+Lathyrus bijugatus
+Lathyrus blepharicarpus
+Lathyrus boissieri
+Lathyrus brachypterus
+Lathyrus cassius
+Lathyrus chloranthus
+Lathyrus cicera
+Lathyrus cirrhosus
+Lathyrus clymenum var. articulatus
+Lathyrus clymenum var. clymenum
+Lathyrus crassipes
+Lathyrus cyaneus
+Lathyrus czeczottianus
+Lathyrus davidii
+Lathyrus decaphyllus
+Lathyrus delnorticus
+Lathyrus dielsianus
+Lathyrus digitatus
+Lathyrus elongatus
+Lathyrus emodi
+Lathyrus eucosmus
+Lathyrus filiformis
+Lathyrus glandulosus
+Lathyrus gloeosperma
+Lathyrus gmelinii
+Lathyrus gorgoni
+Lathyrus graminifolius
+Lathyrus grandiflorus
+Lathyrus hallersteinii
+Lathyrus hasslerianus
+Lathyrus heterophyllus
+Lathyrus hierosolymitanus
+Lathyrus hirsutus
+Lathyrus holochlorus
+Lathyrus humilis
+Lathyrus hygrophilus
+Lathyrus inconspicuus
+Lathyrus incurvus
+Lathyrus japonicus subsp. maritimus
+Lathyrus jepsonii
+Lathyrus karsianus
+Lathyrus komarovii
+Lathyrus laetiflorus
+Lathyrus laevigatus
+Lathyrus lanszwertii
+Lathyrus latifolius
+Lathyrus laxiflorus
+Lathyrus ledebourii
+Lathyrus linifolius
+Lathyrus linnaei
+Lathyrus littoralis
+Lathyrus longipes
+Lathyrus luteus
+Lathyrus lycius
+Lathyrus macrostachys
+Lathyrus magellanicus
+Lathyrus meridensis
+Lathyrus mulkak
+Lathyrus multiceps var. setiger
+Lathyrus nervosus
+Lathyrus neurolobus
+Lathyrus nevadensis
+Lathyrus niger subsp. jordanii
+Lathyrus nissolia
+Lathyrus ochroleucus
+Lathyrus ochrus
+Lathyrus odoratus
+Lathyrus pallescens
+Lathyrus palustris subsp. pilosus
+Lathyrus pannonicus f. glaber
+Lathyrus pannonicus subsp. collinus
+Lathyrus pannonicus subsp. longestipulatus
+Lathyrus pannonicus subsp. multijugus
+Lathyrus pannonicus subsp. pannonicus
+Lathyrus pannonicus subsp. varius
+Lathyrus paranensis
+Lathyrus parodii
+Lathyrus parvifolius
+Lathyrus pauciflorus
+Lathyrus phaselitanus
+Lathyrus pisiformis
+Lathyrus polyphyllus
+Lathyrus pratensis subsp. pratensis
+Lathyrus pseudocicera
+Lathyrus pterocaulos
+Lathyrus pubescens
+Lathyrus pulcher
+Lathyrus pusillus
+Lathyrus quinquenervius
+Lathyrus rigidus
+Lathyrus roseus
+Lathyrus rotundifolius
+Lathyrus sativus
+Lathyrus saxatilis
+Lathyrus sessilifolius
+Lathyrus setifolius
+Lathyrus sp. DRC-2004
+Lathyrus sp. HS1215
+Lathyrus spathulatus
+Lathyrus sphaericus
+Lathyrus splendens
+Lathyrus strictus
+Lathyrus subandinus
+Lathyrus suevicus
+Lathyrus sulphureus
+Lathyrus sylvestris
+Lathyrus tingitanus
+Lathyrus torreyi
+Lathyrus transsylvanicus
+Lathyrus tuberosus
+Lathyrus tukhtensis
+Lathyrus vaniotii
+Lathyrus variabilis
+Lathyrus venetus
+Lathyrus venosus
+Lathyrus vernus
+Lathyrus vestitus
+Lathyrus vinealis
+Lathyrus woronowii
+Lathyrus zionis
+Lens culinaris subsp. culinaris
+Lens culinaris subsp. odemensis
+Lens culinaris subsp. tomentosus
+Lens cyanea
+Lens ervoides
+Lens lamottei
+Lens nigricans
+Lens orientalis
+Lessertia acanthorhachis
+Lessertia annularis
+Lessertia benguellensis
+Lessertia brachystachya
+Lessertia capitata
+Lessertia frutescens
+Lessertia herbacea
+Lessertia sp. LL-2016
+Medicago arabica
+Medicago arborea
+Medicago archiducis-nicolai
+Medicago astroites
+Medicago aurantiaca
+Medicago biflora
+Medicago blancheana
+Medicago bonarotiana
+Medicago brachycarpa
+Medicago cancellata
+Medicago carstiensis
+Medicago ciliaris
+Medicago citrina
+Medicago constricta
+Medicago coronata
+Medicago crassipes
+Medicago cretacea
+Medicago daghestanica
+Medicago disciformis
+Medicago doliata
+Medicago edgeworthii
+Medicago falcata subsp. falcata
+Medicago fischeriana
+Medicago granadensis
+Medicago heyniana
+Medicago huberi
+Medicago hybrida
+Medicago hypogaea
+Medicago intertexta
+Medicago italica
+Medicago laciniata
+Medicago lanigera
+Medicago laxispira
+Medicago lesinsii
+Medicago littoralis
+Medicago lunata
+Medicago lupulina
+Medicago marina
+Medicago medicaginoides
+Medicago minima
+Medicago monantha
+Medicago monspeliaca
+Medicago murex
+Medicago muricoleptis
+Medicago noeana
+Medicago orbicularis
+Medicago orthoceras
+Medicago ovalis
+Medicago pamphylica
+Medicago papillosa
+Medicago persica
+Medicago phrygia
+Medicago pironae
+Medicago platycarpos
+Medicago plicata
+Medicago polyceratia
+Medicago polymorpha
+Medicago popovii
+Medicago praecox
+Medicago prostrata
+Medicago radiata
+Medicago rhodopea
+Medicago rhytidiocarpa
+Medicago rigidula
+Medicago rigiduloides
+Medicago rostrata
+Medicago rotata
+Medicago rugosa
+Medicago ruthenica
+Medicago sativa subsp. caerulea
+Medicago sativa subsp. glomerata
+Medicago sativa subsp. x gaetula
+Medicago sativa subsp. x tunetana
+Medicago sativa subsp. x varia
+Medicago sauvagei
+Medicago saxatilis
+Medicago schischkinii
+Medicago scutellata
+Medicago secundiflora
+Medicago shepardii
+Medicago sinskiae
+Medicago soleirolii
+Medicago sp. ASM-2014
+Medicago sp. TRCL-2018
+Medicago sp. Y. Liu s.n.
+Medicago sphaerocarpos
+Medicago strasseri
+Medicago suffruticosa subsp. leiocarpa
+Medicago syriaca
+Medicago tenoreana
+Medicago tetraprostrata
+Medicago tornata
+Medicago truncatula f. tricycla
+Medicago truncatula var. longiaculeata
+Medicago tuberculata
+Medicago turbinata
+Melilotus albus
+Melilotus altissimus
+Melilotus dentatus
+Melilotus elegans
+Melilotus hirsutus
+Melilotus indicus
+Melilotus infestus
+Melilotus italicus
+Melilotus messanensis
+Melilotus neapolitanus
+Melilotus officinalis subsp. suaveolens
+Melilotus polonicus
+Melilotus segetalis
+Melilotus sp. 1 KS-2019
+Melilotus sp. 2 KS-2019
+Melilotus sp. 3 KS-2019
+Melilotus sp. 4 KS-2019
+Melilotus sp. CP352
+Melilotus sp. HO-2018
+Melilotus sp. MP 711
+Melilotus speciosus
+Melilotus spicatus
+Melilotus sulcatus
+Melilotus tauricus
+Melilotus wolgicus
+Meristotropis bucharica
+Meristotropis sp. LD-2020
+Meristotropis xanthioides
+Montigena novae-zelandiae
+Onobrychis acaulis
+Onobrychis aequidentata
+Onobrychis afghanica
+Onobrychis alamutensis
+Onobrychis alba subsp. laconica
+Onobrychis altissima
+Onobrychis amoena subsp. amoena
+Onobrychis andalanica
+Onobrychis araxina
+Onobrychis arenaria subsp. arenaria
+Onobrychis arenaria subsp. sibirica
+Onobrychis arenaria subsp. tommasinii
+Onobrychis argentea subsp. africana
+Onobrychis argentea subsp. hispanica
+Onobrychis argyrea
+Onobrychis arnacantha
+Onobrychis atropatana
+Onobrychis aucheri subsp. aucheri
+Onobrychis aucheri subsp. psammophila
+Onobrychis aucheri subsp. teheranica
+Onobrychis aurea
+Onobrychis avajensis
+Onobrychis biebersteinii
+Onobrychis bobrovii
+Onobrychis buhseana
+Onobrychis bungei
+Onobrychis cadmea
+Onobrychis caput-galli
+Onobrychis carduchorum
+Onobrychis chorassanica
+Onobrychis cornuta
+Onobrychis crista-galli var. crista-galli
+Onobrychis crista-galli var. trilophocarpa
+Onobrychis cyri var. angustifolia
+Onobrychis cyri var. cyri
+Onobrychis dasycephala
+Onobrychis dealbata
+Onobrychis depauperata var. depauperata
+Onobrychis echidna
+Onobrychis elata
+Onobrychis elymaitica
+Onobrychis eubrychidea
+Onobrychis galegifolia
+Onobrychis gaubae
+Onobrychis gontscharowii
+Onobrychis gracilis
+Onobrychis grandis
+Onobrychis gypsicola
+Onobrychis hajastana
+Onobrychis haussknechtii
+Onobrychis heliocarpa
+Onobrychis heterophylla
+Onobrychis hohenackeriana
+Onobrychis huetiana
+Onobrychis humilis
+Onobrychis iberica
+Onobrychis inermis
+Onobrychis iranensis
+Onobrychis iranshahrii
+Onobrychis kachetica
+Onobrychis kermanensis
+Onobrychis kuchanensis
+Onobrychis lanata
+Onobrychis laxiflora subsp. taftanica
+Onobrychis lunata
+Onobrychis maassoumii
+Onobrychis major
+Onobrychis marandensis
+Onobrychis mazanderanica
+Onobrychis megataphros
+Onobrychis melanotricha var. melanotricha
+Onobrychis melanotricha var. villosa
+Onobrychis merxmuelleri
+Onobrychis meschetica
+Onobrychis meshhedensis
+Onobrychis michauxii
+Onobrychis micrantha
+Onobrychis microptera
+Onobrychis montana subsp. transsilvanica
+Onobrychis mozaffarianii
+Onobrychis neychalanensis
+Onobrychis nummularia
+Onobrychis ornata
+Onobrychis oshnaviyehensis
+Onobrychis oxyptera
+Onobrychis pallasii
+Onobrychis persica
+Onobrychis petraea
+Onobrychis plantago
+Onobrychis psoraleifolia var. psoraleifolia
+Onobrychis ptolemaica
+Onobrychis ptychophylla
+Onobrychis pulchella
+Onobrychis pyrenaica
+Onobrychis radiata
+Onobrychis rechingerorum
+Onobrychis reuteri
+Onobrychis sanandajensis
+Onobrychis saravschanica
+Onobrychis schahuensis
+Onobrychis schugnanica
+Onobrychis scrobiculata
+Onobrychis shahpurensis
+Onobrychis sintenisii
+Onobrychis sojakii
+Onobrychis sosnowskyi
+Onobrychis sp. FG-2012a
+Onobrychis sp. FG-2012b
+Onobrychis sp. SKO-2018
+Onobrychis sp. SaS-2012
+Onobrychis splendida
+Onobrychis squarrosa
+Onobrychis stewartii
+Onobrychis subacaulis
+Onobrychis subnitens
+Onobrychis supina
+Onobrychis susiana
+Onobrychis szovitsii
+Onobrychis takhtajanii
+Onobrychis talagonica
+Onobrychis tavernierifolia
+Onobrychis tournefortii
+Onobrychis transcaspica
+Onobrychis transcaucasica
+Onobrychis verae var. rechingeri
+Onobrychis verae var. verae
+Onobrychis viciifolia
+Ononis adenotricha
+Ononis afghanica
+Ononis alba subsp. alba
+Ononis alba subsp. monophylla
+Ononis alopecuroides subsp. alopecuroides
+Ononis angustissima subsp. angustissima
+Ononis angustissima subsp. longifolia
+Ononis antennata subsp. antennata
+Ononis aragonensis
+Ononis arvensis
+Ononis atlantica
+Ononis aurasiaca
+Ononis baetica
+Ononis biflora
+Ononis cephalotes
+Ononis christii
+Ononis cintrana
+Ononis cossoniana
+Ononis cristata subsp. cristata
+Ononis dentata
+Ononis diffusa
+Ononis filicaulis
+Ononis fruticosa
+Ononis hebecarpa
+Ononis hesperia
+Ononis hirta
+Ononis hispida subsp. hispida
+Ononis incisa
+Ononis laxiflora
+Ononis leucotricha
+Ononis macrosperma
+Ononis maweana
+Ononis megalostachys
+Ononis minutissima
+Ononis mitissima
+Ononis mogadorensis
+Ononis natrix subsp. arganietorum
+Ononis natrix subsp. prostrata
+Ononis nuristanica
+Ononis oligophylla
+Ononis ornithopodioides
+Ononis paralias
+Ononis pendula subsp. pendula
+Ononis peyerimhoffii
+Ononis pinnata
+Ononis polyphylla
+Ononis polysperma
+Ononis pseudoserotina
+Ononis pubescens
+Ononis pusilla subsp. pusilla
+Ononis pusilla subsp. saxicola
+Ononis ramosissima
+Ononis reclinata subsp. reclinata
+Ononis repens
+Ononis reuteri
+Ononis rosea
+Ononis rotundifolia
+Ononis serotina
+Ononis serrata
+Ononis sicula subsp. sicula
+Ononis speciosa
+Ononis spinosa subsp. antiquorum
+Ononis spinosa subsp. arvensis
+Ononis spinosa subsp. leiosperma
+Ononis spinosa subsp. maritima
+Ononis spinosa subsp. masquillierii
+Ononis spinosa subsp. spinosa
+Ononis striata
+Ononis talaverae
+Ononis tazaensis
+Ononis thomsonii
+Ononis tournefortii
+Ononis tridentata subsp. tridentata
+Ononis vaginalis
+Ononis varelae
+Ononis variegata
+Ononis verae
+Ononis villosissima
+Ononis viscosa subsp. breviflora
+Ononis viscosa subsp. crotalarioides
+Ononis zygantha
+Oreophysa microphylla
+Oxytropis aciphylla
+Oxytropis adamsiana
+Oxytropis adenophylla
+Oxytropis aellenii
+Oxytropis afghanica
+Oxytropis albana
+Oxytropis almaatensis
+Oxytropis alpina
+Oxytropis altaica
+Oxytropis ambigua
+Oxytropis amethystea
+Oxytropis ammophila
+Oxytropis andersii
+Oxytropis anertii
+Oxytropis arctica var. arctica
+Oxytropis arctica var. barnebyana
+Oxytropis arctica var. koyukukensis
+Oxytropis arctobia
+Oxytropis arctobia/Oxytropis maydelliana mixed EST library
+Oxytropis argentata
+Oxytropis argyroleuca
+Oxytropis aucherii
+Oxytropis aurea
+Oxytropis avisoides
+Oxytropis azerbaijanica
+Oxytropis bakhtiarica
+Oxytropis bargusinensis
+Oxytropis bellii
+Oxytropis besseyi var. ventosa
+Oxytropis bicolor
+Oxytropis bicornis
+Oxytropis binaludensis
+Oxytropis borealis var. borealis
+Oxytropis borealis var. hudsonica
+Oxytropis borealis var. viscida
+Oxytropis bryophila
+Oxytropis cabulica
+Oxytropis cachemiriana
+Oxytropis caespitosa
+Oxytropis calcareorum
+Oxytropis campanulata
+Oxytropis campestris subsp. johannensis
+Oxytropis campestris var. columbiana
+Oxytropis campestris var. gracilis
+Oxytropis campestris var. jordalii
+Oxytropis campestris/Oxytropis splendens mixed EST library
+Oxytropis candicans
+Oxytropis capusii
+Oxytropis caraganetorum
+Oxytropis carduchorum
+Oxytropis carinthiaca
+Oxytropis carpatica
+Oxytropis chankaensis
+Oxytropis chinglingensis
+Oxytropis chionobia
+Oxytropis chrysocarpa
+Oxytropis ciliata
+Oxytropis cinerea
+Oxytropis coerulea
+Oxytropis compacta
+Oxytropis czapandaghi
+Oxytropis czekanowskii
+Oxytropis czukotica
+Oxytropis deflexa subsp. foliolosa
+Oxytropis deflexa var. sericea
+Oxytropis densa
+Oxytropis diversifolia
+Oxytropis engizekensis
+Oxytropis erecta
+Oxytropis eriocarpa
+Oxytropis evenorum
+Oxytropis exserta
+Oxytropis falcata
+Oxytropis fetisowii
+Oxytropis filiformis
+Oxytropis floribunda
+Oxytropis fominii
+Oxytropis foucaudii
+Oxytropis gilgitensis
+Oxytropis giraldii
+Oxytropis glabra var. tenuis
+Oxytropis glandulosa
+Oxytropis gorodkovii
+Oxytropis gracillima
+Oxytropis grandiflora
+Oxytropis griffithii
+Oxytropis guilanica
+Oxytropis halleri subsp. halleri
+Oxytropis halleri subsp. velutina
+Oxytropis helvetica
+Oxytropis heratensis
+Oxytropis hidakamontana
+Oxytropis hippolyti
+Oxytropis hirsutiuscula
+Oxytropis hirta
+Oxytropis huddelsonii
+Oxytropis humifusa
+Oxytropis hypsophila
+Oxytropis immersa
+Oxytropis indurata
+Oxytropis inschanica
+Oxytropis intermedia
+Oxytropis interposita
+Oxytropis iranica
+Oxytropis iridum
+Oxytropis jabalambrensis
+Oxytropis jacquinii
+Oxytropis javaherdehi
+Oxytropis jordalii
+Oxytropis kamtschatica
+Oxytropis kansuensis
+Oxytropis karjaginii
+Oxytropis kobukensis
+Oxytropis kopetdaghensis
+Oxytropis kordkoyensis
+Oxytropis kotschyana
+Oxytropis kuchanensis
+Oxytropis kunashiriensis
+Oxytropis kusnetzovii
+Oxytropis lagopus var. conjugans
+Oxytropis lambertii var. lambertii
+Oxytropis lanata
+Oxytropis lapponica
+Oxytropis latibracteata
+Oxytropis lazica
+Oxytropis leptophylla
+Oxytropis leucantha
+Oxytropis liliputa
+Oxytropis litwinowi
+Oxytropis lupinoides
+Oxytropis mahneshanensis
+Oxytropis mandshurica
+Oxytropis masanderanensis
+Oxytropis maydelliana
+Oxytropis melanocalyx
+Oxytropis merkensis
+Oxytropis mertensiana
+Oxytropis microphylla
+Oxytropis middendorffii
+Oxytropis mixotriche
+Oxytropis mongolica
+Oxytropis monticola
+Oxytropis multiceps
+Oxytropis muricata
+Oxytropis myriophylla
+Oxytropis nana
+Oxytropis neglecta
+Oxytropis neimonggolica
+Oxytropis neorechingeriana
+Oxytropis nigrescens
+Oxytropis nitens
+Oxytropis ochotensis
+Oxytropis ochrantha
+Oxytropis ochrocephala
+Oxytropis oreophila var. juniperina
+Oxytropis oxyphylla
+Oxytropis pallasii
+Oxytropis panjshirica
+Oxytropis parasericeopetala
+Oxytropis parryi
+Oxytropis persica
+Oxytropis peschkovae
+Oxytropis pilosa
+Oxytropis platonychia
+Oxytropis podlechii
+Oxytropis podocarpa
+Oxytropis podoloba
+Oxytropis pseudoglandulosa
+Oxytropis pseudosuavis
+Oxytropis pumila
+Oxytropis pumilio
+Oxytropis purpurea
+Oxytropis pyrenaica
+Oxytropis racemosa
+Oxytropis rechingeri
+Oxytropis retusa
+Oxytropis revoluta
+Oxytropis rhodontha
+Oxytropis riparia
+Oxytropis rishiriensis
+Oxytropis roaldii
+Oxytropis ruthenica
+Oxytropis sabzavarensis
+Oxytropis sachalinensis
+Oxytropis salangensis
+Oxytropis salukensis
+Oxytropis sata-kandaonensis
+Oxytropis savellanica
+Oxytropis scammaniana
+Oxytropis scheludjakovae
+Oxytropis selengensis
+Oxytropis semiglobosa
+Oxytropis sericea
+Oxytropis sericopetala
+Oxytropis shahvarica
+Oxytropis shennongjiaensis
+Oxytropis shirkuhi
+Oxytropis sivehensis
+Oxytropis sojakii
+Oxytropis sordida
+Oxytropis sp. TS-2017
+Oxytropis sp. US:3540307
+Oxytropis spicata
+Oxytropis splendens
+Oxytropis squammulosa
+Oxytropis strobilacea
+Oxytropis stukovii
+Oxytropis suavis
+Oxytropis submutica
+Oxytropis suprajenissejensis
+Oxytropis surmandehi
+Oxytropis sverdrupii
+Oxytropis sylvatica
+Oxytropis szovitsii
+Oxytropis takhti-soleimanii
+Oxytropis tananensis
+Oxytropis tatarica
+Oxytropis todomoshiriensis
+Oxytropis tompudae
+Oxytropis tragacanthoides
+Oxytropis trichophysa
+Oxytropis triflora
+Oxytropis triphylla
+Oxytropis uralensis
+Oxytropis urumovii
+Oxytropis varians
+Oxytropis varlakovii
+Oxytropis vassilczenkoi
+Oxytropis verticillaris
+Oxytropis volkii
+Oxytropis vvedenskyi
+Oxytropis williamsii
+Oxytropis yunnanensis
+Oxytropis zangolehensis
+Parochetus africanus
+Parochetus communis
+Phyllolobium balfourianum
+Phyllolobium donianum
+Phyllolobium milingense
+Pisum abyssinicum
+Pisum fulvum
+Pisum sativum subsp. asiaticum
+Pisum sativum subsp. jomardii
+Pisum sativum subsp. transcaucasicum
+Pisum sativum var. 'choresmicum'
+Pisum sativum var. 'ponderosum'
+Pisum sativum var. 'tibetanicum'
+Pisum sativum var. arvense
+Pisum sativum var. macrocarpum
+Pisum sativum var. pumilio
+Podlechiella vogelii subsp. fatimensis
+Podlechiella vogelii subsp. vogelii
+Sartoria hedysaroides
+Smirnowia turkestana
+Sphaerophysa kotschyana
+Sphaerophysa salsula
+Streblorrhiza speciosa
+Sulla aculeolata subsp. aculeolata
+Sulla carnosa
+Sulla coronaria
+Sulla flexuosa
+Sulla pallida
+Sulla spinosissima subsp. spinosissima
+Sutherlandia humilis
+Sutherlandia montana
+Swainsona campylantha
+Swainsona canescens var. horniana
+Swainsona cyclocarpa
+Swainsona decurrens
+Swainsona disjuncta
+Swainsona flavicarinata
+Swainsona formosa
+Swainsona galegifolia
+Swainsona kingii
+Swainsona laciniata
+Swainsona lessertiifolia
+Swainsona microphylla subsp. glabrescens
+Swainsona murrayana
+Swainsona oligophylla
+Swainsona oroboides
+Swainsona parviflora
+Swainsona phacoides
+Swainsona pterostylis
+Swainsona purpurea
+Swainsona stenodonta
+Swainsona swainsonioides
+Swainsona thompsoniana
+Swainsona villosa
+Taverniera abyssinica
+Taverniera aegyptiaca
+Taverniera cuneifolia
+Taverniera diffusa
+Taverniera glauca
+Taverniera lappacea
+Taverniera multinoda
+Taverniera nummularia
+Taverniera spartea
+Tibetia himalaica
+Tibetia liangshanensis
+Tibetia tongolensis
+Tibetia yadongensis
+Tibetia yunnanensis
+Trifolium acaule
+Trifolium affine
+Trifolium africanum
+Trifolium aintabense
+Trifolium albopurpureum
+Trifolium alexandrinum
+Trifolium alpestre
+Trifolium alpinum
+Trifolium amabile
+Trifolium ambiguum
+Trifolium amoenum
+Trifolium andersonii var. andersonii
+Trifolium andinum
+Trifolium andricum
+Trifolium angulatum
+Trifolium angustifolium
+Trifolium apertum
+Trifolium appendiculatum
+Trifolium argentinense
+Trifolium argutum
+Trifolium arvense
+Trifolium aureum
+Trifolium baccarinii
+Trifolium badium
+Trifolium balansae
+Trifolium barbeyi
+Trifolium barbigerum
+Trifolium batmanicum
+Trifolium beckwithii
+Trifolium bejariense
+Trifolium berytheum
+Trifolium bifidum
+Trifolium bilineatum
+Trifolium billardierei
+Trifolium bocconei
+Trifolium boissieri
+Trifolium bolanderi
+Trifolium brandegei
+Trifolium breweri
+Trifolium brutium
+Trifolium buckwestiorum
+Trifolium bullatum
+Trifolium burchellianum
+Trifolium calcaricum
+Trifolium calocephalum
+Trifolium campestre
+Trifolium canescens
+Trifolium carolinianum
+Trifolium caucasicum
+Trifolium caudatum
+Trifolium cernuum
+Trifolium cheranganiense
+Trifolium cherleri
+Trifolium chilaloense
+Trifolium chilense
+Trifolium ciliolatum
+Trifolium clusii
+Trifolium clypeatum
+Trifolium constantinopolitanum
+Trifolium cryptopodium
+Trifolium cyathiferum
+Trifolium dalmaticum
+Trifolium dasyphyllum
+Trifolium dasyurum
+Trifolium decorum
+Trifolium depauperatum
+Trifolium dichotomum
+Trifolium dichroanthum
+Trifolium diffusum
+Trifolium douglasii
+Trifolium dubium
+Trifolium echinatum var. carmelii
+Trifolium eriocephalum var. eriocephalum
+Trifolium eriosphaerum
+Trifolium erubescens
+Trifolium eximium
+Trifolium fragiferum
+Trifolium fucatum
+Trifolium gemellum
+Trifolium glanduliferum
+Trifolium globosum
+Trifolium glomeratum
+Trifolium gordejevii
+Trifolium gracilentum
+Trifolium grandiflorum
+Trifolium gymnocarpon
+Trifolium haussknechtii
+Trifolium haydenii
+Trifolium heldreichianum
+Trifolium hirtum
+Trifolium howellii
+Trifolium hybridum
+Trifolium incarnatum subsp. molinerii
+Trifolium isodon
+Trifolium israeliticum
+Trifolium isthmocarpum
+Trifolium jokerstii
+Trifolium kingii var. productum
+Trifolium lanceolatum
+Trifolium lappaceum
+Trifolium latifolium
+Trifolium latinum
+Trifolium leibergii
+Trifolium lemmonii
+Trifolium leucanthum
+Trifolium ligusticum
+Trifolium litwinowii
+Trifolium longidentatum
+Trifolium longipes subsp. elmeri
+Trifolium longipes subsp. longipes
+Trifolium longipes subsp. pygmaeum
+Trifolium longipes var. hansenii
+Trifolium lucanicum
+Trifolium lugardii
+Trifolium lupinaster var. albiflorum
+Trifolium lupinaster var. purpurascens
+Trifolium macilentum
+Trifolium macraei
+Trifolium macrocephalum
+Trifolium masaiense
+Trifolium mattirolianum
+Trifolium medium subsp. medium
+Trifolium medium subsp. sarosiense
+Trifolium meduseum
+Trifolium meironense
+Trifolium michelianum
+Trifolium micranthum
+Trifolium microcephalum
+Trifolium microdon
+Trifolium miegeanum
+Trifolium monanthum
+Trifolium montanum subsp. humboldtianum
+Trifolium montanum subsp. montanum
+Trifolium multinerve
+Trifolium mutabile
+Trifolium nanum
+Trifolium neurophyllum
+Trifolium nigrescens subsp. meneghinianum
+Trifolium nigrescens subsp. nigrescens
+Trifolium nigrescens subsp. petrisavii
+Trifolium noricum
+Trifolium obscurum
+Trifolium obtusiflorum
+Trifolium occidentale
+Trifolium ochroleucon
+Trifolium oliganthum
+Trifolium ornithopodioides
+Trifolium owyheense
+Trifolium pacificum
+Trifolium palaestinum
+Trifolium pallescens
+Trifolium pallidum
+Trifolium palmeri
+Trifolium pannonicum
+Trifolium parnassii
+Trifolium parryi
+Trifolium patens
+Trifolium patulum
+Trifolium pauciflorum
+Trifolium peruvianum
+Trifolium petitianum
+Trifolium philistaeum
+Trifolium phitosianum
+Trifolium phleoides
+Trifolium physanthum
+Trifolium physodes
+Trifolium pichisermollii
+Trifolium pignantii
+Trifolium pilulare
+Trifolium pinetorum
+Trifolium plebeium
+Trifolium plumosum
+Trifolium polymorphum
+Trifolium polyodon
+Trifolium polyphyllum
+Trifolium polystachyum
+Trifolium praetermissum
+Trifolium pratense subsp. pratense
+Trifolium prophetarum
+Trifolium pseudostriatum
+Trifolium purpureum
+Trifolium purseglovei
+Trifolium quartinianum
+Trifolium reflexum
+Trifolium repens
+Trifolium resupinatum
+Trifolium retusum
+Trifolium riograndense
+Trifolium rubens
+Trifolium rueppellianum
+Trifolium rusbyi subsp. oreganum
+Trifolium rusbyi subsp. rusbyi
+Trifolium rytidosemium
+Trifolium salmoneum
+Trifolium saxatile
+Trifolium scabrum
+Trifolium schimperi
+Trifolium scutatum
+Trifolium semipilosum
+Trifolium setiferum
+Trifolium simense
+Trifolium sintenisii
+Trifolium somalense
+Trifolium sp. 1 HML-2020
+Trifolium sp. 2 HML-2020
+Trifolium sp. 3 HML-2020
+Trifolium sp. 4 HML-2020
+Trifolium sp. 5 HML-2020
+Trifolium sp. PI 597507
+Trifolium sp. PI 655632
+Trifolium sp. PI 655634
+Trifolium sp. PI 655635
+Trifolium sp. PI 655636
+Trifolium sp. PI 655786
+Trifolium sp. PI 655923
+Trifolium sp. PI 655933
+Trifolium sp. RS-2020
+Trifolium sp. SYC
+Trifolium sp. W6 36926
+Trifolium spadiceum
+Trifolium spananthum
+Trifolium spumosum
+Trifolium squamosum
+Trifolium squarrosum
+Trifolium stellatum
+Trifolium steudneri
+Trifolium stoloniferum
+Trifolium stolzii
+Trifolium striatum
+Trifolium strictum
+Trifolium subterraneum subsp. brachycalycinum
+Trifolium subterraneum subsp. subterraneum
+Trifolium subterraneum subsp. yanninicum
+Trifolium suffocatum
+Trifolium sylvaticum
+Trifolium tembense
+Trifolium thalii
+Trifolium thompsonii
+Trifolium tomentosum
+Trifolium triaristatum
+Trifolium trichocalyx
+Trifolium trichocephalum
+Trifolium trichopterum
+Trifolium tumens
+Trifolium uniflorum
+Trifolium usambarense
+Trifolium variegatum
+Trifolium vavilovii
+Trifolium velebiticum
+Trifolium velenovskyi
+Trifolium vernum
+Trifolium vesiculosum
+Trifolium virginicum
+Trifolium wentzelianum
+Trifolium wettsteinii
+Trifolium wigginsii
+Trifolium willdenovii
+Trifolium wormskioldii
+Trigonella anguina
+Trigonella arabica
+Trigonella balansae
+Trigonella bicolor
+Trigonella cachemiriana
+Trigonella caelesyriaca
+Trigonella caerulea
+Trigonella calliceras
+Trigonella cancellata
+Trigonella coerulescens
+Trigonella corniculata
+Trigonella cretica
+Trigonella cylindracea
+Trigonella elliptica
+Trigonella emodi var. fimbriata
+Trigonella filipes
+Trigonella foenum-graecum
+Trigonella geminiflora
+Trigonella glabra
+Trigonella gladiata
+Trigonella gracilis
+Trigonella grandiflora
+Trigonella hamosa
+Trigonella kotschyi
+Trigonella macrorrhyncha
+Trigonella maritima
+Trigonella mesopotamica
+Trigonella monantha
+Trigonella ornithopodioides
+Trigonella orthoceras
+Trigonella schlumbergeri
+Trigonella sp. PMD-2014
+Trigonella sp. Steele 179
+Trigonella sp. TU 33879
+Trigonella spicata
+Trigonella spinosum
+Trigonella spruneriana
+Trigonella stellata
+Trigonella strangulata
+Trigonella suavissima
+Trigonella tianschanica
+Vavilovia aucheri
+Vavilovia formosa
+Vicia abbreviata
+Vicia acutifolia
+Vicia aintabensis
+Vicia akhmaganica
+Vicia alpestris subsp. hypoleuca
+Vicia altissima
+Vicia americana var. minor
+Vicia amoena var. angusta
+Vicia amoena var. sericea
+Vicia amurensis
+Vicia anatolica
+Vicia angustipinnata
+Vicia articulata
+Vicia assyriaca
+Vicia aucheri
+Vicia baicalensis
+Vicia balansae
+Vicia barbazitae
+Vicia benghalensis
+Vicia biennis
+Vicia bifolia
+Vicia bithynica
+Vicia bungei
+Vicia caesarea
+Vicia canescens
+Vicia cappadocica
+Vicia capreolata
+Vicia caroliniana
+Vicia cassia
+Vicia cassubica
+Vicia chaetocalyx
+Vicia chinensis
+Vicia chosenensis
+Vicia ciceroidea
+Vicia ciliatula
+Vicia cinerea
+Vicia cirrhosa
+Vicia claessensii
+Vicia costata
+Vicia cracca
+Vicia cretica
+Vicia crocea
+Vicia cuspidata
+Vicia cypria
+Vicia dennesiana
+Vicia dichroantha
+Vicia dionysiensis
+Vicia disperma
+Vicia dumetorum
+Vicia epetiolaris
+Vicia eristalioides
+Vicia ervilia
+Vicia esdraelonensis
+Vicia exigua
+Vicia faba var. faba
+Vicia faba var. major
+Vicia faba var. minor
+Vicia fauriae
+Vicia ferreirensis
+Vicia filicaulis
+Vicia floridana
+Vicia freyniana
+Vicia galeata
+Vicia galilaea
+Vicia garinensis
+Vicia glauca
+Vicia grandiflora
+Vicia gregaria
+Vicia hirsuta
+Vicia hirta
+Vicia hirticalycina
+Vicia hololasia
+Vicia humilis
+Vicia hyaeniscyamus
+Vicia hybrida
+Vicia hyrcanica
+Vicia incana
+Vicia incisa
+Vicia iranica
+Vicia japonica
+Vicia johannis var. johannis
+Vicia johannis var. procumbens
+Vicia kalakhensis
+Vicia kioshanica
+Vicia koeieana
+Vicia kotschyana
+Vicia kulingana
+Vicia kurdica
+Vicia larissae
+Vicia lathyroides
+Vicia latibracteolata
+Vicia leavenworthii
+Vicia leucantha
+Vicia leucophaea
+Vicia lilacina
+Vicia linearifolia
+Vicia ludoviciana
+Vicia lunata
+Vicia lutea subsp. vestita
+Vicia malosana
+Vicia megalotropis
+Vicia melanops
+Vicia menziesii
+Vicia mexicana
+Vicia michauxii var. stenophylla
+Vicia minutiflora
+Vicia mollis
+Vicia monantha
+Vicia monardii
+Vicia montbretii
+Vicia montevidensis
+Vicia multicaulis
+Vicia multijuga
+Vicia narbonensis var. jordanica
+Vicia narbonensis var. narbonensis
+Vicia narbonensis var. salmonea
+Vicia nataliae
+Vicia nigra
+Vicia nigricans subsp. gigantea
+Vicia nipponica
+Vicia noeana
+Vicia nummularia
+Vicia ochroleuca
+Vicia ohwiana
+Vicia onobrychioides
+Vicia oroboides
+Vicia orobus
+Vicia palaestina
+Vicia pannonica subsp. striata
+Vicia parviflora
+Vicia paucifolia
+Vicia paucijuga
+Vicia pectinata
+Vicia peregrina
+Vicia perelegans
+Vicia persica
+Vicia picta
+Vicia pinetorum
+Vicia pisiformis
+Vicia pseudo-orobus
+Vicia pubescens
+Vicia pulchella
+Vicia pyrenaica
+Vicia qatmensis
+Vicia ramuliflora
+Vicia rechingeri
+Vicia sativa subsp. amphicarpa
+Vicia sativa subsp. cordata
+Vicia sativa subsp. macrocarpa
+Vicia sativa subsp. nigra
+Vicia sativa var. angustifolia
+Vicia sativa var. sativa
+Vicia scandens
+Vicia semiglabra
+Vicia sepium
+Vicia sericocarpa
+Vicia serratifolia
+Vicia sibthorpii
+Vicia sicula
+Vicia sojakii
+Vicia sp. 'telaponensis'
+Vicia sp. BSh-2011
+Vicia sp. HS1176
+Vicia sp. HV60
+Vicia sp. OPC-2018
+Vicia sp. YX-2018
+Vicia sp. YX-2019
+Vicia sparsiflora
+Vicia stenophylla
+Vicia subvillosa
+Vicia sylvatica
+Vicia taipaica
+Vicia tenuifolia subsp. dalmatica
+Vicia tenuifolia subsp. tenuifolia
+Vicia tetrasperma
+Vicia tibetica
+Vicia tigridis
+Vicia unijuga var. kaussanensis
+Vicia variabilis
+Vicia variegata
+Vicia venosa subsp. cuspidata
+Vicia venosa var. glabristyla
+Vicia venosa var. stolonifera
+Vicia venosa var. yamanakae
+Vicia venulosa
+Vicia vicina
+Vicia vicioides
+Vicia villosa subsp. dasycarpa
+Vicia villosa subsp. eriocarpa
+Vicia villosa subsp. microphylla
+Vicia villosa subsp. pseudocracca
+Vicia villosa subsp. varia
+Vicia villosa subsp. villosa

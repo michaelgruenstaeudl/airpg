@@ -19,7 +19,6 @@ import os.path
 import argparse
 import coloredlogs, logging
 import time
-#import PlastomeIntegrityChecks as pic
 from airpg import table_io
 from ete3 import NCBITaxa
 from pathlib import Path
@@ -34,14 +33,14 @@ from contextlib import redirect_stdout
 ###############
 __author__ = 'Michael Gruenstaeudl <m.gruenstaeudl@fu-berlin.de>, '\
              'Tilman Mehl <tilmanmehl@zedat.fu-berlin.de>'
-__copyright__ = 'Copyright (C) 2019-2020 Michael Gruenstaeudl and Tilman Mehl'
+__copyright__ = 'Copyright (C) 2019-2021 Michael Gruenstaeudl and Tilman Mehl'
 __info__ = 'Write a list of genus names of taxa that have been indicated to lack inverted repeats in their plastid genomes through an automated query of NCBI PubMed to the blocklist'
-__version__ = '2020.12.17'
+__version__ = '2021.05.19.1400'
 
 #############
 # DEBUGGING #
 #############
-#import ipdb
+import ipdb
 # ipdb.set_trace()
 
 def get_irl_clade_species(ncbi):
@@ -74,6 +73,12 @@ def read_blocklist(fp_blocklist):
                 blocklist.add(line)
     return blocklist
 
+def write_blocklist(fp_blocklist, blocklist):
+    with open(fp_blocklist, "w") as fh_blocklist:
+        fh_blocklist.write("# Blocklist as of %s\n" % datetime.now().strftime("%Y-%m-%d, %H:%M"))
+        for entry in blocklist:
+            fh_blocklist.write(entry + "\n")
+
 def append_blocklist(fp_blocklist, blocklist):
     with open(fp_blocklist, "a") as fh_blocklist:
         fh_blocklist.write("# Update on %s\n" % datetime.now().strftime("%Y-%m-%d, %H:%M"))
@@ -99,15 +104,24 @@ def main(args):
         log.info("Reading existing blocklist ...")
         blocklist_existing = read_blocklist(args.file_blocklist)
 
-    ## STEP 4. Assemble species names of IRL clade of Fabaceae
+    ## STEP 4a. Collect genus names of IRL clade of Fabaceae
     log.info("Fetching genus names of taxa in 'IRL clade' of Fabaceae ...")
     try:
         irl_clade_genera = get_irl_clade_genera(ncbi)
     except:
         irl_clade_genera = set()    
-    log.info("Adding new species names to blocklist ...")
-    blocklist = irl_clade_genera.difference(blocklist_existing)
+    log.info("Adding new genus names to blocklist ...")
+    blocklist = irl_clade_genera.difference(blocklist_existing)     # Calculating the symmetric difference
 
+    ## STEP 4b. Collect species names of IRL clade of Fabaceae
+    log.info("Fetching species names of taxa in 'IRL clade' of Fabaceae ...")
+    try:
+        irl_clade_species = get_irl_clade_species(ncbi)
+    except:
+        irl_clade_species = set()    
+    log.info("Adding new species names to blocklist ...")
+    blocklist = irl_clade_species.difference(blocklist_existing)    # Actually, there is no intersection between genus and species names, so calculating the symmetric difference is equal to addition in this case
+    
     ## STEP 5. Conduct the search on NCBI PubMed
     if args.query and args.mail:
         try:
@@ -128,9 +142,25 @@ def main(args):
             article_genera = set()    
         blocklist = blocklist.union(article_genera)
 
-    ## STEP 6. Append only new taxon names to blocklist
-    log.info("Calculating and appending species names not previously in blocklist ...")
-    append_blocklist(args.file_blocklist, blocklist)
+    ## STEP 6. Keeping only species name if corresponding genus name present
+    log.info("Removing genus names if individual species of genus in list ...")
+    species_names = list()
+    genus_names = set()
+    genus_epithets = set()
+    for line in blocklist:
+        first, *rest = line.split()
+        if rest:
+            species_names.append(line)
+            genus_epithets.add(first)
+        else:
+            genus_names.add(first)
+    species_names.extend(genus_names - genus_epithets)
+    blocklist = set(species_names)  # Making sure that no two lines are identical
+
+    ## STEP 7. Write updated blocklist to file or replace old blocklist
+    log.info("Writing updated blocklist to file ...")
+    #append_blocklist(args.file_blocklist, blocklist)
+    write_blocklist(args.file_blocklist, sorted(blocklist))
 
 
 if __name__ == "__main__":
