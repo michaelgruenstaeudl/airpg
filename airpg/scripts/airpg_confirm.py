@@ -31,6 +31,7 @@ import os, argparse
 import pandas as pd
 import coloredlogs, logging
 from airpg import self_blasting
+from airpg import table_io
 
 ###############
 # AUTHOR INFO #
@@ -71,51 +72,11 @@ def main(args):
         coloredlogs.install(fmt='%(asctime)s [%(levelname)s] %(message)s', level='INFO', logger=log)
 
   # STEP 2. Read table from Script02 and list accessions
-    try:
-        IR_table = pd.read_csv(args.infn, index_col=False, sep='\t', encoding="utf-8", na_values="n.a.")
-        accessions = list(IR_table["ACCESSION"].values)
-        IR_table = IR_table.astype({
-            "ACCESSION": str,
-            "IRa_REPORTED": str,
-            "IRa_REPORTED_START": pd.Int64Dtype(),
-            "IRa_REPORTED_END": pd.Int64Dtype(),
-            "IRa_REPORTED_LENGTH": pd.Int64Dtype(),
-            "IRb_REPORTED": str,
-            "IRb_REPORTED_START": pd.Int64Dtype(),
-            "IRb_REPORTED_END": pd.Int64Dtype(),
-            "IRb_REPORTED_LENGTH": pd.Int64Dtype()
-        })
-    except Exception as err:
-        log.exception("Error reading file `%s`: %s" % (str(args.infn), str(err)))
-        raise
-
-  # STEP 3. Add new columns to table for accession
-    added_columns = [
-        "IRa_BLASTINFERRED",
-        "IRa_BLASTINFERRED_START",
-        "IRa_BLASTINFERRED_END",
-        "IRa_BLASTINFERRED_LENGTH",
-        "IRb_BLASTINFERRED",
-        "IRb_BLASTINFERRED_START",
-        "IRb_BLASTINFERRED_END",
-        "IRb_BLASTINFERRED_LENGTH"]
-
-    if not any(col in list(IR_table.columns) for col in added_columns):
-        IR_table = IR_table.reindex(columns = list(IR_table.columns) + added_columns)
-
-    IR_table = IR_table.astype({
-        "IRa_BLASTINFERRED": str,
-        "IRa_BLASTINFERRED_START": pd.Int64Dtype(),
-        "IRa_BLASTINFERRED_END": pd.Int64Dtype(),
-        "IRa_BLASTINFERRED_LENGTH": pd.Int64Dtype(),
-        "IRb_BLASTINFERRED": str,
-        "IRb_BLASTINFERRED_START": pd.Int64Dtype(),
-        "IRb_BLASTINFERRED_END": pd.Int64Dtype(),
-        "IRb_BLASTINFERRED_LENGTH": pd.Int64Dtype()
-        })
-
-    IR_table = IR_table.set_index("ACCESSION", drop=True)
-
+    infile = os.path.abspath(args.infn)
+    outfile = os.path.abspath(args.outfn)
+    tio = table_io.TableIO(fp_ir_table = infile, fp_blast_table = outfile, logger = log)
+    accessions = list(tio.ir_table.index.values)
+    
   # STEP 4. Loop over accession in inlist
     # Step 4.1. Check if FASTA file for accession exists
     main_dir = os.getcwd()
@@ -177,18 +138,15 @@ def main(args):
 
         # Step 4.4. Save data into correct columns
         # Note: It is important to stay within the condition 'len(result_lines) == 2'
-            
-            IR_table.at[accession, "IRa_BLASTINFERRED"] = "yes"
-            IR_table.at[accession, "IRb_BLASTINFERRED"] = "yes"
-
-            IR_table.at[accession, "IRa_BLASTINFERRED_START"] = int(IRa_info[1])
-            IR_table.at[accession, "IRb_BLASTINFERRED_START"] = int(IRb_info[1])
-
-            IR_table.at[accession, "IRa_BLASTINFERRED_END"] = int(IRa_info[2])
-            IR_table.at[accession, "IRb_BLASTINFERRED_END"] = int(IRb_info[2])
-
-            IR_table.at[accession, "IRa_BLASTINFERRED_LENGTH"] = int(IRa_info[0])
-            IR_table.at[accession, "IRb_BLASTINFERRED_LENGTH"] = int(IRb_info[0])
+            blast_info = {}
+            blast_info["IRa_BLASTINFERRED"] = "yes"
+            blast_info["IRb_BLASTINFERRED"] = "yes"
+            blast_info["IRa_BLASTINFERRED_START"] = int(IRa_info[1])
+            blast_info["IRb_BLASTINFERRED_START"] = int(IRb_info[1])
+            blast_info["IRa_BLASTINFERRED_END"] = int(IRa_info[2])
+            blast_info["IRb_BLASTINFERRED_END"] = int(IRb_info[2])
+            blast_info["IRa_BLASTINFERRED_LENGTH"] = int(IRa_info[0])
+            blast_info["IRb_BLASTINFERRED_LENGTH"] = int(IRb_info[0])
 
             ## THE FOLLOWING LINES CAN BE IMPLEMENTED IN A FUTURE VERSION OF AIRPG:
             #            IR_table.at[accession, "IRa_START_COMPARED_OFFSET"] = int(float(coerceToExactLocation(IR_table.at[accession, "IRa_REPORTED_START"])) - float(coerceToExactLocation(IR_table.at[accession, "IRa_BLASTINFERRED_START"])))
@@ -202,16 +160,22 @@ def main(args):
 
         else:
             log.info("Could not infer IRs for accession `%s`:\n%s." % (str(accession), "\n".join([str(line).strip() for line in result_lines])))    # Note: The following part of this lines does not always work:  >>> "\n".join([str(line).strip() for line in result_lines] <<<
-            IR_table.at[accession, "IRa_BLASTINFERRED"] = "no"
-            IR_table.at[accession, "IRb_BLASTINFERRED"] = "no"
+            blast_info = {}
+            blast_info["IRa_BLASTINFERRED"] = "no"
+            blast_info["IRb_BLASTINFERRED"] = "no"
+            blast_info["IRa_BLASTINFERRED_START"] = "n.a."
+            blast_info["IRb_BLASTINFERRED_START"] = "n.a."
+            blast_info["IRa_BLASTINFERRED_END"] = "n.a."
+            blast_info["IRb_BLASTINFERRED_END"] = "n.a."
+            blast_info["IRa_BLASTINFERRED_LENGTH"] = "n.a."
+            blast_info["IRb_BLASTINFERRED_LENGTH"] = "n.a."
+        
+        # Step 4.5. Append selfblast data to outfile
+        blast_info = tio.ir_table.loc[accession].append(pd.Series(blast_info)).to_dict()
+        tio.append_blast_info_to_table(blast_info, accession, outfile)
 
-        # Step 4.5. Change back to main directory
+        # Step 4.6. Change back to main directory
         os.chdir(main_dir)
-
-# TO BE IMPROVED: It would be best if the script would append to the output file after each accession, and not write the full output file after processing all accessions.
-
-  # STEP 5. Save extended IR list to outfile
-    IR_table.to_csv(args.outfn, sep='\t', header=True, na_rep="n.a.")
 
 
 ########

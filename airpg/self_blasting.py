@@ -6,11 +6,11 @@ class SelfBlasting:
 
     def __init__(self, seq_FASTA, accession, logger = None):
         if not shutil.which("blastn"):
-            raise Exception("Error: 'blastn' not installed!"
+            raise Exception("Error: 'blastn' not installed!")
         self.log = logger or logging.getLogger(__name__ + ".SelfBlasting")
         self.seq_FASTA = seq_FASTA
-        self.filestem_db = self.accession + "_completeSeq" + "_blastdb"
         self.accession = accession
+        self.filestem_db = self.accession + "_completeSeq" + "_blastdb"        
         
     def setup_blast_db(self):
         mkblastargs = ["makeblastdb", "-in", self.seq_FASTA, "-parse_seqids", "-title", self.accession, "-dbtype", "nucl", "-out", self.filestem_db, "-logfile", self.filestem_db + ".log"]
