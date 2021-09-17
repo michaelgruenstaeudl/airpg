@@ -37,13 +37,16 @@ Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide f
 ## TIPS & TRICKS
 
 ### How to sort *output_script1.tsv*
+```
 sort -t$'\t' -k7.1,7.4 -k7.6,7.7 -k7.9,7.10 -n output_script1.tsv > output_script1.sorted.tsv
 awk '{print $2}' output_script1.sorted.tsv > output_script1.sorted.index
+```
 
 ### How to sort *output_script2.tsv* and *output_script3.tsv*
+```
 awk 'NR==FNR{o[FNR]=$1; next} {t[$1]=$0} END{for(x=1; x<=FNR; x++){y=o[x]; print t[y]}}' output_script1.sorted.index output_script2.tsv > output_script2.sorted.tsv
 awk 'NR==FNR{o[FNR]=$1; next} {t[$1]=$0} END{for(x=1; x<=FNR; x++){y=o[x]; print t[y]}}' output_script1.sorted.index output_script3.tsv > output_script3.sorted.tsv
-
+```
 
 <!--
 ## PACKAGING INSTRUCTIONS
