@@ -34,9 +34,11 @@ class TableIO:
          - fp_entry_table: file path to input file
         '''
         if os.path.isfile(fp_entry_table):
-            self.entry_table = pd.read_csv(fp_entry_table, sep = '\t', index_col = 0, encoding = 'utf-8')
+            #self.entry_table = pd.read_csv(fp_entry_table, sep = '\t', index_col = 0, encoding = 'utf-8')  ## changed as of 2021-09-17
+            self.entry_table = pd.read_csv(fp_entry_table, sep = '\t', index_col = -1, encoding = 'utf-8')
         else:
-            columns = ["UID", "ACCESSION", "VERSION", "ORGANISM", "SEQ_LEN", "CREATE_DATE", "AUTHORS", "TITLE", "REFERENCE", "NOTE", "TAXONOMY"]
+            columns = ["ACCESSION", "VERSION", "ORGANISM", "SEQ_LEN", "TAXONOMY", "CREATE_DATE", "AUTHORS", "TITLE", "REFERENCE", "NOTE", "UID"]
+            #["UID", "ACCESSION", "VERSION", "ORGANISM", "SEQ_LEN", "CREATE_DATE", "AUTHORS", "TITLE", "REFERENCE", "NOTE", "TAXONOMY"] ## legacyorder; changed as of 2021-09-17
             self.entry_table = pd.DataFrame(columns = columns)
             self.entry_table = self.entry_table.set_index("UID", drop = True)
             self.write_entry_table(fp_entry_table)
@@ -62,10 +64,11 @@ class TableIO:
         '''
         if os.path.isfile(fp_entry_table):
             for key, value in entry.items():
-                entry[key] = [value]
+                entry[key] = [value]    # Converting each value into a separate list (important for pandas)
             entry["UID"] = [uid]
             temp_df = pd.DataFrame(entry)
-            temp_df = temp_df.set_index("ACCESSION", drop = True)
+            #temp_df = temp_df.set_index("ACCESSION", drop = True) ## changed as of 2021-09-17
+            temp_df = temp_df.set_index("UID", drop = True)
             temp_df.to_csv(fp_entry_table, sep = '\t', header = False, encoding = 'utf-8', mode = "a")
         else:
             raise Exception("Error trying to append GenBank entry to file '%s': File does not exist!" % (fp_entry_table))

@@ -37,7 +37,7 @@ __author__ = 'Michael Gruenstaeudl <m.gruenstaeudl@fu-berlin.de>, '\
              'Tilman Mehl <tilmanmehl@zedat.fu-berlin.de>'
 __copyright__ = 'Copyright (C) 2019-2021 Michael Gruenstaeudl and Tilman Mehl'
 __info__ = 'Write a list of genus names of taxa that have been indicated to lack inverted repeats in their plastid genomes through an automated query of NCBI PubMed to the blocklist'
-__version__ = '2021.05.19.1400'
+__version__ = '2021.09.17.1500'
 
 #############
 # DEBUGGING #
