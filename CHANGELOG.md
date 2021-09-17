@@ -1,6 +1,8 @@
 CHANGELOG
 ---------
 =======
+#### Version 1.1.5 (2021.09.17)
+* Bugfixes
 #### Version 1.1.3 (2021.05.19)
 * Code improvements of script airpg_update_blocklist.py
 #### Version 1.1.1 (2021.05.18)

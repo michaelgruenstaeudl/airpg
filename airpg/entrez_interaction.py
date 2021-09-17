@@ -151,7 +151,11 @@ class EntrezInteraction:
         Modified from: https://stackoverflow.com/questions/3764291/checking-network-connection
         '''
         try:
-            urllib.request.urlopen('http://216.58.192.142', timeout=1)
+            urllib.request.urlopen('http://216.58.213.196', timeout=1) # Current website of Google.com (17-Sep-2021)
             return True
         except urllib.request.URLError as err: 
-            return False
+            try:
+                urllib.request.urlopen('http://91.198.174.192', timeout=1) # Current website of wikipedia.org (17-Sep-2021)
+                return True
+            except urllib.request.URLError as err: 
+                return False
