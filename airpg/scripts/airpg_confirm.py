@@ -171,7 +171,8 @@ def main(args):
             blast_info["IRb_BLASTINFERRED_LENGTH"] = "n.a."
         
         # Step 4.5. Append selfblast data to outfile
-        blast_info = tio.ir_table.loc[accession].append(pd.Series(blast_info)).to_dict()
+        #blast_info = tio.ir_table.loc[accession].append(pd.Series(blast_info)).to_dict()  # As of pandas 2.0, append (previously deprecated) was removed.
+        blast_info = pd.concat([tio.ir_table.loc[accession], pd.Series(blast_info)]).to_dict()
         tio.append_blast_info_to_table(blast_info, accession, outfile)
 
         # Step 4.6. Change back to main directory

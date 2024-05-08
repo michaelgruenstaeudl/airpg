@@ -159,7 +159,8 @@ def main(args):
             ira_feature = None
             irb_feature = None
             if not str(accession) in tio.ir_table.index:
-                tio.ir_table = tio.ir_table.append(pd.Series(name=str(accession), dtype='float64'))
+                #tio.ir_table = tio.ir_table.append(pd.Series(name=str(accession), dtype='float64'))  # As of pandas 2.0, append (previously deprecated) was removed.
+                tio.ir_table = pd.concat([tio.ir_table, pd.Series(name=str(accession), dtype='float64')])
             try:
                 ira_feature, irb_feature = iro.identify_inverted_repeats(rec, 1000)
                 rev_comp = False

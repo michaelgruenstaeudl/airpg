@@ -18,6 +18,12 @@ Or, alternatively, if you want to get the latest development version of *airpg*,
 
     pip install git+https://github.com/michaelgruenstaeudl/airpg.git
 
+### Update May 2024 (tested on Debian)
+
+To install airpg, clone it via git, cd into the cloned directory, open a terminal and run:
+
+    sudo pip install .
+
 
 ## EXAMPLE USAGE
 

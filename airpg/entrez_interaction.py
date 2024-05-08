@@ -18,11 +18,14 @@ class EntrezInteraction:
          - min_date: date. the minimum data to start searching from.
         '''
         if min_date:
-            esearch_args = ['esearch', '-db', 'nucleotide', '-sort', '"Date Released"', '-mindate', min_date.strftime("%Y/%m/%d"), '-maxdate', date.today().strftime("%Y/%m/%d"), '-query', query]
+            #esearch_args = ['esearch', '-db', 'nucleotide', '-sort', '"Date Released"', '-mindate', min_date.strftime("%Y/%m/%d"), '-maxdate', date.today().strftime("%Y/%m/%d"), '-query', query]
+            esearch_args = ['esearch', '-db', 'nucleotide', '-sort \'Date Released\' ', '-mindate', min_date.strftime("%Y/%m/%d"), '-maxdate', date.today().strftime("%Y/%m/%d"), '-query', query]
         else:
-            esearch_args = ['esearch', '-db', 'nucleotide', '-sort', '"Date Released"', '-query', query]
+            #esearch_args = ['esearch', '-db', 'nucleotide', '-sort', '"Date Released"', '-query', query]
+            esearch_args = ['esearch', '-db', 'nucleotide', '-sort \'Date Released\' ', '-query', query]
         esearch = subprocess.Popen(esearch_args, stdout=subprocess.PIPE)
-        efetchargs = ["efetch", "-db", "nucleotide", "-format", "uid"]
+        #efetchargs = ["efetch", "-db", "nucleotide", "-format", "uid"]
+        efetchargs = ["efetch", "-format", "uid"]
         efetch = subprocess.Popen(efetchargs, stdin=esearch.stdout, stdout=subprocess.PIPE)
         out, err = efetch.communicate()
 
@@ -151,11 +154,11 @@ class EntrezInteraction:
         Modified from: https://stackoverflow.com/questions/3764291/checking-network-connection
         '''
         try:
-            urllib.request.urlopen('http://216.58.213.196', timeout=1) # Current website of Google.com (17-Sep-2021)
+            urllib.request.urlopen('http://142.250.191.46', timeout=1) # Current website of Google.com (07-May-2024)
             return True
         except urllib.request.URLError as err: 
             try:
-                urllib.request.urlopen('http://91.198.174.192', timeout=1) # Current website of wikipedia.org (17-Sep-2021)
+                urllib.request.urlopen('http://198.35.26.96', timeout=1) # Current website of wikipedia.org (07-May-2024)
                 return True
             except urllib.request.URLError as err: 
                 return False
