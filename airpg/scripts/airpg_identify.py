@@ -49,12 +49,12 @@ __author__ = 'Michael Gruenstaeudl <m_gruenstaeudl@fhsu.edu>, '\
 __copyright__ = 'Copyright (C) 2019-2024 Michael Gruenstaeudl and Tilman Mehl'
 __info__ = 'Conduct a query of NCBI Nucleotide and identify plastid ' \
            'genome records stored there'
-__version__ = '2024.05.09.1230'
+__version__ = '2024.05.09.1730'
 
 #############
 # DEBUGGING #
 #############
-import ipdb
+#import ipdb
 # ipdb.set_trace()
 
 #############

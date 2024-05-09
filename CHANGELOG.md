@@ -1,6 +1,10 @@
 CHANGELOG
 ---------
 =======
+#### Version 1.1.7 (2024.05.09)
+* Bugfixes
+#### Version 1.1.6 (2024.05.08)
+* Bringing code up-to-date for 2024
 #### Version 1.1.5 (2021.09.17)
 * Bugfixes
 #### Version 1.1.3 (2021.05.19)

@@ -65,10 +65,10 @@ class TableIO:
             handle_dict["UID"] = [str(uid)]
             for key, value in entry.items():
                 handle_dict[key] = [value]    # Converting each value into a separate list (important for pandas)
-            #entry["UID"] = [uid]
-            #handle_df = pd.DataFrame(entry)
             handle_df = pd.DataFrame(handle_dict)
-            #handle_df = handle_df.set_index("ACCESSION", drop = True) ## changed as of 2021-09-17
+			# Sort by columns by pre-defined order
+            columns = ["UID", "ACCESSION", "VERSION", "ORGANISM", "SEQ_LEN", "CREATE_DATE", "AUTHORS", "TITLE", "REFERENCE", "NOTE", "TAXONOMY"]
+            handle_df = handle_df[columns]
             handle_df = handle_df.set_index("UID", drop = True)
             handle_df.to_csv(fp_entry_table, sep = '\t', header = False, encoding = 'utf-8', mode = "a")
         else:
