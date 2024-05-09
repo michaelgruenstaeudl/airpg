@@ -1,12 +1,6 @@
 import os, logging
 import pandas as pd
 
-#############
-# DEBUGGING #
-#############
-#import ipdb
-# ipdb.set_trace()
-
 class TableIO:
 
     def __init__(self, fp_entry_table = None, fp_ir_table = None, fp_blast_table = None, fp_blocklist = None, fp_duplicates = None, logger = None):
@@ -40,11 +34,9 @@ class TableIO:
          - fp_entry_table: file path to input file
         '''
         if os.path.isfile(fp_entry_table):
-            #self.entry_table = pd.read_csv(fp_entry_table, sep = '\t', index_col = 0, encoding = 'utf-8')  ## changed as of 2021-09-17
-            self.entry_table = pd.read_csv(fp_entry_table, sep = '\t', index_col = -1, encoding = 'utf-8')
+            self.entry_table = pd.read_csv(fp_entry_table, sep = '\t', index_col = 0, encoding = 'utf-8')  # Index column is UID (i.e., column 0)
         else:
-            columns = ["ACCESSION", "VERSION", "ORGANISM", "SEQ_LEN", "TAXONOMY", "CREATE_DATE", "AUTHORS", "TITLE", "REFERENCE", "NOTE", "UID"]
-            #["UID", "ACCESSION", "VERSION", "ORGANISM", "SEQ_LEN", "CREATE_DATE", "AUTHORS", "TITLE", "REFERENCE", "NOTE", "TAXONOMY"] ## legacyorder; changed as of 2021-09-17
+            columns = ["UID", "ACCESSION", "VERSION", "ORGANISM", "SEQ_LEN", "CREATE_DATE", "AUTHORS", "TITLE", "REFERENCE", "NOTE", "TAXONOMY"]
             self.entry_table = pd.DataFrame(columns = columns)
             self.entry_table = self.entry_table.set_index("UID", drop = True)
             self.write_entry_table(fp_entry_table)
@@ -282,4 +274,12 @@ class TableIO:
         Remove entries from entry table that match duplicate accession numbers
         '''
         for d_key in self.duplicates.keys():
-            self.entry_table.drop(self.entry_table.loc[self.entry_table["ACCESSION"] == self.duplicates[d_key][1]].index, inplace = True)
+            if 'NC_' in self.duplicates[d_key][0]:
+                refseq_acc = self.duplicates[d_key][0]
+                regular_acc = self.duplicates[d_key][1]
+            else:
+                refseq_acc = self.duplicates[d_key][1]
+                regular_acc = self.duplicates[d_key][0]
+            if refseq_acc in self.entry_table["ACCESSION"] and regular_acc in self.entry_table["ACCESSION"]:
+                self.entry_table.drop(self.entry_table.loc[self.entry_table["ACCESSION"] == regular_acc].index, inplace = True)
+                self.log.info("Entry for accession `%s` removed because it is a duplicate with `%s`" % (regular_acc, refseq_acc))

@@ -17,12 +17,11 @@ class EntrezInteraction:
          - query: the Entrez query
          - min_date: date. the minimum data to start searching from.
         '''
+        sort_category = "Date Released"
         if min_date:
-            esearch_args = ['esearch', '-db', 'nucleotide', '-mindate', min_date.strftime("%Y/%m/%d"), '-maxdate', date.today().strftime("%Y/%m/%d"), '-query', query]
-            #esearch_args = ['esearch', '-db', 'nucleotide', '-sort \'Date Released\' ', '-mindate', min_date.strftime("%Y/%m/%d"), '-maxdate', date.today().strftime("%Y/%m/%d"), '-query', query]  # works under step-wise execution
+            esearch_args = ['esearch', '-db', 'nucleotide', '-sort', sort_category, '-mindate', min_date.strftime("%Y/%m/%d"), '-maxdate', date.today().strftime("%Y/%m/%d"), '-query', query]
         else:
-            esearch_args = ['esearch', '-db', 'nucleotide', '-query', query]
-            #esearch_args = ['esearch', '-db', 'nucleotide', '-sort \'Date Released\' ', '-query', query]  # works under step-wise execution
+            esearch_args = ['esearch', '-db', 'nucleotide', '-sort', sort_category, '-query', query]
         esearch = subprocess.Popen(esearch_args, stdout=subprocess.PIPE)
         efetchargs = ["efetch", "-format", "uid"]
         efetch = subprocess.Popen(efetchargs, stdin=esearch.stdout, stdout=subprocess.PIPE)
@@ -91,7 +90,7 @@ class EntrezInteraction:
         fields["REFERENCE"] = citation
 
         # Parse comment field for RefSeq
-        note = "empty"
+        note = None
         duplseq = None
         if accession[:3] == "NC_":
             comments = uid_data.find("GBSeq_comment").text

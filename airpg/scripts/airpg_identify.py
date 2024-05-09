@@ -22,7 +22,8 @@ DESIGN:
     There are thousands of plastid genome sequences on GenBank. The parsing of the records is, thus, conducted one by one, not all simultaneously. Specifically, a list of unique identifiers is first obtained and then this list is looped over.
 
 TO DO:
-    * none for now
+    * Currently, the output table is written anew every single time, even if merely a single line is added to it at the end. The reason: tio.write_entry_table(outfn) is executed without respect to append-argument or not.
+	* The duplicates tables is written anew every single time, even if there was no update to it.
 
 NOTES:
     * none for now
@@ -48,12 +49,12 @@ __author__ = 'Michael Gruenstaeudl <m_gruenstaeudl@fhsu.edu>, '\
 __copyright__ = 'Copyright (C) 2019-2024 Michael Gruenstaeudl and Tilman Mehl'
 __info__ = 'Conduct a query of NCBI Nucleotide and identify plastid ' \
            'genome records stored there'
-__version__ = '2024.05.08.1700'
+__version__ = '2024.05.09.1230'
 
 #############
 # DEBUGGING #
 #############
-#import ipdb
+import ipdb
 # ipdb.set_trace()
 
 #############
@@ -88,7 +89,7 @@ def main(args):
         log.info("Summary file '%s' already exists. Number of UIDs read: %s" % (str(outfn), str(len(uids_already_processed))))
         if args.update_only:
             min_date = datetime.strptime(tio.entry_table["CREATE_DATE"].max(), '%Y-%m-%d')
-            log.info("NOTE: Only records more recent than '%s' are being looked for." % (str(min_date)))
+            log.info("NOTE: I am searching only for records more recent than '%s'." % (str(min_date)))
     else:
         log.info(("Summary file '%s' does not exist; generating new file. Thus, no UIDs read." % (str(outfn))))
 
@@ -105,37 +106,40 @@ def main(args):
     log.info(("Number of UIDs to be processed: %s" % (str(len(uids_to_process)))))
 
     # STEP 4. Parse all entries, append entry-wise to file
-    for uid in uids_to_process:
-        log.info(("Reading and parsing UID '%s', writing to '%s'." % (str(uid), str(outfn))))
-        if EI.internet_on():  # Check if internet connection active
-            try:
-                xml_entry = EI.fetch_xml_entry(uid)
-                parsed_entry = EI.parse_xml_entry(xml_entry)
-            except Exception as err:
-                log.exception("Error retrieving info for UID " + str(uid) + ": " + str(err) + "\nSkipping this accession.")
-                continue
-        else:  # If no internet connection, raise error
-            raise Exception("ERROR: No internet connection.")
-        duplseq = parsed_entry.pop("DUPLSEQ") # .pop() saved value of "DUPLSEQ" to duplseq
-        tio.entry_table.loc[uid] = parsed_entry
-        if duplseq:
-            tio.duplicates[uid] = [parsed_entry["ACCESSION"], duplseq]
-        tio.append_entry_to_table(parsed_entry, uid, outfn)
+    if uids_to_process:
+        for uid in uids_to_process:
+            log.info(("Reading and parsing UID '%s', writing to '%s'." % (str(uid), str(outfn))))
+            if EI.internet_on():  # Check if internet connection active
+                try:
+                    xml_entry = EI.fetch_xml_entry(uid)
+                    parsed_entry = EI.parse_xml_entry(xml_entry)
+                except Exception as err:
+                    log.exception("Error retrieving info for UID " + str(uid) + ": " + str(err) + "\nSkipping this accession.")
+                    continue
+            else:  # If no internet connection, raise error
+                raise Exception("ERROR: No internet connection.")
+            duplseq = parsed_entry.pop("DUPLSEQ") # .pop() saved value of "DUPLSEQ" to duplseq
+            tio.entry_table.loc[uid] = parsed_entry
+            if duplseq:
+                tio.duplicates[uid] = [parsed_entry["ACCESSION"], duplseq]
+            tio.append_entry_to_table(parsed_entry, uid, outfn)  ## TO BE IMPROVED: This line is currently useless because the entire table is written to file in full below anyways (which is an overkill)
 
-    # STEP 5. Remove duplicates of REFSEQs and blocklisted entries
-    tio.write_duplicates(fp_duplicates)
-    tio.remove_duplicates()
-    tio.remove_blocklisted_entries()
-    '''
-    # Alternative way (i.e. with logs) to remove duplicates
-    for refseq, dup in tio.duplicates.items():
-        try:
-            tio.entry_table.drop(tio.entry_table.loc[tio.entry_table["ACCESSION"] == dup].index, inplace = True)
-            log.info("Removed accession '%s' from '%s' because it is a duplicate of REFSEQ '%s'." % (dup, str(os.path.basename(outfn)), refseq))
-        except: # If the duplicate doesn't exist, nothing happens (except for a log message)
-            log.info("Could not find accession '%s' when trying to remove it." % str(dup))
-    '''
-    tio.write_entry_table(outfn)
+        # STEP 5. Remove duplicates of REFSEQs and blocklisted entries
+        tio.write_duplicates(fp_duplicates)  ## TO BE IMPROVED: This function overwrites the original duplicates file even if there are no additional duplicates that had been added.
+        tio.remove_duplicates()
+        tio.remove_blocklisted_entries()
+        '''
+        # Alternative way (i.e. with logs) to remove duplicates
+        for refseq, dup in tio.duplicates.items():
+            try:
+                tio.entry_table.drop(tio.entry_table.loc[tio.entry_table["ACCESSION"] == dup].index, inplace = True)
+                log.info("Removed accession '%s' from '%s' because it is a duplicate of REFSEQ '%s'." % (dup, str(os.path.basename(outfn)), refseq))
+            except: # If the duplicate doesn't exist, nothing happens (except for a log message)
+                log.info("Could not find accession '%s' when trying to remove it." % str(dup))
+        '''
+
+        # STEP 6. Write output table
+        tio.write_entry_table(outfn)  ## TO BE IMPROVED: There should not be a reason why the full table is written anew if there is merely a small update.
 
 ########
 # MAIN #
