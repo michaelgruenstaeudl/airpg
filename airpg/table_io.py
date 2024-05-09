@@ -1,6 +1,12 @@
 import os, logging
 import pandas as pd
 
+#############
+# DEBUGGING #
+#############
+#import ipdb
+# ipdb.set_trace()
+
 class TableIO:
 
     def __init__(self, fp_entry_table = None, fp_ir_table = None, fp_blast_table = None, fp_blocklist = None, fp_duplicates = None, logger = None):
@@ -63,13 +69,16 @@ class TableIO:
          - fp_entry_table: file path to output file
         '''
         if os.path.isfile(fp_entry_table):
+            handle_dict = dict()
+            handle_dict["UID"] = [str(uid)]
             for key, value in entry.items():
-                entry[key] = [value]    # Converting each value into a separate list (important for pandas)
-            entry["UID"] = [uid]
-            temp_df = pd.DataFrame(entry)
-            #temp_df = temp_df.set_index("ACCESSION", drop = True) ## changed as of 2021-09-17
-            temp_df = temp_df.set_index("UID", drop = True)
-            temp_df.to_csv(fp_entry_table, sep = '\t', header = False, encoding = 'utf-8', mode = "a")
+                handle_dict[key] = [value]    # Converting each value into a separate list (important for pandas)
+            #entry["UID"] = [uid]
+            #handle_df = pd.DataFrame(entry)
+            handle_df = pd.DataFrame(handle_dict)
+            #handle_df = handle_df.set_index("ACCESSION", drop = True) ## changed as of 2021-09-17
+            handle_df = handle_df.set_index("UID", drop = True)
+            handle_df.to_csv(fp_entry_table, sep = '\t', header = False, encoding = 'utf-8', mode = "a")
         else:
             raise Exception("Error trying to append GenBank entry to file '%s': File does not exist!" % (fp_entry_table))
 
@@ -111,9 +120,9 @@ class TableIO:
             for key, value in ir_info.items():
                 ir_info[key] = [value]
             ir_info["ACCESSION"] = [accession]
-            temp_df = pd.DataFrame(ir_info)
-            temp_df = temp_df.set_index("ACCESSION", drop = True)
-            temp_df.to_csv(fp_ir_table, sep = '\t', header = False, encoding = 'utf-8', mode = "a")
+            handle_df = pd.DataFrame(ir_info)
+            handle_df = handle_df.set_index("ACCESSION", drop = True)
+            handle_df.to_csv(fp_ir_table, sep = '\t', header = False, encoding = 'utf-8', mode = "a")
         else:
             raise Exception("Error trying to append IR info to file '%s': File does not exist!" % (fp_ir_table))
         
@@ -171,9 +180,9 @@ class TableIO:
             for key, value in blast_info.items():
                 blast_info[key] = [value]
             blast_info["ACCESSION"] = [accession]
-            temp_df = pd.DataFrame(blast_info)
-            temp_df = temp_df.set_index("ACCESSION", drop = True)
-            temp_df.to_csv(fp_blast_table, sep = '\t', header = False, encoding = 'utf-8', mode = "a")
+            handle_df = pd.DataFrame(blast_info)
+            handle_df = handle_df.set_index("ACCESSION", drop = True)
+            handle_df.to_csv(fp_blast_table, sep = '\t', header = False, encoding = 'utf-8', mode = "a")
         else:
             raise Exception("Error trying to append IR info to file '%s': File does not exist!" % (fp_blast_table))
     
@@ -188,7 +197,10 @@ class TableIO:
             for line in [l.strip() for l in fh_blocklist.readlines()]:
                 if not line.startswith("#"):
                     blocklisted_taxa.add(line.split(" ")[0])  # Taking only genus names
-            self.blocklist.append(list(blocklisted_taxa))
+            if isinstance(blocklisted_taxa, set):
+                self.blocklist.extend(blocklisted_taxa)
+            else:
+                self.blocklist.extend(list(blocklisted_taxa))
 
     def read_duplicates(self, fp_duplicates):
         '''
@@ -259,8 +271,9 @@ class TableIO:
             # This results in a Series of string lists. The last element (the genus) of each string list is compared to the current genus from the blocklist (entry[-1].rstrip('.') == genus).
             # This in turn results in a list of bools, making self.entry_table.loc return all rows where the list of bools has True (i.e. all entries that match a blocklisted entry)
             # Finally, we want only the index of those rows, to tell the dataframe which ones should get dropped.
-            self.entry_table.drop(self.entry_table.loc[[(entry[-1].strip('. ').lower() == blocklist_entry.lower()) for entry in self.entry_table["TAXONOMY"].str.split(';')]].index, inplace = True)
-            self.entry_table.drop(self.entry_table.loc[[(entry.lower() == blocklist_entry.lower()) for entry in self.entry_table["ORGANISM"]]].index, inplace = True)
+            genus_name = blocklist_entry.lower()
+            self.entry_table.drop(self.entry_table.loc[[(entry[-1].strip('. ').lower() == genus_name) for entry in self.entry_table["TAXONOMY"].str.split(';')]].index, inplace = True)
+            self.entry_table.drop(self.entry_table.loc[[(entry.lower() == genus_name) for entry in self.entry_table["ORGANISM"]]].index, inplace = True)
         if len(self.blocklist) == 0:
             self.log.info("Blocklist is empty. No entries removed.")
 

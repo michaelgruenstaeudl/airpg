@@ -518,7 +518,8 @@ class IROperations:
 		'''
 		if feature:
 			if feature.location.start == feature.location.end:
-				feature.location = FeatureLocation(feature.location.start-1, feature.location.end, strand = feature.strand)
+				#feature.location = FeatureLocation(feature.location.start-1, feature.location.end, strand = feature.strand)  # Due to warning: BiopythonDeprecationWarning: Please use .location.strand rather than .strand
+				feature.location = FeatureLocation(feature.location.start-1, feature.location.end, strand = feature.location.strand)
 				self.log.debug("Adjusted FeatureLocation to %s" % str(feature.location))
 		return feature
 
@@ -528,7 +529,7 @@ class IROperations:
 			fields["IRa_REPORTED"] = "yes"
 			fields["IRa_REPORTED_START"] = ira_feature.location.start + 1
 			fields["IRa_REPORTED_END"] = ira_feature.location.end
-			fields["IRa_REPORTED_LENGTH"] = str(len(ira_feature))
+			fields["IRa_REPORTED_LENGTH"] = int(len(ira_feature)) #str(len(ira_feature))
 		else:
 			fields["IRa_REPORTED"] = "no"
 			fields["IRa_REPORTED_START"] = "n.a."
@@ -538,7 +539,7 @@ class IROperations:
 			fields["IRb_REPORTED"] = "yes"
 			fields["IRb_REPORTED_START"] = irb_feature.location.start + 1
 			fields["IRb_REPORTED_END"] = irb_feature.location.end
-			fields["IRb_REPORTED_LENGTH"] = str(len(irb_feature))
+			fields["IRb_REPORTED_LENGTH"] = int(len(irb_feature)) #str(len(irb_feature))
 		else:
 			fields["IRb_REPORTED"] = "no"
 			fields["IRb_REPORTED_START"] = "n.a."

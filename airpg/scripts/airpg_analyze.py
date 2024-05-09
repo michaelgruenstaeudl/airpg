@@ -77,7 +77,7 @@ __version__ = '2021.09.17.1500'
 #############
 # DEBUGGING #
 #############
-#import ipdb
+import ipdb
 # ipdb.set_trace()
 
 #############
