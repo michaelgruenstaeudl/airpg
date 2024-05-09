@@ -5,9 +5,9 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="airpg",
-    version="1.1.5",
+    version="1.1.6",
     author="Michael Gruenstaeudl, Tilman Mehl",
-    author_email="m.gruenstaeudl@fu-berlin.de, tilmanmehl@zedat.fu-berlin.de",
+    author_email="m_gruenstaeudl@fhsu.edu, tilmanmehl@zedat.fu-berlin.de",
     description="A package to automatically access the inverted repeats of archived plastid genomes",
     long_description=long_description,
     long_description_content_type="text/markdown",

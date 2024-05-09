@@ -45,7 +45,7 @@ from datetime import datetime
 ###############
 __author__ = 'Michael Gruenstaeudl <m_gruenstaeudl@fhsu.edu>, '\
              'Tilman Mehl <tilmanmehl@zedat.fu-berlin.de>'
-__copyright__ = 'Copyright (C) 2019-2021 Michael Gruenstaeudl and Tilman Mehl'
+__copyright__ = 'Copyright (C) 2019-2024 Michael Gruenstaeudl and Tilman Mehl'
 __info__ = 'Conduct a query of NCBI Nucleotide and identify plastid ' \
            'genome records stored there'
 __version__ = '2024.05.08.1700'

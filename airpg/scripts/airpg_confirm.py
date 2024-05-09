@@ -36,12 +36,12 @@ from airpg import table_io
 ###############
 # AUTHOR INFO #
 ###############
-__author__ = 'Michael Gruenstaeudl <m.gruenstaeudl@fu-berlin.de>, '\
+__author__ = 'Michael Gruenstaeudl <m_gruenstaeudl@fhsu.edu>, '\
              'Tilman Mehl <tilmanmehl@zedat.fu-berlin.de>'
 __copyright__ = 'Copyright (C) 2019-2021 Michael Gruenstaeudl and Tilman Mehl'
 __info__ = 'Retrieve the plastid genomes identified by the first script '\
            'and evaluate their inverted repeats'
-__version__ = '2021.09.17.1500'
+__version__ = '2024.05.08.1700'
 
 #############
 # DEBUGGING #
