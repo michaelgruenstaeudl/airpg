@@ -54,6 +54,12 @@ awk 'NR==FNR{o[FNR]=$1; next} {t[$1]=$0} END{for(x=1; x<=FNR; x++){y=o[x]; print
 awk 'NR==FNR{o[FNR]=$1; next} {t[$1]=$0} END{for(x=1; x<=FNR; x++){y=o[x]; print t[y]}}' output_script1.sorted.index output_script3.tsv > output_script3.sorted.tsv
 ```
 
+### How to measure the number of angiosperm families represented by the plastid genomes archived on GenBank
+```
+# Using the sorted output of script1 as input
+awk -F'\t' '{print $11}' output_script1.sorted.tsv | tr ";" "\n" | grep "aceae" | grep -v "incertae sedis" | sort -u | wc -l
+```
+
 <!--
 ## PACKAGING INSTRUCTIONS
 ```

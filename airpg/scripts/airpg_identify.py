@@ -86,7 +86,7 @@ def main(args):
 
     if len(tio.entry_table) > 0:
         uids_already_processed.extend(list(tio.entry_table.index.values))
-        log.info("Summary file '%s' already exists. Number of UIDs read: %s" % (str(outfn), str(len(uids_already_processed))))
+        log.info("Summary file '%s' already exists. Number of UIDs (unique and duplicates) parsed: %s" % (str(outfn), str(len(uids_already_processed))))
         if args.update_only:
             min_date = datetime.strptime(tio.entry_table["CREATE_DATE"].max(), '%Y-%m-%d')
             log.info("NOTE: I am searching only for records more recent than '%s'." % (str(min_date)))
