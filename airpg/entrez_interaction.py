@@ -147,16 +147,13 @@ class EntrezInteraction:
         return articles
 
     def internet_on(self):
-        '''
-        Simple check if internet connection is active
-        Modified from: https://stackoverflow.com/questions/3764291/checking-network-connection
-        '''
         try:
-            urllib.request.urlopen('http://142.250.191.46', timeout=1) # Current website of Google.com (07-May-2024)
+            urllib.request.urlopen('https://www.google.com', timeout=5)
             return True
-        except urllib.request.URLError as err: 
+        except urllib.request.URLError:
             try:
-                urllib.request.urlopen('http://198.35.26.96', timeout=1) # Current website of wikipedia.org (07-May-2024)
+                urllib.request.urlopen('https://www.wikipedia.org', timeout=5)
                 return True
-            except urllib.request.URLError as err: 
+            except urllib.request.URLError:
                 return False
+
