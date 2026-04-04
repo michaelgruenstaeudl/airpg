@@ -4,30 +4,41 @@ from airpg import parse_pubmed
 import entrezpy.conduit
 from ete3 import NCBITaxa
 from datetime import date
+from Bio import Entrez
 
 class EntrezInteraction:
 
-    def __init__(self, logger = None):
+    def __init__(self, email, logger = None):
+        self.email = email
         self.log = logger or logging.getLogger(__name__ + ".EntrezInteraction")
 
-    def retrieve_uids(self, query, min_date = None):
+    def retrieve_uids(self, query, min_date=None):
         '''
         Retrieves and returns a list of UIDs that are the result of an Entrez query
         Params:
          - query: the Entrez query
-         - min_date: date. the minimum data to start searching from.
+         - min_date: date. the minimum date to start searching from.
         '''
-        sort_category = "Date Released"
-        if min_date:
-            esearch_args = ['esearch', '-db', 'nucleotide', '-sort', sort_category, '-mindate', min_date.strftime("%Y/%m/%d"), '-maxdate', date.today().strftime("%Y/%m/%d"), '-query', query]
-        else:
-            esearch_args = ['esearch', '-db', 'nucleotide', '-sort', sort_category, '-query', query]
-        esearch = subprocess.Popen(esearch_args, stdout=subprocess.PIPE)
-        efetchargs = ["efetch", "-format", "uid"]
-        efetch = subprocess.Popen(efetchargs, stdin=esearch.stdout, stdout=subprocess.PIPE)
-        out, err = efetch.communicate()
+        Entrez.email = self.email
 
-        return list(map(int, out.splitlines()))[::-1]
+        search_params = {
+            "db": "nucleotide",
+            "term": query,
+            "sort": "Date Released",
+            "usehistory": "y",
+            "retmax": 100000
+        }
+
+        if min_date:
+            search_params["mindate"] = min_date.strftime("%Y/%m/%d")
+            search_params["maxdate"] = date.today().strftime("%Y/%m/%d")
+            search_params["datetype"] = "pdat"
+
+        handle = Entrez.esearch(**search_params)
+        record = Entrez.read(handle)
+        handle.close()
+
+        return record["IdList"]
 
     def fetch_xml_entry(self, uid):
         '''

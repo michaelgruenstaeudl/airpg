@@ -200,7 +200,7 @@ def main(args):
             ncbi.update_taxonomy_database()
         article_genera = set()
         for article in articles:
-            article_genera.union(am.get_genera_from_pubmed_article(article, ncbi))
+            article_genera = article_genera.union(am.get_genera_from_pubmed_article(article, ncbi))
         tio.read_ir_table(args.outfn)
         tio.remove_naturally_irl_genera(article_genera)
         tio.write_ir_table(args.outfn)

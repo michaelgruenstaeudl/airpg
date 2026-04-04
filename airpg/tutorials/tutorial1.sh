@@ -1,12 +1,13 @@
-TUTORIAL 1
-==========
-
-#### Very short survey (runtime ca. 5 min.; for the impatient)
-
-Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide within the past 10 days.
+#!/bin/bash
 
 
-```
+#TUTORIAL 1
+
+#Very short survey (runtime ca. 5 min.; for the impatient)
+
+#Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide within the past 10 days.
+
+
 TODAY=$(date +%d)
 if (($TODAY >= 6 && $TODAY <= 10)); then
     STARTDATE=$(date +%Y/%m/01)
@@ -29,6 +30,7 @@ $STARTDATE:$ENDDATE[PDAT] AND \
 50000:250000[SLEN] NOT unverified[TITLE] \
 NOT partial[TITLE] AND Magnoliopsida[ORGN]" \
 -o output_script1.tsv \
+-e john.smith@example.com
 #&> output_script1.log
 
 mkdir -p records
@@ -48,4 +50,4 @@ airpg_confirm.py \
 -n 10000 -x 50000 \
 --datadir data/ \
 #&> output_script3.log
-```
+
