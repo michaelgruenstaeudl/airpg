@@ -68,7 +68,7 @@ def main(args):
     log = logging.getLogger(__name__)
     coloredlogs.install(fmt='%(asctime)s [%(levelname)s] %(message)s', level='DEBUG', logger=log)
 
-    EI = entrez_interaction.EntrezInteraction(args.email, log)
+    EI = entrez_interaction.EntrezInteraction(args.email, args.api_key, log)
 
   # STEP 2. Check if output file already exists, read existing UIDs, infer mindate
     uids_already_processed = []
@@ -148,5 +148,6 @@ if __name__ == "__main__":
     parser.add_argument("-b", "--blocklist", type=str, required=False, help="(Optional) Path to file of blocklisted genera that will be removed from the retrieved plastid sequences")
     parser.add_argument("-u", "--update_only", action="store_true", required=False, default=False, help="(Optional) Only add entries with more recent creation date than the most recent existing entry")
     parser.add_argument("-e", "--email", type=str, required=True, help="Email address for NCBI Entrez API (required by NCBI)")
+    parser.add_argument("-k", "--api_key", type=str, required=False, help="(Optional) NCBI API key to increase rate limit")
     args = parser.parse_args()
     main(args)
