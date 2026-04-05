@@ -126,10 +126,11 @@ class EntrezInteraction:
         '''
         self.log.debug("Fetching GenBank entry %s and saving to %s" % (str(acc_id), outdir))
         gbFile = os.path.join(outdir, str(acc_id) + ".gb")
+        Entrez.email = self.email
+        handle = Entrez.efetch(db="nucleotide", id=str(acc_id), rettype="gb", retmode="text")
         with open(gbFile, "w") as outfile:
-            efetchargs = ["efetch", "-db", "nucleotide", "-format", "gb", "-id", str(acc_id)]
-            efetch = subprocess.Popen(efetchargs, stdout=outfile)
-            efetch.wait()
+            outfile.write(handle.read())
+        handle.close()
         if not os.path.isfile(gbFile):
             raise Exception("Error retrieving GenBank flatfile of accession " + str(acc_id))
         elif os.path.getsize(gbFile) == 0:
@@ -153,6 +154,20 @@ class EntrezInteraction:
         if result.size() >= 1:
             articles = result.pubmed_records
         return articles
+
+    def fetch_xml_entries_batch(self, uids, batch_size=500):
+        Entrez.email = self.email
+        results = []
+        uids = list(uids)
+        for i in range(0, len(uids), batch_size):
+            batch = uids[i:i + batch_size]
+            self.log.debug("Fetching batch of %s UIDs" % len(batch))
+            handle = Entrez.efetch(db="nucleotide", id=",".join(map(str, batch)), rettype="gb", retmode="xml")
+            out = handle.read()
+            handle.close()
+            root = ET.fromstring(out)
+            results.extend(root.findall("GBSeq"))
+        return results
 
     def internet_on(self):
         try:

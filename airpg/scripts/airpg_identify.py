@@ -107,39 +107,35 @@ def main(args):
 
     # STEP 4. Parse all entries, append entry-wise to file
     if uids_to_process:
-        for uid in uids_to_process:
-            log.info(("Reading and parsing UID '%s', writing to '%s'." % (str(uid), str(outfn))))
-            if EI.internet_on():  # Check if internet connection active
-                try:
-                    xml_entry = EI.fetch_xml_entry(uid)
-                    parsed_entry = EI.parse_xml_entry(xml_entry)
-                except Exception as err:
-                    log.exception("Error retrieving info for UID " + str(uid) + ": " + str(err) + "\nSkipping this accession.")
-                    continue
-            else:  # If no internet connection, raise error
-                raise Exception("ERROR: No internet connection.")
-            duplseq = parsed_entry.pop("DUPLSEQ") # .pop() saved value of "DUPLSEQ" to duplseq
+        if EI.internet_on():
+            try:
+                xml_entries = EI.fetch_xml_entries_batch(uids_to_process)
+            except Exception as err:
+                log.exception("Error fetching batch: " + str(err))
+                xml_entries = []
+        else:
+            raise Exception("ERROR: No internet connection.")
+
+        for uid, xml_entry in zip(uids_to_process, xml_entries):
+            log.info("Parsing UID '%s', writing to '%s'." % (str(uid), str(outfn)))
+            try:
+                parsed_entry = EI.parse_xml_entry(xml_entry)
+            except Exception as err:
+                log.exception("Error parsing UID " + str(uid) + ": " + str(err) + "\nSkipping.")
+                continue
+            duplseq = parsed_entry.pop("DUPLSEQ")
             tio.entry_table.loc[uid] = parsed_entry
             if duplseq:
                 tio.duplicates[uid] = [parsed_entry["ACCESSION"], duplseq]
-            tio.append_entry_to_table(parsed_entry, uid, outfn)  ## TO BE IMPROVED: This line is currently useless because the entire table is written to file in full below anyways (which is an overkill)
+            tio.append_entry_to_table(parsed_entry, uid, outfn)
 
         # STEP 5. Remove duplicates of REFSEQs and blocklisted entries
-        tio.write_duplicates(fp_duplicates)  ## TO BE IMPROVED: This function overwrites the original duplicates file even if there are no additional duplicates that had been added.
+        tio.write_duplicates(fp_duplicates)
         tio.remove_duplicates()
         tio.remove_blocklisted_entries()
-        '''
-        # Alternative way (i.e. with logs) to remove duplicates
-        for refseq, dup in tio.duplicates.items():
-            try:
-                tio.entry_table.drop(tio.entry_table.loc[tio.entry_table["ACCESSION"] == dup].index, inplace = True)
-                log.info("Removed accession '%s' from '%s' because it is a duplicate of REFSEQ '%s'." % (dup, str(os.path.basename(outfn)), refseq))
-            except: # If the duplicate doesn't exist, nothing happens (except for a log message)
-                log.info("Could not find accession '%s' when trying to remove it." % str(dup))
-        '''
 
         # STEP 6. Write output table
-        tio.write_entry_table(outfn)  ## TO BE IMPROVED: There should not be a reason why the full table is written anew if there is merely a small update.
+        tio.write_entry_table(outfn)
 
 ########
 # MAIN #
