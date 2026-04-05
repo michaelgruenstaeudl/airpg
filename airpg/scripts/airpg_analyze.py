@@ -63,6 +63,7 @@ import pandas as pd
 import os, argparse
 import tarfile, coloredlogs, logging
 import time
+import shutil
 
 ###############
 # AUTHOR INFO #
@@ -124,7 +125,7 @@ def main(args):
                     fp_entry = EI.fetch_gb_entry(accession, acc_folder)
                 except:
                     log.warning("Error retrieving accession `%s`. Skipping this accession." % (str(accession)))
-                    os.rmdir(acc_folder)
+                    shutil.rmtree(acc_folder)
                     continue
             else:  # If no internet connection, raise error
                 raise Exception("ERROR: No internet connection.")
