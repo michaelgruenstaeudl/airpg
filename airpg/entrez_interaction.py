@@ -48,14 +48,11 @@ class EntrezInteraction:
         Returns: ElementTree of entry
         '''
         self.log.debug("Fetching XML GenBank entry " + str(uid))
-        #esummaryargs = ["esummary", "-db", "nucleotide", "-format", "gb", "-mode", "xml", "-id", str(uid)]  ## esummary was retired and replaced by efetch
-        #esummaryargs = ["efetch", "-db", "nucleotide", "-format", "gb", "-mode", "xml", "-id", str(uid)]
-        #esummary = subprocess.Popen(esummaryargs, stdout=subprocess.PIPE)
-        #out, err = esummary.communicate()
-        efetchargs = ["efetch", "-db", "nucleotide", "-format", "gb", "-mode", "xml", "-id", str(uid)]
-        efetch = subprocess.Popen(efetchargs, stdout=subprocess.PIPE)
-        out, err = efetch.communicate()
-        return ET.fromstring(out)
+        Entrez.email = self.email
+        handle = Entrez.efetch(db="nucleotide", id=str(uid), rettype="gb", retmode="xml")
+        out = handle.read()
+        handle.close()
+        return ET.fromstring(out).find("GBSeq")  # Return GBSeq directly
 
     def parse_xml_entry(self, entry):
         '''
@@ -64,7 +61,7 @@ class EntrezInteraction:
          - entry: ElementTree. The XML entry
         '''
         # Parse out the relevant info from XML-formatted record summary
-        uid_data = entry.find("GBSeq")
+        uid_data = entry
         fields = {}
         accession = uid_data.find("GBSeq_primary-accession").text
         fields["ACCESSION"] = accession
