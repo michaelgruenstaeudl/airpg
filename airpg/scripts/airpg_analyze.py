@@ -108,6 +108,15 @@ def main(args):
         if not os.path.exists(args.datadir):
             os.makedirs(args.datadir)
 
+  # Step 2.9: Pre-fetch all GB files in batches
+
+
+    log.info("Pre-fetching all GB entries in batches...")
+    if EI.internet_on():
+        prefetched = EI.fetch_gb_entries_batch(accessions, args.recordsdir)
+    else:
+        raise Exception("ERROR: No internet connection.")
+
   # STEP 3. Loop over accession in inlist
     for accession in accessions:
         acc_folder = os.path.join(args.datadir, str(accession))

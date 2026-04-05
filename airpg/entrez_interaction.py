@@ -137,6 +137,30 @@ class EntrezInteraction:
             raise Exception("Error retrieving GenBank flatfile of accession " + str(acc_id))
         return gbFile
 
+    def fetch_gb_entries_batch(self, acc_ids, outdir, batch_size=100):
+        '''
+        Fetches multiple GenBank flatfiles in batches and saves them to outdir.
+        Returns a dict of {acc_id: filepath} for successfully downloaded entries.
+        '''
+        Entrez.email = self.email
+        results = {}
+        acc_ids = list(acc_ids)
+        for i in range(0, len(acc_ids), batch_size):
+            batch = acc_ids[i:i + batch_size]
+            self.log.debug("Fetching batch of %s GB entries" % len(batch))
+            handle = Entrez.efetch(db="nucleotide", id=",".join(batch), rettype="gb", retmode="text")
+            records = handle.read().split("\n//\n")
+            handle.close()
+            for acc_id, record in zip(batch, records):
+                record = record.strip()
+                if not record:
+                    continue
+                gbFile = os.path.join(outdir, str(acc_id) + ".gb")
+                with open(gbFile, "w") as outfile:
+                    outfile.write(record + "\n//\n")
+                results[acc_id] = gbFile
+        return results
+
     def fetch_pubmed_articles(self, mail, query):
         '''
         Fetches all articles from PubMed found by query and returns them as a list of PubMedRecord objects
