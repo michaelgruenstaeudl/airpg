@@ -3,10 +3,11 @@
 
 #TUTORIAL 1
 
-#Very short survey (runtime ca. 5 min.; for the impatient)
+# Very short survey (runtime ca. 5 min.; for the impatient)
 
-#Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide within the past 10 days.
+# Survey of all plastid genomes of flowering plants submitted to NCBI Nucleotide within the past 10 days.
 
+# Place '-k api_key' in arguments if you have one.
 
 STARTDATE=$(date -d "10 days ago" +%Y/%m/%d)
 ENDDATE=$(date +%Y/%m/%d)
