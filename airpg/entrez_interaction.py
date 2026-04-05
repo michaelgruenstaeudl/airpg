@@ -8,8 +8,9 @@ from Bio import Entrez
 
 class EntrezInteraction:
 
-    def __init__(self, email, logger = None):
+    def __init__(self, email, api_key=None, logger = None):
         self.email = email
+        self.api_key = api_key
         self.log = logger or logging.getLogger(__name__ + ".EntrezInteraction")
 
     def retrieve_uids(self, query, min_date=None):
@@ -20,6 +21,8 @@ class EntrezInteraction:
          - min_date: date. the minimum date to start searching from.
         '''
         Entrez.email = self.email
+        if self.api_key:
+            Entrez.api_key = self.api_key
 
         search_params = {
             "db": "nucleotide",
@@ -49,6 +52,8 @@ class EntrezInteraction:
         '''
         self.log.debug("Fetching XML GenBank entry " + str(uid))
         Entrez.email = self.email
+        if self.api_key:
+            Entrez.api_key = self.api_key
         handle = Entrez.efetch(db="nucleotide", id=str(uid), rettype="gb", retmode="xml")
         out = handle.read()
         handle.close()
@@ -127,6 +132,8 @@ class EntrezInteraction:
         self.log.debug("Fetching GenBank entry %s and saving to %s" % (str(acc_id), outdir))
         gbFile = os.path.join(outdir, str(acc_id) + ".gb")
         Entrez.email = self.email
+        if self.api_key:
+            Entrez.api_key = self.api_key
         handle = Entrez.efetch(db="nucleotide", id=str(acc_id), rettype="gb", retmode="text")
         with open(gbFile, "w") as outfile:
             outfile.write(handle.read())
@@ -143,6 +150,8 @@ class EntrezInteraction:
         Returns a dict of {acc_id: filepath} for successfully downloaded entries.
         '''
         Entrez.email = self.email
+        if self.api_key:
+            Entrez.api_key = self.api_key
         results = {}
         acc_ids = list(acc_ids)
         for i in range(0, len(acc_ids), batch_size):
@@ -181,6 +190,8 @@ class EntrezInteraction:
 
     def fetch_xml_entries_batch(self, uids, batch_size=500):
         Entrez.email = self.email
+        if self.api_key:
+            Entrez.api_key = self.api_key
         results = []
         uids = list(uids)
         for i in range(0, len(uids), batch_size):
