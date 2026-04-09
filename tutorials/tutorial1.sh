@@ -39,4 +39,3 @@ airpg_confirm.py \
 -n 10000 -x 50000 \
 --datadir data/ \
 #&> output_script3.log
-
