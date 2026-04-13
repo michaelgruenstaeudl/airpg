@@ -111,10 +111,9 @@ def main(args):
 
   # Step 2.9: Pre-fetch all GB files in batches
 
-
-    log.info("Pre-fetching all GB entries in batches...")
+    log.info("Downloading all GB flatfiles in batches...")
     if EI.internet_on():
-        prefetched = EI.fetch_gb_entries_batch(accessions, args.recordsdir)
+        flatfiles_downloaded = EI.fetch_gb_entries_batch(accessions, args.recordsdir)
     else:
         raise Exception("ERROR: No internet connection.")
 
@@ -127,11 +126,11 @@ def main(args):
             log.warning("Folder for accession `%s` already exists. Skipping this accession." % (str(accession)))
             continue
 
-        # Step 3.1. Get flatfile
+        # Step 3.1. Get file
         if not os.path.isfile(os.path.join(args.recordsdir, accession + ".tar.gz")):
-            fp_entry = prefetched.get(accession)
+            fp_entry = flatfiles_downloaded.get(accession)
             if not fp_entry:
-                log.warning("No prefetched file for accession `%s`. Skipping." % accession)
+                log.warning("No downloaded flatfile for accession `%s`. Skipping." % accession)
                 shutil.rmtree(acc_folder)
                 continue
             # Copy from recordsdir to acc_folder

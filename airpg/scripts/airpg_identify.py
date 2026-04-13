@@ -107,6 +107,7 @@ def main(args):
 
     # STEP 4. Parse all entries, append entry-wise to file
     if uids_to_process:
+        #Try and fetch entries
         if EI.internet_on():
             try:
                 xml_entries = EI.fetch_xml_entries_batch(uids_to_process)
@@ -115,7 +116,7 @@ def main(args):
                 xml_entries = []
         else:
             raise Exception("ERROR: No internet connection.")
-
+        # Parsing entries.
         for uid, xml_entry in zip(uids_to_process, xml_entries):
             log.info("Parsing UID '%s', writing to '%s'." % (str(uid), str(outfn)))
             try:
@@ -126,16 +127,16 @@ def main(args):
             duplseq = parsed_entry.pop("DUPLSEQ")
             tio.entry_table.loc[uid] = parsed_entry
             if duplseq:
-                tio.duplicates[uid] = [parsed_entry["ACCESSION"], duplseq]
+                tio.duplicates[uid] = [parsed_entry["ACCESSION"], duplseq] # TO BE IMPROVED: This line is currently useless because the entire table is written to file in full below anyways (which is an overkill)
             tio.append_entry_to_table(parsed_entry, uid, outfn)
 
         # STEP 5. Remove duplicates of REFSEQs and blocklisted entries
-        tio.write_duplicates(fp_duplicates)
+        tio.write_duplicates(fp_duplicates) # TO BE IMPROVED: This function overwrites the original duplicates file even if there are no additional duplicates that had been added.
         tio.remove_duplicates()
         tio.remove_blocklisted_entries()
 
         # STEP 6. Write output table
-        tio.write_entry_table(outfn)
+        tio.write_entry_table(outfn) # TO BE IMPROVED: There should not be a reason why the full table is written anew if there is merely a small update
 
 ########
 # MAIN #
