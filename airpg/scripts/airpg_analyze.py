@@ -63,6 +63,7 @@ import pandas as pd
 import os, argparse
 import tarfile, coloredlogs, logging
 import time
+import shutil
 
 ###############
 # AUTHOR INFO #
@@ -77,8 +78,6 @@ __version__ = '2024.05.08.1700'
 #############
 # DEBUGGING #
 #############
-import ipdb
-# ipdb.set_trace()
 
 #############
 # FUNCTIONS #
@@ -96,9 +95,10 @@ def main(args):
     mail = args.mail
     query = args.query
     iro = ir_operations.IROperations(log)
-    EI = entrez_interaction.EntrezInteraction(log)
+    EI = entrez_interaction.EntrezInteraction(args.mail, args.api_key, log)
 
-  # STEP 2. Read in accession numbers to loop over
+
+# STEP 2. Read in accession numbers to loop over
     tio = table_io.TableIO(args.infn, args.outfn, args.blocklist, logger = log)
     tio.remove_blocklisted_entries()
 
@@ -109,6 +109,14 @@ def main(args):
         if not os.path.exists(args.datadir):
             os.makedirs(args.datadir)
 
+  # Step 2.9: Pre-fetch all GB files in batches
+
+    log.info("Downloading all GB flatfiles in batches...")
+    if EI.internet_on():
+        flatfiles_downloaded = EI.fetch_gb_entries_batch(accessions, args.recordsdir)
+    else:
+        raise Exception("ERROR: No internet connection.")
+
   # STEP 3. Loop over accession in inlist
     for accession in accessions:
         acc_folder = os.path.join(args.datadir, str(accession))
@@ -118,23 +126,15 @@ def main(args):
             log.warning("Folder for accession `%s` already exists. Skipping this accession." % (str(accession)))
             continue
 
-        # Step 3.1. Get flatfile
+        # Step 3.1. Get file
         if not os.path.isfile(os.path.join(args.recordsdir, accession + ".tar.gz")):
-            log.info("Saving GenBank flat file for accession `%s`." % (str(accession)))
-            if EI.internet_on():  # Check if internet connection active
-                try:
-                    fp_entry = EI.fetch_gb_entry(accession, acc_folder)
-                except:
-                    log.warning("Error retrieving accession `%s`. Skipping this accession." % (str(accession)))
-                    os.rmdir(acc_folder)
-                    continue
-            else:  # If no internet connection, raise error
-                raise Exception("ERROR: No internet connection.")
-        else:
-            log.info("GenBank flat file for accession `%s` already exists. Extracting existing file." % (str(accession)))
-            tar = tarfile.open(os.path.join(args.recordsdir, accession + ".tar.gz"), "r:gz")
-            tar.extractall(acc_folder)
-            tar.close()
+            fp_entry = flatfiles_downloaded.get(accession)
+            if not fp_entry:
+                log.warning("No downloaded flatfile for accession `%s`. Skipping." % accession)
+                shutil.rmtree(acc_folder)
+                continue
+            # Copy from recordsdir to acc_folder
+            shutil.copy(fp_entry, acc_folder)
             fp_entry = os.path.join(acc_folder, accession + ".gb")
 
         # Step 3.2. Parse and analyze flatfile
@@ -202,7 +202,7 @@ def main(args):
             ncbi.update_taxonomy_database()
         article_genera = set()
         for article in articles:
-            article_genera.union(am.get_genera_from_pubmed_article(article, ncbi))
+            article_genera = article_genera.union(am.get_genera_from_pubmed_article(article, ncbi))
         tio.read_ir_table(args.outfn)
         tio.remove_naturally_irl_genera(article_genera)
         tio.write_ir_table(args.outfn)
@@ -223,6 +223,7 @@ if __name__ == "__main__":
     parser.add_argument("--recordsdir", "-r", type=str, required=False, default="./records/", help="(Optional) Path to records directory")
     parser.add_argument("--datadir", "-d", type=str, required=False, default="./data/", help="(Optional) Path to data directory")
     parser.add_argument("--verbose", "-v", action="store_true", required=False, default=False, help="(Optional) Enable verbose logging")
+    parser.add_argument("--api_key", "-k", type=str, required=False, help="(Optional) NCBI API key to increase rate limit")
     args = parser.parse_args()
     #if bool(args.query) ^ bool(args.mail):
     #    parser.error("--query and --mail must be given together")

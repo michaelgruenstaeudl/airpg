@@ -53,6 +53,7 @@ class ArticleMining:
             abstract_text += keyword + "\n"
         regexp = r'[^a-zA-Z0-9.\-:\s]'
         words = re.sub(regexp, '', abstract_text).split()
+        words = [w for w in words if w and w[0].isupper()]  # Genus names are capitalized
         ncbi_results = ncbi.get_name_translator(words)
         for name, id in ncbi_results.items():
             if ncbi.get_rank(id)[id[0]] == "genus":

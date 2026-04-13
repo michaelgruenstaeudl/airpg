@@ -3,3 +3,4 @@ argparse>=1.4.0
 ete3
 pandas
 entrezpy
+coloredlogs

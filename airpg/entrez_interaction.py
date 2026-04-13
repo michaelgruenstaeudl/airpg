@@ -1,33 +1,51 @@
-import os, subprocess, logging, urllib.request
+import os, subprocess, logging, urllib.request, time
 import xml.etree.ElementTree as ET
 from airpg import parse_pubmed
 import entrezpy.conduit
 from ete3 import NCBITaxa
 from datetime import date
+from Bio import Entrez
 
 class EntrezInteraction:
 
-    def __init__(self, logger = None):
+    def __init__(self, email, api_key=None, logger = None):
+        self.email = email
+        self.api_key = api_key
         self.log = logger or logging.getLogger(__name__ + ".EntrezInteraction")
 
-    def retrieve_uids(self, query, min_date = None):
+    @property
+    def _sleep_interval(self):
+        return 0.11 if self.api_key else 0.4
+
+    def retrieve_uids(self, query, min_date=None):
         '''
         Retrieves and returns a list of UIDs that are the result of an Entrez query
         Params:
          - query: the Entrez query
-         - min_date: date. the minimum data to start searching from.
+         - min_date: date. the minimum date to start searching from.
         '''
-        sort_category = "Date Released"
-        if min_date:
-            esearch_args = ['esearch', '-db', 'nucleotide', '-sort', sort_category, '-mindate', min_date.strftime("%Y/%m/%d"), '-maxdate', date.today().strftime("%Y/%m/%d"), '-query', query]
-        else:
-            esearch_args = ['esearch', '-db', 'nucleotide', '-sort', sort_category, '-query', query]
-        esearch = subprocess.Popen(esearch_args, stdout=subprocess.PIPE)
-        efetchargs = ["efetch", "-format", "uid"]
-        efetch = subprocess.Popen(efetchargs, stdin=esearch.stdout, stdout=subprocess.PIPE)
-        out, err = efetch.communicate()
+        Entrez.email = self.email
+        if self.api_key:
+            Entrez.api_key = self.api_key
 
-        return list(map(int, out.splitlines()))[::-1]
+        search_params = {
+            "db": "nucleotide",
+            "term": query,
+            "sort": "Date Released",
+            "usehistory": "y",
+            "retmax": 100000
+        }
+
+        if min_date:
+            search_params["mindate"] = min_date.strftime("%Y/%m/%d")
+            search_params["maxdate"] = date.today().strftime("%Y/%m/%d")
+            search_params["datetype"] = "pdat"
+
+        handle = Entrez.esearch(**search_params)
+        record = Entrez.read(handle)
+        handle.close()
+
+        return record["IdList"]
 
     def fetch_xml_entry(self, uid):
         '''
@@ -37,14 +55,13 @@ class EntrezInteraction:
         Returns: ElementTree of entry
         '''
         self.log.debug("Fetching XML GenBank entry " + str(uid))
-        #esummaryargs = ["esummary", "-db", "nucleotide", "-format", "gb", "-mode", "xml", "-id", str(uid)]  ## esummary was retired and replaced by efetch
-        #esummaryargs = ["efetch", "-db", "nucleotide", "-format", "gb", "-mode", "xml", "-id", str(uid)]
-        #esummary = subprocess.Popen(esummaryargs, stdout=subprocess.PIPE)
-        #out, err = esummary.communicate()
-        efetchargs = ["efetch", "-db", "nucleotide", "-format", "gb", "-mode", "xml", "-id", str(uid)]
-        efetch = subprocess.Popen(efetchargs, stdout=subprocess.PIPE)
-        out, err = efetch.communicate()
-        return ET.fromstring(out)
+        Entrez.email = self.email
+        if self.api_key:
+            Entrez.api_key = self.api_key
+        handle = Entrez.efetch(db="nucleotide", id=str(uid), rettype="gb", retmode="xml")
+        out = handle.read()
+        handle.close()
+        return ET.fromstring(out).find("GBSeq")  # Return GBSeq directly
 
     def parse_xml_entry(self, entry):
         '''
@@ -53,7 +70,7 @@ class EntrezInteraction:
          - entry: ElementTree. The XML entry
         '''
         # Parse out the relevant info from XML-formatted record summary
-        uid_data = entry.find("GBSeq")
+        uid_data = entry
         fields = {}
         accession = uid_data.find("GBSeq_primary-accession").text
         fields["ACCESSION"] = accession
@@ -118,15 +135,86 @@ class EntrezInteraction:
         '''
         self.log.debug("Fetching GenBank entry %s and saving to %s" % (str(acc_id), outdir))
         gbFile = os.path.join(outdir, str(acc_id) + ".gb")
+        Entrez.email = self.email
+        if self.api_key:
+            Entrez.api_key = self.api_key
+        handle = Entrez.efetch(db="nucleotide", id=str(acc_id), rettype="gb", retmode="text")
         with open(gbFile, "w") as outfile:
-            efetchargs = ["efetch", "-db", "nucleotide", "-format", "gb", "-id", str(acc_id)]
-            efetch = subprocess.Popen(efetchargs, stdout=outfile)
-            efetch.wait()
+            outfile.write(handle.read())
+        handle.close()
         if not os.path.isfile(gbFile):
             raise Exception("Error retrieving GenBank flatfile of accession " + str(acc_id))
         elif os.path.getsize(gbFile) == 0:
             raise Exception("Error retrieving GenBank flatfile of accession " + str(acc_id))
         return gbFile
+
+    def fetch_gb_entries_batch(self, acc_ids, outdir, batch_size=25):
+        '''
+        Fetches multiple GenBank flatfiles in batches and saves them to outdir.
+        Returns a dict of {acc_id: filepath} for successfully downloaded entries.
+        '''
+        Entrez.email = self.email
+        if self.api_key:
+            Entrez.api_key = self.api_key
+
+        results = {}
+        acc_ids = list(acc_ids)
+        MAX_RETRIES = 3
+        RETRY_DELAY = 5  # seconds
+
+        for i in range(0, len(acc_ids), batch_size):
+            batch = acc_ids[i:i + batch_size]
+            self.log.debug("Fetching batch %d-%d of %d GB entries" % (i + 1, i + len(batch), len(acc_ids)))
+
+            for attempt in range(1, MAX_RETRIES + 1):
+                try:
+                    handle = Entrez.efetch(db="nucleotide", id=",".join(batch), rettype="gb", retmode="text")
+                    records = handle.read().split("\n//\n")
+                    handle.close()
+
+                    for acc_id, record in zip(batch, records):
+                        record = record.strip()
+                        if not record:
+                            continue
+                        gbFile = os.path.join(outdir, str(acc_id) + ".gb")
+                        with open(gbFile, "w") as outfile:
+                            outfile.write(record + "\n//\n")
+                        results[acc_id] = gbFile
+
+                    time.sleep(self._sleep_interval)  # stay under NCBI rate limit (3 req/sec without API key)
+                    break  # success — move to next batch
+
+                except Exception as e:
+                    self.log.warning(
+                        "Batch %d-%d failed on attempt %d/%d: %s" % (i + 1, i + len(batch), attempt, MAX_RETRIES,
+                                                                     str(e)))
+                    if attempt < MAX_RETRIES:
+                        self.log.info("Retrying in %d seconds..." % RETRY_DELAY)
+                        time.sleep(RETRY_DELAY)
+                    else:
+                        self.log.error(
+                            "Batch %d-%d failed after %d attempts. Falling back to one-by-one fetch." % (i + 1,
+                                                                                                         i + len(batch),
+                                                                                                         MAX_RETRIES))
+                        # Fall back: fetch individually so one bad record doesn't lose the whole batch
+                        for acc_id in batch:
+                            for solo_attempt in range(1, MAX_RETRIES + 1):
+                                try:
+                                    gbFile = self.fetch_gb_entry(acc_id, outdir)
+                                    results[acc_id] = gbFile
+                                    time.sleep(self._sleep_interval)
+                                    break
+                                except Exception as solo_e:
+                                    self.log.warning(
+                                        "Solo fetch of %s failed attempt %d/%d: %s" % (acc_id, solo_attempt,
+                                                                                       MAX_RETRIES, str(solo_e)))
+                                    if solo_attempt < MAX_RETRIES:
+                                        time.sleep(RETRY_DELAY)
+                                    else:
+                                        self.log.error(
+                                            "Giving up on accession %s after %d attempts." % (acc_id, MAX_RETRIES))
+
+        return results
 
     def fetch_pubmed_articles(self, mail, query):
         '''
@@ -146,17 +234,51 @@ class EntrezInteraction:
             articles = result.pubmed_records
         return articles
 
+    def fetch_xml_entries_batch(self, uids, batch_size=100):
+        Entrez.email = self.email
+        if self.api_key:
+            Entrez.api_key = self.api_key
+
+        results = []
+        uids = list(uids)
+        MAX_RETRIES = 3
+        RETRY_DELAY = 5
+
+        for i in range(0, len(uids), batch_size):
+            batch = uids[i:i + batch_size]
+            self.log.debug("Fetching batch of %d UIDs" % len(batch))
+
+            for attempt in range(1, MAX_RETRIES + 1):
+                try:
+                    handle = Entrez.efetch(db="nucleotide", id=",".join(map(str, batch)), rettype="gb", retmode="xml")
+                    out = handle.read()
+                    handle.close()
+                    root = ET.fromstring(out)
+                    results.extend(root.findall("GBSeq"))
+                    time.sleep(self._sleep_interval)
+                    break
+
+                except Exception as e:
+                    self.log.warning(
+                        "XML batch %d-%d failed on attempt %d/%d: %s" % (i + 1, i + len(batch), attempt, MAX_RETRIES,
+                                                                         str(e)))
+                    if attempt < MAX_RETRIES:
+                        self.log.info("Retrying in %d seconds..." % RETRY_DELAY)
+                        time.sleep(RETRY_DELAY)
+                    else:
+                        self.log.error("XML batch %d-%d failed after %d attempts. Skipping." % (i + 1, i + len(batch),
+                                                                                                MAX_RETRIES))
+
+        return results
+
     def internet_on(self):
-        '''
-        Simple check if internet connection is active
-        Modified from: https://stackoverflow.com/questions/3764291/checking-network-connection
-        '''
         try:
-            urllib.request.urlopen('http://142.250.191.46', timeout=1) # Current website of Google.com (07-May-2024)
+            urllib.request.urlopen('https://www.google.com', timeout=5)
             return True
-        except urllib.request.URLError as err: 
+        except urllib.request.URLError:
             try:
-                urllib.request.urlopen('http://198.35.26.96', timeout=1) # Current website of wikipedia.org (07-May-2024)
+                urllib.request.urlopen('https://www.wikipedia.org', timeout=5)
                 return True
-            except urllib.request.URLError as err: 
+            except urllib.request.URLError:
                 return False
+
