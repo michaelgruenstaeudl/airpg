@@ -5,14 +5,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="airpg",
-    version="1.1.7",
-    author="Michael Gruenstaeudl, Tilman Mehl",
-    author_email="m_gruenstaeudl@fhsu.edu, tilmanmehl@zedat.fu-berlin.de",
+    version="1.1.8",
+    author="Michael Gruenstaeudl",
+    author_email="m_gruenstaeudl@fhsu.edu",
     description="A package to automatically access the inverted repeats of archived plastid genomes",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='https://github.com/michaelgruenstaeudl/airpg',
-    #download_url='https://github.com/michaelgruenstaeudl/airpg/archive/v1.1.7.tar.gz',
+    #download_url='https://github.com/michaelgruenstaeudl/airpg/archive/v1.1.8.tar.gz',
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
@@ -26,11 +26,19 @@ setuptools.setup(
     license='GPLv3',
     #packages=['airpg'], # So that the subfolder 'airpg' is read immediately.
     packages = setuptools.find_packages(),
-    #entry_points={
-    #  "console_scripts": ["airpg-identify=airpg.scripts.airpg_identify", "airpg-analyze=airpg.scripts.airpg_analyze", "airpg-confirm=airpg.scripts.airpg_confirm", "airpg-update-blocklist=airpg.scripts.airpg_update_blocklist"]
-    #},
+        entry_points={
+            "console_scripts": [
+                    "airpg_identify.py=airpg.scripts.airpg_identify:cli",
+                    "airpg_analyze.py=airpg.scripts.airpg_analyze:cli",
+                    "airpg_confirm.py=airpg.scripts.airpg_confirm:cli",
+                    "airpg_update_blocklist.py=airpg.scripts.airpg_update_blocklist:cli",
+                    "airpg-identify=airpg.scripts.airpg_identify:cli",
+                    "airpg-analyze=airpg.scripts.airpg_analyze:cli",
+                    "airpg-confirm=airpg.scripts.airpg_confirm:cli",
+                    "airpg-update-blocklist=airpg.scripts.airpg_update_blocklist:cli"
+            ]
+        },
     install_requires=['biopython', 'ete3', 'entrezpy', 'pandas', 'fuzzywuzzy', 'coloredlogs', 'python-Levenshtein', 'legacy-cgi'],
-    scripts=['airpg/scripts/airpg_identify.py', 'airpg/scripts/airpg_analyze.py', 'airpg/scripts/airpg_confirm.py', 'airpg/scripts/airpg_update_blocklist.py'],
     test_suite='setup.my_test_suite',
     include_package_data=True,
     package_data={'': ['airpg/tutorials/*.md']},

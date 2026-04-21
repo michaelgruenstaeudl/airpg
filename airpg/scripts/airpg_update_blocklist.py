@@ -167,10 +167,14 @@ def main(args):
     write_blocklist(args.file_blocklist, sorted(blocklist))
 
 
-if __name__ == "__main__":
+def cli():
     parser = argparse.ArgumentParser(description="  --  ".join([__author__, __copyright__, __info__, __version__]))
     parser.add_argument("-f", "--file_blocklist", type=str, required=True, help="Path to blocklist file")
     parser.add_argument("-q", "--query", type=str, required=False, default="inverted[TITLE] AND repeat[TITLE] AND loss[TITLE]", help="(Optional) Entrez string to query NCBI PubMed")
     parser.add_argument("-m", "--mail", type=str, required=False, help="(Optional) Mail address needed for Entrez search on NCBI PubMed (any valid mail address works)")
     args = parser.parse_args()
     main(args)
+
+
+if __name__ == "__main__":
+    cli()

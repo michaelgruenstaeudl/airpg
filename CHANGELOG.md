@@ -1,6 +1,8 @@
 CHANGELOG
 ---------
 =======
+#### Version 1.1.8 (2026.04.21)
+* Various bugfixes
 #### Version 1.1.7 (2024.05.09)
 * Bugfixes
 #### Version 1.1.6 (2024.05.08)

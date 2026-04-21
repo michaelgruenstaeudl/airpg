@@ -142,7 +142,7 @@ def main(args):
 # MAIN #
 ########
 
-if __name__ == "__main__":
+def cli():
     parser = argparse.ArgumentParser(description="  --  ".join([__author__, __copyright__, __info__, __version__]))
     parser.add_argument("-o", "--outfn", type=str, required=True, help="Path to output file")
     parser.add_argument("-q", "--query", type=str, required=False, default="complete genome[TITLE] AND (chloroplast[TITLE] OR plastid[TITLE]) AND 50000:250000[SLEN] NOT unverified[TITLE] NOT partial[TITLE] AND Magnoliopsida[ORGN]", help="(Optional) Entrez query that will replace the standard query")
@@ -152,3 +152,7 @@ if __name__ == "__main__":
     parser.add_argument("-k", "--api_key", type=str, required=False, help="(Optional) NCBI API key to increase rate limit")
     args = parser.parse_args()
     main(args)
+
+
+if __name__ == "__main__":
+    cli()

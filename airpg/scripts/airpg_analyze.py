@@ -213,7 +213,7 @@ def main(args):
 # MAIN #
 ########
 
-if __name__ == "__main__":
+def cli():
     parser = argparse.ArgumentParser(description="  --  ".join([__author__, __copyright__, __info__, __version__]))
     parser.add_argument("--infn", "-i", type=str, required=True, help="Path to input file; input is a summary table of NCBI accessions (tab-delimited, accession numbers in second column)")
     parser.add_argument("--outfn", "-o", type=str, required=True, help="Path to output file that contains information on IR positions and length")
@@ -228,3 +228,7 @@ if __name__ == "__main__":
     #if bool(args.query) ^ bool(args.mail):
     #    parser.error("--query and --mail must be given together")
     main(args)
+
+
+if __name__ == "__main__":
+    cli()

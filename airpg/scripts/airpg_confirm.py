@@ -183,7 +183,7 @@ def main(args):
 # MAIN #
 ########
 
-if __name__ == "__main__":
+def cli():
     parser = argparse.ArgumentParser(description="  --  ".join([__author__, __copyright__, __info__, __version__]))
     parser.add_argument("--infn", "-i", type=str, required=True, help="Path to input file; input is a summary table on reported IR positions and length (tab-delimited, accession numbers in first column)")
     parser.add_argument("--outfn", "-o", type=str, required=True, help="Path to output file that contains extended table IR positions and length")
@@ -193,3 +193,7 @@ if __name__ == "__main__":
     parser.add_argument("--verbose", "-v", action="store_true", required=False, default=False, help="(Optional) Enable verbose logging")
     args = parser.parse_args()
     main(args)
+
+
+if __name__ == "__main__":
+    cli()
